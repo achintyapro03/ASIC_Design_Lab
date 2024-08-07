@@ -59,6 +59,11 @@ The task involves creating a simple C program that calculates the sum of numbers
     riscv64-unknown-elf-gcc -Ofast -mabi=lp64 -march=rv64i -o sum1ton.o sum1ton.c
     ls -ltr sum1ton.c
     ```
+    ![image](https://github.com/user-attachments/assets/97023caa-ba50-4252-99a0-e21d35e0b6bf)
+   
+    ```bash
+    riscv64-unknown-elf-objdump -d sum1ton.o | less
+    ```
     ![OFast Output](https://github.com/user-attachments/assets/8cd49589-baca-47ec-88ea-0a78dda6e9f8)
     - Here, we get 12 instructions, 3 less than O1 optimization.
 
