@@ -8,9 +8,7 @@ This project comprises a series of tasks aimed at designing and implementing var
 |-------------|-------------------------------------------------|
 | [Task 1](#task-1) | C program to calculate the sum of numbers from 1 to n |
 | [Task 2](#task-2) | Debugging the code using Spike simulator  |
-| [Task 3](#task-3) | Description of Task 3                      |
-| [Task 4](#task-4) | Description of Task 4                      |
-| [Task 5](#task-5) | Description of Task 5                      |
+
 
 ## Tasks
 
