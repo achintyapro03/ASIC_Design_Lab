@@ -84,14 +84,3 @@ The code written in [Task 1](#task-1) is being debugged using the Spike simulato
     - In this case, it confirms that the sum of numbers from 1 to 100 is calculated correctly.
     ![Spike Output 2](https://github.com/user-attachments/assets/25f03f79-d2f7-401a-8a9c-6c211321f70f)
 
-### Task 3
-
-*Description of Task 3*
-
-### Task 4
-
-*Description of Task 4*
-
-### Task 5
-
-*Description of Task 5*
