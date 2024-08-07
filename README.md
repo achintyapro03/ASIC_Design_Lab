@@ -19,6 +19,7 @@ The task involves creating a simple C program that calculates the sum of numbers
 1. **Creating and Opening the File**:
     - The file `sum1ton.c` is created and opened using the vim editor.
     ```bash
+    touch sum1ton.c
     vim sum1ton.c
     ```
 
@@ -32,15 +33,13 @@ The task involves creating a simple C program that calculates the sum of numbers
     gcc sum1ton.c
     ./a.out
     ```
-
-4. **Output**:
     ![Output](https://github.com/user-attachments/assets/f1bcb790-f27e-4a80-b626-41b78a1413ff)
 
-5. **Parameter Change**:
+4. **Parameter Change**:
     - The parameter 'n' was changed from 5 to 100 in this task.  
     ![Output](https://github.com/user-attachments/assets/da3d24f3-f028-4032-b190-96683d5642f7)
 
-6. **RISC-V Compilation**:
+5. **RISC-V Compilation**:
     - The following command is used to compile a C source file (sum1ton.c) into an object file (sum1ton.o) for the RISC-V 64-bit architecture.
     ```bash
     riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o sum1ton.o sum1ton.c
@@ -48,15 +47,13 @@ The task involves creating a simple C program that calculates the sum of numbers
     ```
     ![RISC-V Compilation](https://github.com/user-attachments/assets/bda4cd2a-ef57-43b8-80ba-6283a7a58b76)
 
-7. **Disassembling the Object File**:
-    - Disassemble the object file to view the instructions.
     ```bash
     riscv64-unknown-elf-objdump -d sum1ton.o | less
     ```
-    ![Disassembled Output](https://github.com/user-attachments/assets/7a05c12a-7e05-418f-aa5b-65f685dac8e5)
+    ![Output](https://github.com/user-attachments/assets/7a05c12a-7e05-418f-aa5b-65f685dac8e5)
     - From this, we observe that each instruction is 4 bytes. By subtracting the address of the last instruction from the first and dividing by 4, we get 15 instructions for the main section.
 
-8. **OFast Optimization**:
+6. **OFast Optimization**:
     - Similarly, the same code was compiled using OFast optimization.
     ```bash
     riscv64-unknown-elf-gcc -Ofast -mabi=lp64 -march=rv64i -o sum1ton.o sum1ton.c
