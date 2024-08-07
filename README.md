@@ -20,11 +20,15 @@ The task involves creating a simple C program that calculates the sum of numbers
 
 1. **Creating and Opening the File**:
     - The file `sum1ton.c` is created and opened using the vim editor.
-    - ![Creating and Opening the File](https://github.com/user-attachments/assets/01fa42ab-3acf-4272-aa9f-15549b7f155f)
+     
+    ```
+        vim sum1ton.c
+    ```
 
 2. **Writing the Code**:
     - The code is written in the `sum1ton.c` file to calculate the sum of numbers from 1 to n.
-    - ![Writing the Code](https://github.com/user-attachments/assets/12415fcc-9edb-49c7-8dcf-ab1a521235ae)
+    - ![Writing the Code](https://github.com/user-attachments/assets/0b90a649-b3e6-42d5-ade6-600329ae8a85)
+
 
 3. **Compiling and Running the Code**:
     - The code is compiled and run using the following commands:
@@ -33,11 +37,11 @@ The task involves creating a simple C program that calculates the sum of numbers
     ./a.out
     ```
 4. **Output**:
-   - ![Output](https://github.com/user-attachments/assets/bf3774c7-3f95-4c07-9cb3-e41e0e135aae)
+   - ![cat](https://github.com/user-attachments/assets/f1bcb790-f27e-4a80-b626-41b78a1413ff)
 
 
 ### Task 2
-1. The n was changed from 5 to 100 in this task. 
+1. The parameter 'n' was changed from 5 to 100 in this task. 
     ![cat](https://github.com/user-attachments/assets/7935f31d-308a-475f-bf45-22e046641413)
 
 
