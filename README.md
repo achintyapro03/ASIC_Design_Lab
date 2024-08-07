@@ -1,7 +1,7 @@
 # ASIC Design Lab
 
 ## Overview
-This project comprises a series of tasks aimed at designing and implementing various components and programs for ASIC design. The tasks are intended for students and professionals working in the field of electronics and computer engineering.
+This project comprises a series of tasks aimed at designing and implementing various components and programs for ASIC design.
 
 ## Table of Contents
 | Task Number | Task Description                                |
@@ -32,3 +32,13 @@ The task involves creating a simple C program that calculates the sum of numbers
     gcc sum1ton.c
     ./a.out
     ```
+4. **Output**:
+   - ![Output](https://github.com/user-attachments/assets/bf3774c7-3f95-4c07-9cb3-e41e0e135aae)
+
+
+### Task 2
+1. The n was changed from 5 to 100 in this task. 
+    ![cat](https://github.com/user-attachments/assets/7935f31d-308a-475f-bf45-22e046641413)
+
+
+
