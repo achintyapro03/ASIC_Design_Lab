@@ -86,7 +86,7 @@ The code written in [Task 1](#task-1) is being debugged using the Spike simulato
     ![Spike Output 2](https://github.com/user-attachments/assets/25f03f79-d2f7-401a-8a9c-6c211321f70f)
 
 
-### Task 3 : RISC-V Instruction Formats
+### Task 3
 
 This task involves understanding the different RISC-V instruction formats and their usage in the context of assembly language programming. Below are the details of each instruction format:
 
@@ -150,4 +150,19 @@ This task involves understanding the different RISC-V instruction formats and th
 
 
 
+| Instruction     | Instruction Type | 32-bit Instruction Code       |
+|-----------------|------------------|-------------------------------|
+| ADD r4, r5, r6| R-type            | 0000000 00110 00101 000 00100 0110011 |
+| SUB r6, r4, r5| R-type            | 0100000 00101 00100 000 00110 0110011 |
+| AND r5, r4, r6| R-type            | 0000000 00110 00100 111 00101 0110011 |
+| OR r8, r5, r5 | R-type            | 0000000 00101 00101 110 01000 0110011 |
+| XOR r8, r4, r4| R-type            | 0000000 00100 00100 100 01000 0110011 |
+| SLT r10, r2, r4| R-type           | 0000000 00100 00010 010 01010 0110011 |
+| ADDI r12, r3, 5| I-type           | 000000000101 00011 000 01100 0010011  |
+| SW r3, r1, 4  | S-type            | 0000000 00011 00001 010 00010 0100011 |
+| SRL r16, r11, r2| R-type          | 0000000 00010 01011 101 10000 0110011 |
+| BNE r0, r1, 20| B-type            | 000000 00001 00000 001 00100 1100011  |
+| BEQ r0, r0, 15| B-type            | 000000 00000 00000 000 01111 1100011  |
+| LW r13, r11, 2| I-type            | 000000000010 01011 010 01101 0000011  |
+| SLL r15, r11, r2| R-type          | 0000000 00010 01011 001 01111 0110011 |
 
