@@ -152,7 +152,7 @@ This task involves understanding the different RISC-V instruction formats and th
         - `opcode (6:0)`: Operation code.
     - **Usage**: Used for jump instructions, where the program counter (PC) is modified to jump to a different location in the code.
 
-The floowing instructions were provided as part of an exercise. 
+The following instructions were provided as part of an exercise. 
 ```
 ADD r4, r5, r6
 SUB r6, r4, r5
@@ -185,6 +185,19 @@ SLL r15, r11, r2
 | 11    | BEQ r0, r0, 15   | B-type            | 000000 00000 00000 000 01111 1100011  | 0x00007863                  |
 | 12    | LW r13, r11, 2   | I-type            | 000000000010 01011 010 01101 0000011  | 0x0025A503                  |
 | 13    | SLL r15, r11, r2 | R-type            | 0000000 00010 01011 001 01111 0110011 | 0x0025B333                  |
+
+Install verilog and gtkwave using the following the commands
+```
+sudo apt get update
+sudo apt get upgrade
+sudo apt get install iverilog gtkwave
+```
+Clone the repository and download the netlist files for simulation.
+```
+git clone https://github.com/vinayrayapati/rv32i/
+
+```
+![image](https://github.com/user-attachments/assets/f15d0f76-6b3c-449e-88d6-c188802cb984)
 
 
 </details>
