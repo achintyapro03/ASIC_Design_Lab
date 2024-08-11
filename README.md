@@ -8,6 +8,7 @@ This project comprises a series of tasks aimed at designing and implementing var
 |-------------|-------------------------------------------------|
 | [Task 1](#task-1) | C program to calculate the sum of numbers from 1 to n |
 | [Task 2](#task-2) | Debugging the code using Spike simulator  |
+| [Task 3](#task-3) | Debugging the code using Spike simulator  |
 
 
 ## Tasks
@@ -83,4 +84,70 @@ The code written in [Task 1](#task-1) is being debugged using the Spike simulato
     - The output from the Spike simulator helps in verifying the correctness of the program execution on the RISC-V architecture.
     - In this case, it confirms that the sum of numbers from 1 to 100 is calculated correctly.
     ![Spike Output 2](https://github.com/user-attachments/assets/25f03f79-d2f7-401a-8a9c-6c211321f70f)
+
+
+### Task 3: RISC-V Instruction Formats
+
+This task involves understanding the different RISC-V instruction formats and their usage in the context of assembly language programming. Below are the details of each instruction format:
+
+1. **R-type (Register Type)**
+    - **Fields**:
+        - `funct7 (31:25)`: Function code, used to specify the exact operation (e.g., add, subtract) along with `funct3`.
+        - `rs2 (24:20)`: Source register 2, the second source operand.
+        - `rs1 (19:15)`: Source register 1, the first source operand.
+        - `funct3 (14:12)`: Function code, used together with `funct7` to specify the exact operation.
+        - `rd (11:7)`: Destination register, where the result of the operation will be stored.
+        - `opcode (6:0)`: Operation code, used to determine the instruction format and basic operation.
+    - **Usage**: Used for arithmetic, logical, and other operations that require two register operands.
+
+2. **I-type (Immediate Type)**
+    - **Fields**:
+        - `imm[11:0] (31:20)`: Immediate value, a constant used in operations (e.g., load, `addi`).
+        - `rs1 (19:15)`: Source register, the first operand.
+        - `funct3 (14:12)`: Function code, used to specify the operation.
+        - `rd (11:7)`: Destination register, where the result will be stored.
+        - `opcode (6:0)`: Operation code.
+    - **Usage**: Used for operations involving an immediate value, such as loading data or adding a constant to a register.
+
+3. **S-type (Store Type)**
+    - **Fields**:
+        - `imm[11:5] (31:25)`: Upper 7 bits of the immediate value.
+        - `rs2 (24:20)`: Source register 2, which holds the data to be stored.
+        - `rs1 (19:15)`: Source register 1, which contains the base address.
+        - `funct3 (14:12)`: Function code.
+        - `imm[4:0] (11:7)`: Lower 5 bits of the immediate value.
+        - `opcode (6:0)`: Operation code.
+    - **Usage**: Used for store instructions, where data from a register is stored to memory.
+
+4. **B-type (Branch Type)**
+    - **Fields**:
+        - `imm[12] (31)`: Most significant bit of the immediate value.
+        - `imm[10:5] (30:25)`: Bits 10 to 5 of the immediate value.
+        - `rs2 (24:20)`: Source register 2, the second operand for comparison.
+        - `rs1 (19:15)`: Source register 1, the first operand for comparison.
+        - `funct3 (14:12)`: Function code, used to specify the comparison operation.
+        - `imm[4:1] (11:8)`: Bits 4 to 1 of the immediate value.
+        - `imm[11] (7)`: Bit 11 of the immediate value.
+        - `opcode (6:0)`: Operation code.
+    - **Usage**: Used for branch instructions, where the program may jump to a different location based on a comparison.
+
+5. **U-type (Upper Immediate Type)**
+    - **Fields**:
+        - `imm[31:12] (31:12)`: Immediate value, shifted to the upper 20 bits.
+        - `rd (11:7)`: Destination register.
+        - `opcode (6:0)`: Operation code.
+    - **Usage**: Used for instructions that involve large immediate values, typically for loading addresses or constants.
+
+6. **J-type (Jump Type)**
+    - **Fields**:
+        - `imm[20] (31)`: Bit 20 of the immediate value.
+        - `imm[10:1] (30:21)`: Bits 10 to 1 of the immediate value.
+        - `imm[11] (20)`: Bit 11 of the immediate value.
+        - `imm[19:12] (19:12)`: Bits 19 to 12 of the immediate value.
+        - `rd (11:7)`: Destination register, often used to store the return address.
+        - `opcode (6:0)`: Operation code.
+    - **Usage**: Used for jump instructions, where the program counter (PC) is modified to jump to a different location in the code.
+
+
+
 
