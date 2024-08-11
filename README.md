@@ -3,17 +3,10 @@
 ## Overview
 This project comprises a series of tasks aimed at designing and implementing various components and programs for ASIC design.
 
-## Table of Contents
-| Task Number | Task Description                                |
-|-------------|-------------------------------------------------|
-| [Task 1](#task-1) | C program to calculate the sum of numbers from 1 to n |
-| [Task 2](#task-2) | Debugging the code using Spike simulator  |
-| [Task 3](#task-3) | Debugging the code using Spike simulator  |
-
-
 ## Tasks
 
-### Task 1
+<details>
+  <summary>Task 1 : C program to calculate the sum of numbers from 1 to n </summary>
 
 The task involves creating a simple C program that calculates the sum of numbers from 1 to n. This was achieved using the following steps:
 
@@ -68,7 +61,10 @@ The task involves creating a simple C program that calculates the sum of numbers
     ![OFast Output](https://github.com/user-attachments/assets/8cd49589-baca-47ec-88ea-0a78dda6e9f8)
     - Here, we get 12 instructions, 3 less than O1 optimization.
 
-### Task 2
+</details>
+
+<details>
+  <summary>Task 2 : Debugging the code using Spike simulator</summary>
 
 The code written in [Task 1](#task-1) is being debugged using the Spike simulator.
 
@@ -85,12 +81,15 @@ The code written in [Task 1](#task-1) is being debugged using the Spike simulato
     - In this case, it confirms that the sum of numbers from 1 to 100 is calculated correctly.
     ![Spike Output 2](https://github.com/user-attachments/assets/25f03f79-d2f7-401a-8a9c-6c211321f70f)
 
+</details>
 
-### Task 3
+<details>
+  <summary>Task 3 : Debugging the code using Spike simulator</summary>
 
 This task involves understanding the different RISC-V instruction formats and their usage in the context of assembly language programming. Below are the details of each instruction format:
 
 1. **R-type (Register Type)**
+    - **Structure**: <br> <img width="772" alt="R" src="https://github.com/user-attachments/assets/ce5d99f4-7463-48f9-aa4f-f48b41afe84e">
     - **Fields**:
         - `funct7 (31:25)`: Function code, used to specify the exact operation (e.g., add, subtract) along with `funct3`.
         - `rs2 (24:20)`: Source register 2, the second source operand.
@@ -101,6 +100,7 @@ This task involves understanding the different RISC-V instruction formats and th
     - **Usage**: Used for arithmetic, logical, and other operations that require two register operands.
 
 2. **I-type (Immediate Type)**
+    - **Structure**: <br> <img width="772" alt="I" src="https://github.com/user-attachments/assets/8fb86523-a443-4c29-9365-e64d9b1288a7">
     - **Fields**:
         - `imm[11:0] (31:20)`: Immediate value, a constant used in operations (e.g., load, `addi`).
         - `rs1 (19:15)`: Source register, the first operand.
@@ -110,6 +110,7 @@ This task involves understanding the different RISC-V instruction formats and th
     - **Usage**: Used for operations involving an immediate value, such as loading data or adding a constant to a register.
 
 3. **S-type (Store Type)**
+    - **Structure**: <br> <img width="772" alt="S" src="https://github.com/user-attachments/assets/1fde53ef-bca6-4338-be46-49c249ce2d33">
     - **Fields**:
         - `imm[11:5] (31:25)`: Upper 7 bits of the immediate value.
         - `rs2 (24:20)`: Source register 2, which holds the data to be stored.
@@ -120,6 +121,7 @@ This task involves understanding the different RISC-V instruction formats and th
     - **Usage**: Used for store instructions, where data from a register is stored to memory.
 
 4. **B-type (Branch Type)**
+    - **Structure**: <br> <img width="772" alt="B" src="https://github.com/user-attachments/assets/0b7704e6-bfbc-4215-8919-6af69dc4b0b9">
     - **Fields**:
         - `imm[12] (31)`: Most significant bit of the immediate value.
         - `imm[10:5] (30:25)`: Bits 10 to 5 of the immediate value.
@@ -132,6 +134,7 @@ This task involves understanding the different RISC-V instruction formats and th
     - **Usage**: Used for branch instructions, where the program may jump to a different location based on a comparison.
 
 5. **U-type (Upper Immediate Type)**
+    - **Structure**: <br> <img width="772" alt="U" src="https://github.com/user-attachments/assets/59a69fe4-de5a-4024-9a01-5843ad422c21">
     - **Fields**:
         - `imm[31:12] (31:12)`: Immediate value, shifted to the upper 20 bits.
         - `rd (11:7)`: Destination register.
@@ -139,6 +142,7 @@ This task involves understanding the different RISC-V instruction formats and th
     - **Usage**: Used for instructions that involve large immediate values, typically for loading addresses or constants.
 
 6. **J-type (Jump Type)**
+    - **Structure**: <br> <img width="772" alt="J" src="https://github.com/user-attachments/assets/77987843-4c4c-462d-a0fc-5b5d7658b5f3">
     - **Fields**:
         - `imm[20] (31)`: Bit 20 of the immediate value.
         - `imm[10:1] (30:21)`: Bits 10 to 1 of the immediate value.
@@ -148,7 +152,21 @@ This task involves understanding the different RISC-V instruction formats and th
         - `opcode (6:0)`: Operation code.
     - **Usage**: Used for jump instructions, where the program counter (PC) is modified to jump to a different location in the code.
 
-
+```
+ADD r4, r5, r6
+SUB r6, r4, r5
+AND r5, r4, r6
+OR r8, r5, r5
+XOR r8, r4, r4
+SLT r10, r2, r4
+ADDI r12, r3, 5
+SW r3, r1, 4
+SRL r16, r11, r2
+BNE r0, r1, 20
+BEQ r0, r0, 15
+LW r13, r11, 2
+SLL r15, r11, r2
+```
 
 | Instruction     | Instruction Type | 32-bit Instruction Code       |
 |-----------------|------------------|-------------------------------|
@@ -165,4 +183,6 @@ This task involves understanding the different RISC-V instruction formats and th
 | BEQ r0, r0, 15| B-type            | 000000 00000 00000 000 01111 1100011  |
 | LW r13, r11, 2| I-type            | 000000000010 01011 010 01101 0000011  |
 | SLL r15, r11, r2| R-type          | 0000000 00010 01011 001 01111 0110011 |
+
+</details>
 
