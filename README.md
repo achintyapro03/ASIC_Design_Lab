@@ -86,7 +86,7 @@ The code written in [Task 1](#task-1) is being debugged using the Spike simulato
     ![Spike Output 2](https://github.com/user-attachments/assets/25f03f79-d2f7-401a-8a9c-6c211321f70f)
 
 
-### Task 3: RISC-V Instruction Formats
+### Task 3 : RISC-V Instruction Formats
 
 This task involves understanding the different RISC-V instruction formats and their usage in the context of assembly language programming. Below are the details of each instruction format:
 
