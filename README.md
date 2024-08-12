@@ -187,7 +187,7 @@ SLL r15, r11, r2
 | 13    | SLL r15, r11, r2| R-type            | 0110011  | 001    | 0000000 | r15  | r11  | r2   | -         | 0000000 00010 01011 001 01111 0110011 |
 
 
-| Sl.No | Instruction     | 32-bit Instruction Code           | Hexadecimal Representation | Comments    |
+| Sl.No | Instruction     | 32-bit Instruction Code           | Hexadecimal Representation | Hardcoded Instructions    |
 |-------|-----------------|-----------------------------------|----------------------------|-------------|
 | 1     | ADD r4, r5, r6  | 0000000 00110 00101 000 00100 0110011 | 32'h00628233                 | 32'h02208300 |
 | 2     | SUB r6, r4, r5  | 0100000 00101 00100 000 00110 0110011 | 32'h40A28233                 | 32'h02209380 |
@@ -212,7 +212,6 @@ sudo apt get install iverilog gtkwave
 Clone the repository and download the netlist files for simulation.
 ```
 git clone https://github.com/vinayrayapati/rv32i/
-
 ```
 ![image](https://github.com/user-attachments/assets/f15d0f76-6b3c-449e-88d6-c188802cb984)
 
