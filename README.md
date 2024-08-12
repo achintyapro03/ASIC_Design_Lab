@@ -338,4 +338,7 @@ This document provides the hardcoded and actual instruction simulation results f
 
 
 </details>
+
+### Conclusion:
+We noticed a change in the output between hardcoded instructions and the and the derived instructions waveforms which was what was expected.
 </details>
