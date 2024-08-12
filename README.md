@@ -1,4 +1,4 @@
-![h_10](https://github.com/user-attachments/assets/38b26ade-7a40-45bd-ac0c-8bcff2d9f64c)# ASIC Design Lab
+# ASIC Design Lab
 
 ## Overview
 This project comprises a series of tasks aimed at designing and implementing various components and programs for ASIC design.
@@ -84,7 +84,7 @@ The code written in [Task 1](#task-1) is being debugged using the Spike simulato
 </details>
 
 <details>
-  <summary>Task 3 : Debugging the code using Spike simulator</summary>
+  <summary>Task 3 : RISC-V Instructions simulations</summary>
 
 This task involves understanding the different RISC-V instruction formats and their usage in the context of assembly language programming. Below are the details of each instruction format:
 
