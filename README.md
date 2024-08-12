@@ -1,4 +1,4 @@
-# ASIC Design Lab
+![h_10](https://github.com/user-attachments/assets/38b26ade-7a40-45bd-ac0c-8bcff2d9f64c)# ASIC Design Lab
 
 ## Overview
 This project comprises a series of tasks aimed at designing and implementing various components and programs for ASIC design.
@@ -203,6 +203,9 @@ SLL r15, r11, r2
 | 12    | LW r13, r11, 2  | 000000000010 01011 010 01101 0000011  | 32'h0025A503                 | 32'h01409002 |
 | 13    | SLL r15, r11, r2| 0000000 00010 01011 001 01111 0110011 | 32'h0025B333                 | 32'h00520601 |
 
+
+## RISC-V Instruction Simulation
+
 Install verilog and gtkwave using the following the commands
 ```
 sudo apt get update
@@ -216,5 +219,123 @@ git clone https://github.com/vinayrayapati/rv32i/
 ![image](https://github.com/user-attachments/assets/f15d0f76-6b3c-449e-88d6-c188802cb984)
 
 
-</details>
 
+This document provides the hardcoded and actual instruction simulation results for a set of RISC-V instructions. Each instruction is paired with its corresponding hardcoded and actual instruction images.
+
+<details>
+  <summary><h2>Outputs</h2></summary>
+
+### 1. ADD r4, r5, r6
+- **Instruction Code**: `32'h00628233`
+- **Hardcoded Instruction**: `32'h02208300`
+- **Simulation Images**:
+  - **Hardcoded Instruction**: <br>
+    ![h_1](https://github.com/user-attachments/assets/110b2a94-ac3b-4677-9c9d-38c938b8bf11)
+  - **Actual Instruction**: <br>
+    ![1](https://github.com/user-attachments/assets/e564f75e-5b6b-4f0b-8c9a-2300e2d0d1ba)
+
+### 2. SUB r6, r4, r5
+- **Instruction Code**: `32'h40A28233`
+- **Hardcoded Instruction**: `32'h02209380`
+- **Simulation Images**:
+  - **Hardcoded Instruction**: <br>
+    ![h_2](https://github.com/user-attachments/assets/81a83c20-ba85-4fe1-8877-0d78809c47fa)
+  - **Actual Instruction**: <br>
+    ![2](https://github.com/user-attachments/assets/80a4f82c-9895-4201-8320-f0234eb238c6)
+
+### 3. AND r5, r4, r6
+- **Instruction Code**: `32'h0062F233`
+- **Hardcoded Instruction**: `32'h0230a400`
+- **Simulation Images**:
+  - **Hardcoded Instruction**: <br>
+    ![h_3](https://github.com/user-attachments/assets/2380e240-add7-4275-9b93-9c51f20139d9)
+  - **Actual Instruction**: <br>
+    ![3](https://github.com/user-attachments/assets/5db41025-a0cc-40d8-be52-e6e916bd9d3d)
+
+### 4. OR r8, r5, r5
+- **Instruction Code**: `32'h0052E233`
+- **Hardcoded Instruction**: `32'h02513480`
+- **Simulation Images**:
+  - **Hardcoded Instruction**: <br>
+    ![h_4](https://github.com/user-attachments/assets/7085d86d-c4c1-43e9-9fc3-5b14c001f91f)
+  - **Actual Instruction**: <br>
+    ![4](https://github.com/user-attachments/assets/57d3f509-ba21-40ed-ac0f-934c4cf93101)
+
+### 5. XOR r8, r4, r4
+- **Instruction Code**: `32'h00424233`
+- **Hardcoded Instruction**: `32'h0240c500`
+- **Simulation Images**:
+  - **Hardcoded Instruction**: <br>
+    ![h_5](https://github.com/user-attachments/assets/fcffea5f-f29e-4fae-8cc0-b01c2851c845)
+  - **Actual Instruction**: <br>
+    ![5](https://github.com/user-attachments/assets/de8dc87c-37b9-4fdd-8562-0221301cfe65)
+
+### 6. SLT r10, r2, r4
+- **Instruction Code**: `32'h00414233`
+- **Hardcoded Instruction**: `32'h02415580`
+- **Simulation Images**:
+  - **Hardcoded Instruction**: <br>
+    ![h_6](https://github.com/user-attachments/assets/fc95c999-80fa-48b6-80ab-a053bb3b146f)
+  - **Actual Instruction**: <br>
+    ![6](https://github.com/user-attachments/assets/a95158d7-c58a-45cc-8385-ca79758e19bb)
+
+### 7. ADDI r12, r3, 5
+- **Instruction Code**: `32'h00518313`
+- **Hardcoded Instruction**: `32'h00520600`
+- **Simulation Images**:
+  - **Hardcoded Instruction**: <br>
+    ![h_7](https://github.com/user-attachments/assets/3bf1e827-5515-4fd4-bdd8-76be24dc0aa3)
+  - **Actual Instruction**: <br>
+    ![7](https://github.com/user-attachments/assets/f13fde91-372f-4627-abcb-1c5c596e4a92)
+
+### 8. SW r3, r1, 4
+- **Instruction Code**: `32'h00312223`
+- **Hardcoded Instruction**: `32'h00209181`
+- **Simulation Images**:
+  - **Hardcoded Instruction**: <br>
+    ![h_8](https://github.com/user-attachments/assets/be02fdf7-ac66-46b7-8bd1-ea1ac193dd08)
+  - **Actual Instruction**: <br>
+    ![8](https://github.com/user-attachments/assets/32a648f2-bc23-4a65-8f8d-c67598181745)
+
+### 9. SRL r16, r11, r2
+- **Instruction Code**: `32'h0025A133`
+- **Hardcoded Instruction**: `32'h00208681`
+- **Simulation Images**:
+  - **Hardcoded Instruction**: <br>
+    ![h_9](https://github.com/user-attachments/assets/eda483c2-a4b2-473c-8682-ebe6fe895449)
+  - **Actual Instruction**: <br>
+    ![9](https://github.com/user-attachments/assets/57260bb9-8aa6-4f65-b423-53e21a1bcc15)
+
+### 10. BNE r0, r1, 20
+- **Instruction Code**: `32'h00102863`
+- **Hardcoded Instruction**: `32'h00f00002`
+- **Simulation Images**:
+  - **Hardcoded Instruction**: <br>
+    ![h_10](https://github.com/user-attachments/assets/f971b08b-64b3-477f-8d1f-aee3d077a190)
+  - **Actual Instruction**: <br>
+    ![10](https://github.com/user-attachments/assets/bf0f50c2-69a0-4d4a-9da6-aea268d87ec8)
+
+### 11. BEQ r0, r0, 15
+- **Instruction Code**: `32'h00007863`
+- **Hardcoded Instruction**: `32'h00210700`
+- **Simulation Images**:
+  - **Hardcoded Instruction**: <br>
+    ![h_11](https://github.com/user-attachments/assets/d720d527-9f47-465e-88bf-ba3f10fd03a5)
+  - **Actual Instruction**: <br>
+    ![11](https://github.com/user-attachments/assets/cf3e223f-dcf4-48b6-b2ff-a8354a4c47a4)
+
+### 12. LW r13, r11, 2
+- **Instruction Code**: `32'h0025A503`
+**Simulation Images**: <br>
+    ![Actual Instruction](https://github.com/user-attachments/assets/3b72e9ac-615f-4413-b3ad-dece32dacd9f)
+
+### 13. SLL r15, r11, r2
+- The above command was not able to be executed as there was not enough memory spaces and the program was compiled with a warning:
+- ![image](https://github.com/user-attachments/assets/cf5ed2e3-c4a7-4808-be96-91d0dda94471)
+- **Instruction Code**: `32'h0025B333`
+- **Simulation Images**: <br>
+    ![Actual Instruction](https://github.com/user-attachments/assets/323b9b69-8116-4370-9309-1177e62adac2)
+
+
+</details>
+</details>
