@@ -342,3 +342,71 @@ This document provides the hardcoded and actual instruction simulation results f
 ### Conclusion:
 We noticed a change in the output between hardcoded instructions and the and the derived instructions waveforms which was what was expected.
 </details>
+
+<details>
+  <summary>Task 4 : To write an application in 'C' that can be compiled using GCC and RISC-V GCC</summary>
+
+In this task the bubble sort algorithm has been used and the code is given below.
+```c
+#include <stdio.h>
+#include <stdint.h>
+
+int main() {
+    int32_t arr[] = {64, 34, 25, 12, 22, 11, 90}; // Hardcoded input array
+    int32_t n = sizeof(arr) / sizeof(arr[0]);
+    int32_t i, j;
+    int32_t temp;
+    int32_t swapped;
+
+    // Print the original array
+    printf("Original array:\n");
+    for (i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    // Bubble sort algorithm
+    for (i = 0; i < n - 1; i++) {
+        swapped = 0;
+        for (j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                // Swap arr[j] and arr[j + 1]
+                temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+                swapped = 1;
+            }
+        }
+        // If no two elements were swapped in the inner loop, then the array is sorted
+        if (swapped == 0) {
+            break;
+        }
+    }
+
+    // Print the sorted array
+    printf("Sorted array:\n");
+    for (i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
+```
+
+![image](https://github.com/user-attachments/assets/2defda40-386b-4eaf-a580-ddd1f5e0ece2)
+
+Now run the following codes for compiling. 
+
+```
+gcc bubbleSort.c
+./a.out
+riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o bubbleSort.o bubbleSort.c
+riscv64-unknown-elf-objdump -d bubbleSort.o | less
+spike pk bubbleSort.o
+```
+
+![image](https://github.com/user-attachments/assets/3b998ae2-de12-4343-a5ca-6a81f23610e7)
+
+From this picture we can see that O0 = 01.
+</details>
