@@ -419,27 +419,67 @@ From this picture we can see that O0 = 01.
   ## Combinatorial Circuits
 
   1. Inverter
+     <br>
      ![Screenshot 2024-08-20 234644](https://github.com/user-attachments/assets/d3f236c7-a1bb-4067-a775-87faeda2e124)
 
-  2. 2 input And
+  3. 2 input And
+     <br>
      ![Screenshot 2024-08-20 234548](https://github.com/user-attachments/assets/b6e076de-b9df-4398-ae2c-1271721d809a)
 
-  3. 2 input Or
+  5. 2 input Or
+     <br>
      ![Screenshot 2024-08-20 235051](https://github.com/user-attachments/assets/1b3e290c-ce62-4c65-aa65-45e5a0d29f79)
      
-  4. 2 input Xor
+  7. 2 input Xor
+     <br>
      ![Screenshot 2024-08-20 235117](https://github.com/user-attachments/assets/1257d8be-d847-4c61-a249-5eff99c38ea8)
 
-  5. Vector Addition
+  9. Vector Addition
+      <br>
      ![Screenshot 2024-08-20 235210](https://github.com/user-attachments/assets/2ffb268c-78b3-4163-8122-b71f325a3922)
 
-  6. 2:1 Mux
+  11. 2:1 Mux
+      <br>
      ![Screenshot 2024-08-20 235455](https://github.com/user-attachments/assets/1dc9e902-7145-40c7-b9fc-f9f2537c587f)
 
-  7. 2:1 Mux with Vectors
+  13. 2:1 Mux with Vectors
+      <br>
      ![Screenshot 2024-08-20 235533](https://github.com/user-attachments/assets/45a4cccc-7278-4d6d-83f6-a86a2721762a)
 
-  8. Combinatorial Calculator
+  15. Combinatorial Calculator
+      <br>
      ![Screenshot 2024-08-21 000013](https://github.com/user-attachments/assets/bd3046ea-9b00-4df3-8fc3-329ffcde3fe2)
+
+
+## Sequential Circuits
+  1. Fibbonacci Series
+    <br>
+     <img width="579" alt="9" src="https://github.com/user-attachments/assets/6be0adb4-59a0-4c13-978e-5dfe9b1f74e9">
+     ![image](https://github.com/user-attachments/assets/5fceeb09-df9b-4f4e-8b87-2ff1a6d364b7)
+
+  2. Free Running Counter
+     <br>
+     ![image](https://github.com/user-attachments/assets/dd450316-6605-4b85-8975-d19b05cd6b00)
+      <img width="198" alt="11" src="https://github.com/user-attachments/assets/d53228bc-fda0-4d34-a14e-2885486ce536">
+
+  4. Sequential Calculator
+     <br>
+     ![image](https://github.com/user-attachments/assets/2c5c60cd-dcd4-445f-8e6f-78647c266422)
+
+## Pipeline Logic
+  
+  1. Produce the Pipeline Design
+     <br>
+     ![oo3](https://github.com/user-attachments/assets/4cd14b8c-d314-499b-95c5-270a0016f27d)
+     ![oo1](https://github.com/user-attachments/assets/2ea28c83-1336-4c9b-8c06-3719f1d1465a)
+
+  2. 2 Cycle Calculator
+     <br>
+     <img width="488" alt="16" src="https://github.com/user-attachments/assets/b08efe91-f86d-4c5c-84fb-8f245337c826">
+     ![oo2](https://github.com/user-attachments/assets/f08559dc-1706-4217-8a0e-b40a2d20c83f)
+
+  
+
+
 
 </details>
