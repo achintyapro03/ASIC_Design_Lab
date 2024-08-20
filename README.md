@@ -410,3 +410,36 @@ spike pk bubbleSort.o
 
 From this picture we can see that O0 = 01.
 </details>
+
+<details>
+  <summary>Task 5</summary>
+
+  # TL-Verilog implementation of Circuits using Makerchip IDE
+
+  ## Combinatorial Circuits
+
+  1. Inverter
+     ![Screenshot 2024-08-20 234644](https://github.com/user-attachments/assets/d3f236c7-a1bb-4067-a775-87faeda2e124)
+
+  2. 2 input And
+     ![Screenshot 2024-08-20 234548](https://github.com/user-attachments/assets/b6e076de-b9df-4398-ae2c-1271721d809a)
+
+  3. 2 input Or
+     ![Screenshot 2024-08-20 235051](https://github.com/user-attachments/assets/1b3e290c-ce62-4c65-aa65-45e5a0d29f79)
+     
+  4. 2 input Xor
+     ![Screenshot 2024-08-20 235117](https://github.com/user-attachments/assets/1257d8be-d847-4c61-a249-5eff99c38ea8)
+
+  5. Vector Addition
+     ![Screenshot 2024-08-20 235210](https://github.com/user-attachments/assets/2ffb268c-78b3-4163-8122-b71f325a3922)
+
+  6. 2:1 Mux
+     ![Screenshot 2024-08-20 235455](https://github.com/user-attachments/assets/1dc9e902-7145-40c7-b9fc-f9f2537c587f)
+
+  7. 2:1 Mux with Vectors
+     ![Screenshot 2024-08-20 235533](https://github.com/user-attachments/assets/45a4cccc-7278-4d6d-83f6-a86a2721762a)
+
+  8. Combinatorial Calculator
+     ![Screenshot 2024-08-21 000013](https://github.com/user-attachments/assets/bd3046ea-9b00-4df3-8fc3-329ffcde3fe2)
+
+</details>
