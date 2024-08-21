@@ -1370,5 +1370,31 @@ The Read Register File consists of a set of registers used to store data during 
 
 These components work together seamlessly to execute machine instructions. The Program Counter manages the instruction fetch process, the Instruction Decoder interprets the fetched instructions, the ALU handles data computations, and the Register Files and Memory components ensure data is stored and accessed as needed. This collaboration allows the CPU to efficiently execute the tasks defined by the program.
 
-  
+To test the code using the testbech include the line in @1 stage :
+```
+  *passed = |cpu/xreg[14]>>5$value == (1+2+3+4+5+6+7+8+9) ;
+```
+
+![image](https://github.com/user-attachments/assets/ecdd200b-8925-4cb7-b457-1244e383d66f)
+![image](https://github.com/user-attachments/assets/42a4fd0f-d95d-4323-80d5-e0cdfa96ecf3)
+![image](https://github.com/user-attachments/assets/97b04437-300b-4893-b973-21017c79644b)
+![image](https://github.com/user-attachments/assets/6294f147-db88-4121-a42a-c40eee4157bf)
+
+The sum of numbers from 1 to 9 is 45(i.e 2D in hex) which is verified in the waveform for |cpu/xreg[14] in the above figure.
+
+## Day 5 - Pipelining the CPU
+
+Pipelining of the CPU core has been completed, significantly simplifying retiming and greatly reducing functional bugs. Pipelining enables faster computation. As previously mentioned, to implement pipelining, we simply need to add @1, @2, and so on. The snapshot of the pipelining process is shown below. In TL-Verilog, another advantage is that the pipeline can be defined without needing to follow a strict order.
+
+![image](https://github.com/user-attachments/assets/19867260-2437-433f-b6f4-9e8d8496b2f2)
+![image](https://github.com/user-attachments/assets/3fd84626-5549-45fe-9bda-6bdbc290e05d)
+![image](https://github.com/user-attachments/assets/c228e752-a8b4-45f4-8776-0a578b7a7bf1)
+![image](https://github.com/user-attachments/assets/4187e1ec-16ca-4996-86b5-636452acff7b)
+![image](https://github.com/user-attachments/assets/b9f6e0df-c21a-4024-9aa0-2decdd9c440c)
+
+
+The sum of numbers from 1 to 9 is 45(i.e 2D in hex) which is verified in the waveform for |cpu/xreg[14] in the above figure.
+
+
 </details>
+
