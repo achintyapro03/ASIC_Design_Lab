@@ -412,7 +412,7 @@ From this picture we can see that O0 = 01.
 </details>
 
 <details>
-  <summary>Task 5</summary>
+  <summary>Task 5 : RISC-V Architecture using MakerChip</summary>
 
 # TL-Verilog Implementation of Circuits using Makerchip IDE
 
