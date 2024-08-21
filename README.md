@@ -414,72 +414,151 @@ From this picture we can see that O0 = 01.
 <details>
   <summary>Task 5</summary>
 
-  # TL-Verilog implementation of Circuits using Makerchip IDE
+# TL-Verilog Implementation of Circuits using Makerchip IDE
 
-  ## Combinatorial Circuits
+This repository contains implementations of various combinatorial, sequential, and pipeline circuits using TL-Verilog in the Makerchip IDE. Below is a brief description of each circuit with corresponding screenshots.
 
-  1. Inverter
-     <br>
-     ![Screenshot 2024-08-20 234644](https://github.com/user-attachments/assets/d3f236c7-a1bb-4067-a775-87faeda2e124)
+## Combinatorial Circuits
 
-  3. 2 input And
-     <br>
-     ![Screenshot 2024-08-20 234548](https://github.com/user-attachments/assets/b6e076de-b9df-4398-ae2c-1271721d809a)
+1. **Inverter**
+   - A basic logic gate that outputs the inverted value of the input signal.
+   - ![Inverter](https://github.com/user-attachments/assets/d3f236c7-a1bb-4067-a775-87faeda2e124)
 
-  5. 2 input Or
-     <br>
-     ![Screenshot 2024-08-20 235051](https://github.com/user-attachments/assets/1b3e290c-ce62-4c65-aa65-45e5a0d29f79)
-     
-  7. 2 input Xor
-     <br>
-     ![Screenshot 2024-08-20 235117](https://github.com/user-attachments/assets/1257d8be-d847-4c61-a249-5eff99c38ea8)
+2. **2-input AND**
+   - Outputs a high signal only when both inputs are high.
+   - ![2-input AND](https://github.com/user-attachments/assets/b6e076de-b9df-4398-ae2c-1271721d809a)
 
-  9. Vector Addition
-      <br>
-     ![Screenshot 2024-08-20 235210](https://github.com/user-attachments/assets/2ffb268c-78b3-4163-8122-b71f325a3922)
+3. **2-input OR**
+   - Outputs a high signal if at least one input is high.
+   - ![2-input OR](https://github.com/user-attachments/assets/1b3e290c-ce62-4c65-aa65-45e5a0d29f79)
 
-  11. 2:1 Mux
-      <br>
-     ![Screenshot 2024-08-20 235455](https://github.com/user-attachments/assets/1dc9e902-7145-40c7-b9fc-f9f2537c587f)
+4. **2-input XOR**
+   - Outputs a high signal only when the inputs differ.
+   - ![2-input XOR](https://github.com/user-attachments/assets/1257d8be-d847-4c61-a249-5eff99c38ea8)
 
-  13. 2:1 Mux with Vectors
-      <br>
-     ![Screenshot 2024-08-20 235533](https://github.com/user-attachments/assets/45a4cccc-7278-4d6d-83f6-a86a2721762a)
+5. **Vector Addition**
+   - Adds corresponding elements of two input vectors.
+   - ![Vector Addition](https://github.com/user-attachments/assets/2ffb268c-78b3-4163-8122-b71f325a3922)
 
-  15. Combinatorial Calculator
-      <br>
-     ![Screenshot 2024-08-21 000013](https://github.com/user-attachments/assets/bd3046ea-9b00-4df3-8fc3-329ffcde3fe2)
+6. **2:1 Mux**
+   - Selects one of two inputs based on a control signal.
+   - ![2:1 Mux](https://github.com/user-attachments/assets/1dc9e902-7145-40c7-b9fc-f9f2537c587f)
 
+7. **2:1 Mux with Vectors**
+   - A multiplexer that selects between vector inputs based on a control signal.
+   - ![2:1 Mux with Vectors](https://github.com/user-attachments/assets/45a4cccc-7278-4d6d-83f6-a86a2721762a)
+
+8. **Combinatorial Calculator**
+   - Performs basic arithmetic operations using combinatorial logic.
+   - ![Combinatorial Calculator](https://github.com/user-attachments/assets/bd3046ea-9b00-4df3-8fc3-329ffcde3fe2)
 
 ## Sequential Circuits
-  1. Fibbonacci Series
-    <br>
-     <img width="579" alt="9" src="https://github.com/user-attachments/assets/6be0adb4-59a0-4c13-978e-5dfe9b1f74e9">
-     ![image](https://github.com/user-attachments/assets/5fceeb09-df9b-4f4e-8b87-2ff1a6d364b7)
 
-  2. Free Running Counter
-     <br>
-     ![image](https://github.com/user-attachments/assets/dd450316-6605-4b85-8975-d19b05cd6b00)
-      <img width="198" alt="11" src="https://github.com/user-attachments/assets/d53228bc-fda0-4d34-a14e-2885486ce536">
+1. **Fibonacci Series**
+   - Generates a Fibonacci sequence using sequential logic.
+   - ![Fibonacci Series](https://github.com/user-attachments/assets/6be0adb4-59a0-4c13-978e-5dfe9b1f74e9)
 
-  4. Sequential Calculator
-     <br>
-     ![image](https://github.com/user-attachments/assets/2c5c60cd-dcd4-445f-8e6f-78647c266422)
+2. **Free Running Counter**
+   - A counter that increments its value continuously with each clock cycle.
+   - ![Free Running Counter](https://github.com/user-attachments/assets/dd450316-6605-4b85-8975-d19b05cd6b00)
+
+3. **Sequential Calculator**
+   - A calculator that performs operations over multiple clock cycles, utilizing sequential logic.
+   - ![Sequential Calculator](https://github.com/user-attachments/assets/2c5c60cd-dcd4-445f-8e6f-78647c266422)
 
 ## Pipeline Logic
+
+1. **Pipeline Design**
+   - A design that breaks down operations into multiple stages to improve processing throughput.
+   - ![Pipeline Design](https://github.com/user-attachments/assets/4cd14b8c-d314-499b-95c5-270a0016f27d)
+   - ![Pipeline Design Example](https://github.com/user-attachments/assets/2ea28c83-1336-4c9b-8c06-3719f1d1465a)
+
+2. **2 Cycle Calculator**
+   - A calculator that executes operations over two stages, leveraging pipelining for enhanced performance.
+   - ![2 Cycle Calculator](https://github.com/user-attachments/assets/b08efe91-f86d-4c5c-84fb-8f245337c826)
+   - ![2 Cycle Pipeline Example](https://github.com/user-attachments/assets/f08559dc-1706-4217-8a0e-b40a2d20c83f)
+
+</details>
+
+<details>
+  <summary>Task 6</summary>
+
+1. **Program Counter Increment**
+   - Implements a basic program counter that increments with each clock cycle.
+   - ```
+      \m4_TLV_version 1d: tl-x.org
+      \SV
+         // This code can be found in: https://github.com/stevehoover/RISC-V_MYTH_Workshop
+         
+         m4_include_lib(['https://raw.githubusercontent.com/BalaDhinesh/RISC-V_MYTH_Workshop/master/tlv_lib/risc-v_shell_lib.tlv'])
+      
+      \SV
+         m4_makerchip_module   // (Expanded in Nav-TLV pane.)
+      \TLV
+      
+         // /====================\
+         // | Sum 1 to 9 Program |
+         // \====================/
+         //
+         // Program for MYTH Workshop to test RV32I
+         // Add 1,2,3,...,9 (in that order).
+         //
+         // Regs:
+         //  r10 (a0): In: 0, Out: final sum
+         //  r12 (a2): 10
+         //  r13 (a3): 1..9
+         //  r14 (a4): Sum
+         // 
+         // External to function:
+         m4_asm(ADD, r10, r0, r0)             // Initialize r10 (a0) to 0.
+         // Function:
+         m4_asm(ADD, r14, r10, r0)            // Initialize sum register a4 with 0x0
+         m4_asm(ADDI, r12, r10, 1010)         // Store count of 10 in register a2.
+         m4_asm(ADD, r13, r10, r0)            // Initialize intermediate sum register a3 with 0
+         // Loop:
+         m4_asm(ADD, r14, r13, r14)           // Incremental addition
+         m4_asm(ADDI, r13, r13, 1)            // Increment intermediate register by 1
+         m4_asm(BLT, r13, r12, 1111111111000) // If a3 is less than a2, branch to label named <loop>
+         m4_asm(ADD, r10, r14, r0)            // Store final result to register a0 so that it can be read by main program
+         
+         // Optional:
+         // m4_asm(JAL, r7, 00000000000000000000) // Done. Jump to itself (infinite loop). (Up to 20-bit signed immediate plus implicit 0 bit (unlike JALR) provides byte address; last immediate bit should also be 0)
+         m4_define_hier(['M4_IMEM'], M4_NUM_INSTRS)
+      
+         |cpu
+            @0
+               $reset = *reset;
+               $clk_ach = *clk;
+               $pc[31:0] = >>1$reset ? '0 : >>1$pc + 32'd4;
+      
+      
+      
+            // YOUR CODE HERE
+            // ...
+      
+            // Note: Because of the magic we are using for visualisation, if visualisation is enabled below,
+            //       be sure to avoid having unassigned signals (which you might be using for random inputs)
+            //       other than those specifically expected in the labs. You'll get strange errors for these.
+      
+         
+         // Assert these to end simulation (before Makerchip cycle limit).
+         *passed = *cyc_cnt > 40;
+         *failed = 1'b0;
+         
+         // Macro instantiations for:
+         //  o instruction memory
+         //  o register file
+         //  o data memory
+         //  o CPU visualization
+         |cpu
+            //m4+imem(@1)    // Args: (read stage)
+            //m4+rf(@1, @1)  // Args: (read stage, write stage) - if equal, no register bypass is required
+            //m4+dmem(@4)    // Args: (read/write stage)
+      
+         //m4+cpu_viz(@4)    // For visualisation, argument should be at least equal to the last stage of CPU logic. @4 would work for all labs.
+      \SV
+         endmodule
+     ```
+   - ![Program Counter](https://github.com/user-attachments/assets/f1a43cb4-2be6-4c25-ba3d-560ddd97e261)
   
-  1. Produce the Pipeline Design
-     <br>
-     ![oo3](https://github.com/user-attachments/assets/4cd14b8c-d314-499b-95c5-270a0016f27d)
-     ![oo1](https://github.com/user-attachments/assets/2ea28c83-1336-4c9b-8c06-3719f1d1465a)
-
-  2. 2 Cycle Calculator
-     <br>
-     <img width="488" alt="16" src="https://github.com/user-attachments/assets/b08efe91-f86d-4c5c-84fb-8f245337c826">
-     ![oo2](https://github.com/user-attachments/assets/f08559dc-1706-4217-8a0e-b40a2d20c83f)
-
-  
-
-
-
 </details>
