@@ -416,7 +416,7 @@ From this picture we can see that O0 = 01.
 
 # TL-Verilog Implementation of Circuits using Makerchip IDE
 
-This repository contains implementations of various combinatorial, sequential, and pipeline circuits using TL-Verilog in the Makerchip IDE. Below is a brief description of each circuit with corresponding screenshots.
+## Day 3 - Digital Logic with TL-Verilog and Makerchip
 
 ## Combinatorial Circuits
 
@@ -477,11 +477,28 @@ This repository contains implementations of various combinatorial, sequential, a
    - A calculator that executes operations over two stages, leveraging pipelining for enhanced performance.
    - ![2 Cycle Calculator](https://github.com/user-attachments/assets/b08efe91-f86d-4c5c-84fb-8f245337c826)
    - ![2 Cycle Pipeline Example](https://github.com/user-attachments/assets/f08559dc-1706-4217-8a0e-b40a2d20c83f)
+  
+## Illustration of Validity
 
-</details>
+1. Distance Calculator
+The block diagram of the distance accumulator is shown below :
+![image](https://github.com/user-attachments/assets/0253bf98-8772-4029-9fc5-629370051853)
 
-<details>
-  <summary>Task 6</summary>
+![image](https://github.com/user-attachments/assets/f39b922b-aea6-41c7-850d-ddd8308d8b98)
+
+
+Once the valid signal is asserted the previous value of result will be added with the current value and it result will get updated otherwise the previous value is retained.
+
+2. 2 Cycle Calculator
+
+![image](https://github.com/user-attachments/assets/21c373ca-12dc-4f40-986b-19582e8b1c2e)
+
+![image](https://github.com/user-attachments/assets/3ac54469-28cc-49a2-bcdf-3ada47bbd989)
+
+
+
+## Day 4 - Basic RISC-V CPU micro-architecture
+![image](https://github.com/user-attachments/assets/119800b0-40a6-4065-98a7-7aae36b2d7c1)
 
 1. **Program Counter Increment and Instruction Fetch**
    - The Program Counter (PC) is a crucial register in the CPU that tracks the address of the next instruction to be retrieved and executed. As each instruction is fetched, the PC is incremented, pointing to the next             memory address for the upcoming instruction.
