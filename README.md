@@ -1743,3 +1743,60 @@ To replace the rvmyth.tlv file in the `VSDBabySoC/src/module` folder with our RI
 
 Thus from he waveforms, we can concule both give same result od 2d. 
 </details>
+
+<details>
+<summary>Task 7: Generate PLL and DAC output waveforms</summary>
+  
+## Verilog and GTKWave Installation
+
+![Verilog and GTKWave](https://github.com/user-attachments/assets/9736822e-656c-40f9-84ae-c404253b0d7d)
+
+## Yosys Installation
+
+![Yosys Installation](https://github.com/user-attachments/assets/a1b1f155-a195-4192-b649-55cd5f723cc5)
+
+## Clone the BabySoC_Simulation Repository
+
+To set up your simulation environment, clone the BabySoC_Simulation repository:
+
+```bash
+git clone https://github.com/Subhasis-Sahu/BabySoC_Simulation.git
+```
+
+# Simulation Setup
+
+## 1. Edit the Top-Level Code
+
+Edit the top-level code as shown in the image below:
+
+![Top-Level Code](https://github.com/user-attachments/assets/79a40bf9-1604-4fe6-b276-00f50626a003)
+
+## 2. Run Simulation Commands
+
+Navigate to the `BabySoC_Simulation` directory and execute the following commands in your terminal:
+
+```bash
+cd BabySoC_Simulation
+iverilog -o ./pre_synth_sim.out -DPRE_SYNTH_SIM src/module/testbench.v -I src/include -I src/module/
+./pre_synth_sim.out
+gtkwave pre_synth_sim.vcd
+```
+
+## Output Waveforms
+
+The following images show the output waveforms obtained from the simulation:
+
+### Sum Calculation
+
+![Output Waveform 1](https://github.com/user-attachments/assets/c5252c58-ce26-47a7-8008-0f06cbcb0444)
+
+*The sum from 1 to 9 is calculated gradually over each clock cycle.*
+
+### PLL waveform
+
+![Output Waveform 2](https://github.com/user-attachments/assets/b4bc7398-8028-4456-9d58-699ef48b52cd)
+
+*The out signal which is set as analog exhibits a periodic movement.*
+
+
+</details>
