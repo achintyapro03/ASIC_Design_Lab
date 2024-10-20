@@ -1807,148 +1807,207 @@ The following images show the output waveforms obtained from the simulation:
   <details>
     <summary>Software Installation</summary>
     
-## 1. Yosys
-
-
-Yosys is a versatile synthesis tool that can be customized for various synthesis tasks by combining its existing algorithms, called "passes," through synthesis scripts. Additional passes can also be added by modifying the Yosys C++ code base. It serves as a backend for several formal verification tools, such as sby, which utilizes SMT solvers for formal property checking, and mcy, which assesses testbench quality using mutation coverage metrics. Yosys is open-source software licensed under the ISC license, which is compatible with GPL and is similar to the MIT or 2-clause BSD licenses.
-
+  ## 1. Yosys
+  
+  
+  Yosys is a versatile synthesis tool that can be customized for various synthesis tasks by combining its existing algorithms, called "passes," through synthesis scripts. Additional passes can also be added by modifying the Yosys C++ code base. It serves as a backend for several formal verification tools, such as sby, which utilizes SMT solvers for formal property checking, and mcy, which assesses testbench quality using mutation coverage metrics. Yosys is open-source software licensed under the ISC license, which is compatible with GPL and is similar to the MIT or 2-clause BSD licenses.
+  
+      ```
+      git clone https://github.com/YosysHQ/yosys.git
+      cd yosys 
+      sudo apt install make
+      sudo apt-get install build-essential clang bison flex \
+          libreadline-dev gawk tcl-dev libffi-dev git \
+          graphviz xdot pkg-config python3 libboost-system-dev \
+          libboost-python-dev libboost-filesystem-dev zlib1g-dev
+      make config-gcc
+      make 
+      sudo make install
+      ```
+      
+      ![Screenshot from 2024-10-20 19-26-22](https://github.com/user-attachments/assets/68da94c5-3b61-47a8-be2e-32b717cb87fc)
+  ![image](https://github.com/user-attachments/assets/91381644-a88d-492c-b69c-899eea5d4edb)
+  
+  
+  ## 2. Icarus Verilog
+  
+  Icarus Verilog is a free, open-source Verilog compiler that generates netlists in formats like EDIF. It supports Verilog standards from 1995, 2001, and 2005, as well as parts of SystemVerilog and some extensions. Released under the GNU General Public License, it includes a Verilog compiler with a preprocessor, supports plug-in backends, and features a virtual machine for simulating designs.
+  
     ```
-    git clone https://github.com/YosysHQ/yosys.git
-    cd yosys 
-    sudo apt install make
-    sudo apt-get install build-essential clang bison flex \
-        libreadline-dev gawk tcl-dev libffi-dev git \
-        graphviz xdot pkg-config python3 libboost-system-dev \
-        libboost-python-dev libboost-filesystem-dev zlib1g-dev
-    make config-gcc
-    make 
-    sudo make install
+      sudo apt-get install iverilog
     ```
-    
-    ![Screenshot from 2024-10-20 19-26-22](https://github.com/user-attachments/assets/68da94c5-3b61-47a8-be2e-32b717cb87fc)
-![image](https://github.com/user-attachments/assets/91381644-a88d-492c-b69c-899eea5d4edb)
-
-
-## 2. Icarus Verilog
-
-Icarus Verilog is a free, open-source Verilog compiler that generates netlists in formats like EDIF. It supports Verilog standards from 1995, 2001, and 2005, as well as parts of SystemVerilog and some extensions. Released under the GNU General Public License, it includes a Verilog compiler with a preprocessor, supports plug-in backends, and features a virtual machine for simulating designs.
-
+  ![Screenshot from 2024-10-20 19-29-30](https://github.com/user-attachments/assets/12d4715b-acc5-4e3d-a110-0b22922684d4)
+  
+  
+  ## 3. GTKWave
+  
+  GTKWave is a comprehensive waveform viewer built with GTK+ for Unix and Win32 systems. It supports various file formats such as LXT, LXT2, VZT, FST, GHW, as well as standard Verilog VCD/EVCD files, enabling users to view and analyze waveforms with ease.
+  
+     ```
+         sudo apt install gtkwave
+     ```
+  ![image](https://github.com/user-attachments/assets/ae0deca6-e58c-4dd2-94f8-8506082ad239)
+  
+  ## 4. NGspice
+  
+  ngspice is an open-source SPICE simulator used for simulating electronic circuits, including analog, digital, and mixed-signal designs. It supports a variety of devices such as:
+  
+  - JFETs
+  - MOSFETs
+  - Bipolar transistors
+  - Resistors
+  - Capacitors
+  - Inductors
+  - Diodes
+  - Transmission lines
+  
+  These devices are interconnected through a **netlist**, allowing users to simulate their circuits and obtain outputs such as voltage, current, and other electrical parameters in the form of graphs or data files for further analysis.
+  
+  ### Installation
+  
+  1. Visit [ngspice on SourceForge](https://sourceforge.net/projects/ngspice/).
+  2. Download the latest tarball (.tar.gz file) to your local directory.
+  
+  ### Dependencies
+  
+  ```bash
+  sudo apt-get install build-essential
+  sudo apt-get install libxaw7-dev
   ```
-    sudo apt-get install iverilog
+  
   ```
-![Screenshot from 2024-10-20 19-29-30](https://github.com/user-attachments/assets/12d4715b-acc5-4e3d-a110-0b22922684d4)
+  # Dependency for ngspice:
+  sudo apt-get install build-essential
+  sudo apt-get install libxaw7-dev
+  
+  # ngspice installation:
+  tar -zxvf ngspice-40.tar.gz
+  cd ngspice-40
+  mkdir release
+  cd release
+  ../configure  --with-x --with-readline=yes --disable-debug
+  make
+  sudo make install
+  ```
+  
+  ## 5. MAGIC
+  
+  MAGIC is a layout tool used for creating, editing, and verifying IC (Integrated Circuit) layouts. As an open-source tool, MAGIC is accessible to students, researchers, and professionals involved in VLSI circuit design and simulation. The software enables users to visually create geometric patterns representing various components like transistors and wires in a chip.
+  
+  ```
+  sudo apt-get install m4
+  sudo apt-get install tcsh
+  sudo apt-get install csh
+  sudo apt-get install libx11-dev
+  sudo apt-get install tcl-dev tk-dev
+  sudo apt-get install libcairo2-dev
+  sudo apt-get install mesa-common-dev libglu1-mesa-dev
+  sudo apt-get install libncurses-dev
+  git clone https://github.com/RTimothyEdwards/magic
+  cd magic
+  ./configure
+  make
+  sudo make install
+  ```
+  
+  ![Screenshot from 2024-10-20 19-43-43](https://github.com/user-attachments/assets/393c80f4-3652-4cdf-a15a-a9d21dc741cd)
+  
+  ## 6. OpenLane
+  
+  OpenLane is an open-source, automated RTL-to-GDSII flow built on top of several open-source EDA tools. Developed as part of the Google SkyWater PDK (Process Design Kit) initiative, OpenLane offers a fully open-source process for chip design and fabrication. Its goal is to provide a flow that takes in RTL code (describing circuit functionality) and outputs final GDSII files required for chip fabrication.
+  
+     ```
+     sudo apt-get update
+    sudo apt-get upgrade
+    sudo apt install -y build-essential python3 python3-venv python3-pip make git
+     ```
+  
+  ### Docker Installation :
+    ```
+      sudo apt install apt-transport-https ca-certificates curl software-properties-common
+      curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+      
+      echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+      
+      sudo apt update
+      sudo apt install docker-ce docker-ce-cli containerd.io
+      sudo docker run hello-world
+      
+      sudo groupadd docker
+      sudo usermod -aG docker $USER
+      sudo reboot 
+      
+      
+      # Check for installation
+      sudo docker run hello-world
+    ```
+  ![image](https://github.com/user-attachments/assets/a8ae95e5-79cf-4748-8db5-e884494385c4)
+  
+  
+  ### OpenLane Installation :
+    ```
+      cd $HOME
+      git clone https://github.com/The-OpenROAD-Project/OpenLane
+      cd OpenLane
+      make
+      make test
+    ```
+  </details>
+
+  <details>
+    <summary>Day 1: Introduction to Verilog RTL Design and Synthesis</summary>
+  </details>
 
 
-## 3. GTKWave
+  A simulator helps ensure that a hardware design meets its specifications by simulating circuit behavior. It monitors input signals and re-evaluates outputs when inputs change, identifying errors early on. In RTL design, Verilog code models a circuit's functionality, and a testbench is written to simulate the design. Using Icarus Verilog, the testbench is simulated, and a Value Change Dump (VCD) file is generated.
 
-GTKWave is a comprehensive waveform viewer built with GTK+ for Unix and Win32 systems. It supports various file formats such as LXT, LXT2, VZT, FST, GHW, as well as standard Verilog VCD/EVCD files, enabling users to view and analyze waveforms with ease.
+The VCD file captures signal transitions and is viewed using GTKWave, which allows designers to inspect waveforms, timing relationships, and signal interactions. This process helps verify and debug the design before moving to synthesis or physical implementation. The typical Icarus Verilog-based flow involves writing RTL code, running simulations, generating VCD files, and analyzing them with GTKWave to ensure correct circuit behavior.
 
-   ```
-       sudo apt install gtkwave
-   ```
-![image](https://github.com/user-attachments/assets/ae0deca6-e58c-4dd2-94f8-8506082ad239)
 
-## 4. NGspice
+![image](https://github.com/user-attachments/assets/0084288d-b8d9-4fa3-ba8c-8712738a4cd1)
 
-ngspice is an open-source SPICE simulator used for simulating electronic circuits, including analog, digital, and mixed-signal designs. It supports a variety of devices such as:
+Start by executing the following commands:
 
-- JFETs
-- MOSFETs
-- Bipolar transistors
-- Resistors
-- Capacitors
-- Inductors
-- Diodes
-- Transmission lines
-
-These devices are interconnected through a **netlist**, allowing users to simulate their circuits and obtain outputs such as voltage, current, and other electrical parameters in the form of graphs or data files for further analysis.
-
-### Installation
-
-1. Visit [ngspice on SourceForge](https://sourceforge.net/projects/ngspice/).
-2. Download the latest tarball (.tar.gz file) to your local directory.
-
-### Dependencies
-
-```bash
-sudo apt-get install build-essential
-sudo apt-get install libxaw7-dev
+```
+  mkdir ASIC
+  cd ASIC
+  git clone https://github.com/kunalg123/vsdflow.git
+  git clone https://github.com/kunalg123/sky130RTLDesignAndSynthesisWorkshop.git
+  cd sky130RTLDesignAndSynthesisWorkshop
+  ls -R
 ```
 
-```
-# Dependency for ngspice:
-sudo apt-get install build-essential
-sudo apt-get install libxaw7-dev
+![image](https://github.com/user-attachments/assets/8fde7f46-f5e9-4e84-bdc0-12e76220c8ff)
 
-# ngspice installation:
-tar -zxvf ngspice-40.tar.gz
-cd ngspice-40
-mkdir release
-cd release
-../configure  --with-x --with-readline=yes --disable-debug
-make
-sudo make install
-```
+THe following verilog files will be used in the lab:
 
-## 5. MAGIC
+![image](https://github.com/user-attachments/assets/d6c3d7c6-ac86-491a-925b-0d0aef1f2a45)
 
-MAGIC is a layout tool used for creating, editing, and verifying IC (Integrated Circuit) layouts. As an open-source tool, MAGIC is accessible to students, researchers, and professionals involved in VLSI circuit design and simulation. The software enables users to visually create geometric patterns representing various components like transistors and wires in a chip.
+
+Several Verilog design and testbench files are available for simulation. To simulate the Verilog code in 'good_mux.v', follow these steps. First, compile the design and testbench by running the given command. This checks for syntax errors, and if successful, generates an executable file named 'a.out'. Running 'a.out' will create a VCD file, which logs changes in input and output values during the simulation. Finally, use GTKWave to view and analyze the waveform data captured in the VCD file.
 
 ```
-sudo apt-get install m4
-sudo apt-get install tcsh
-sudo apt-get install csh
-sudo apt-get install libx11-dev
-sudo apt-get install tcl-dev tk-dev
-sudo apt-get install libcairo2-dev
-sudo apt-get install mesa-common-dev libglu1-mesa-dev
-sudo apt-get install libncurses-dev
-git clone https://github.com/RTimothyEdwards/magic
-cd magic
-./configure
-make
-sudo make install
+  iverilog good_mux.v tb_good_mux.v
+  ./a.out
+  gtkwave tb_good_mux.vcd
 ```
 
-![Screenshot from 2024-10-20 19-43-43](https://github.com/user-attachments/assets/393c80f4-3652-4cdf-a15a-a9d21dc741cd)
+![image](https://github.com/user-attachments/assets/67530f41-a815-4d8d-ae99-aea5246d284b)
 
-## 6. OpenLane
+![image](https://github.com/user-attachments/assets/3bf58e6d-a0b5-4654-b167-a8eb52408563)
 
-OpenLane is an open-source, automated RTL-to-GDSII flow built on top of several open-source EDA tools. Developed as part of the Google SkyWater PDK (Process Design Kit) initiative, OpenLane offers a fully open-source process for chip design and fabrication. Its goal is to provide a flow that takes in RTL code (describing circuit functionality) and outputs final GDSII files required for chip fabrication.
 
-   ```
-   sudo apt-get update
-  sudo apt-get upgrade
-  sudo apt install -y build-essential python3 python3-venv python3-pip make git
-   ```
+## Good_Mux.v Code
 
-### Docker Installation :
-  ```
-    sudo apt install apt-transport-https ca-certificates curl software-properties-common
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-    
-    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-    
-    sudo apt update
-    sudo apt install docker-ce docker-ce-cli containerd.io
-    sudo docker run hello-world
-    
-    sudo groupadd docker
-    sudo usermod -aG docker $USER
-    sudo reboot 
-    
-    
-    # Check for installation
-    sudo docker run hello-world
-  ```
-
-### OpenLane Installation :
-  ```
-    cd $HOME
-    git clone https://github.com/The-OpenROAD-Project/OpenLane
-    cd OpenLane
-    make
-    make test
-  ```
-</details>
+```
+  module good_mux (input i0 , input i1 , input sel , output reg y);
+  always @ (*)
+  begin
+  	if(sel)
+  		y <= i1;
+  	else 
+  		y <= i0;
+  end
+  endmodule
+```
 </details>
