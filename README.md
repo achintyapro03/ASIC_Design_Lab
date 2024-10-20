@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/37441b08-f9db-4a9c-8cb0-5f91597a201d)# ASIC Design Lab
+# ASIC Design Lab
 
 ## Overview
 This project comprises a series of tasks aimed at designing and implementing various components and programs for ASIC design.
@@ -1802,13 +1802,12 @@ The following images show the output waveforms obtained from the simulation:
 </details>
 
 <details>
-<summary>Task 8</summary>
+<summary>Task 8 : RTL Design and Implementation with Sky130 PDK using Verilog</summary>
 
 <details>
 <summary>Software Installation</summary>
 
 ## 1. Yosys
-
 
 Yosys is a versatile synthesis tool that can be customized for various synthesis tasks by combining its existing algorithms, called "passes," through synthesis scripts. Additional passes can also be added by modifying the Yosys C++ code base. It serves as a backend for several formal verification tools, such as sby, which utilizes SMT solvers for formal property checking, and mcy, which assesses testbench quality using mutation coverage metrics. Yosys is open-source software licensed under the ISC license, which is compatible with GPL and is similar to the MIT or 2-clause BSD licenses.
 
@@ -2651,10 +2650,7 @@ endmodule
 
 
 <details>
-	<summary>Day 3</summary>
-
-
- ### Day 3: Optimizing Combinational and Sequential Logic
+	<summary>Day 3 - Optimizing Combinational and Sequential Logic</summary>
 
 In the realm of digital design, optimizations are classified into two primary categories: combinational optimizations and sequential optimizations. These techniques aim to enhance designs for improved efficiency regarding area, power consumption, and overall performance. Effective optimization not only reduces the resource requirements but also increases the reliability of the design by minimizing potential points of failure.
 
@@ -3813,10 +3809,8 @@ gtkwave tb_counter_opt.vcd
 
 
 <details>
-	<summary>Day 4</summary>
+	<summary>Day 4 - GLS, Blocking vs Non-Blocking Assignments, and Synthesis-Simulation Discrepancies</summary>
 	
-### Day 4: Gate-Level Simulation (GLS), Blocking vs. Non-Blocking Assignments, and Synthesis-Simulation Discrepancies
-
 Gate-Level Simulation (GLS) plays a pivotal role in the validation of digital circuits. This simulation is executed on a synthesized netlist, which is a low-level representation of the design, using a testbench to verify both logical correctness and timing behavior. By comparing the simulation results to expected outputs, GLS helps ensure that no errors have crept in during synthesis and that the design meets all timing requirements.
 
 ![GLS Overview](https://github.com/user-attachments/assets/fa59f230-4a0d-4c8e-9353-a01a9209a6d6)
@@ -4072,5 +4066,7 @@ GLS results show a mismatch between the RTL and post-synthesis waveforms due to 
 This illustrates how synthesis tools can correct certain errors, but it's still crucial to write clean Verilog code to avoid mismatches and unintended behaviors.
 </details>
 </details>
+
+
 
 
