@@ -2093,11 +2093,89 @@ write_verilog -noattr good_mux_netlist.v
 
 ![image](https://github.com/user-attachments/assets/f9a33419-d9b0-4a98-ab5a-c87f0dd2998c)
 ![image](https://github.com/user-attachments/assets/2aef21ea-65c1-4c9a-90fd-dfc42dc7d21d)
-
 ![image](https://github.com/user-attachments/assets/afdce8c9-b526-4af9-aa6a-414597d7160e)
 
 </details>
 
+<details>
+<summary>Day 2: Timing libs, hierarchical vs flat synthesis and efficient flop coding styles</summary>
+
+## Overview of the .lib file
+Execute the following commands to check the contents of the .lib file:
+```
+cd ASIC/sky130RTLDesignAndSynthesisWorkshop/lib/
+vim sky130_fd_sc_hd__tt_025C_1v80.lib
+```
+
+![image](https://github.com/user-attachments/assets/9acc2dd1-99ba-4b68-aca0-a8a8786e6c0e)
+
+Liberty (.lib) files store crucial PVT (Process, Voltage, Temperature) parameters that impact circuit performance significantly. 
+
+1. **Impact of PVT Variations**:
+   - **Process Variations**: Manufacturing inconsistencies can cause changes in transistor characteristics, affecting timing and power.
+   - **Voltage Fluctuations**: Variations in supply voltage influence transistor speed and power consumption, critical for high-performance designs.
+   - **Temperature Changes**: Temperature shifts can alter charge carrier mobility, impacting performance and increasing leakage currents.
+
+2. **Multiple Versions of Cells**: 
+   - Liberty files often provide different versions of the same cell, like an AND gate, optimized for speed, area, or power. This allows designers to select the best configuration for specific circuit requirements, enhancing overall design efficiency.
+
+
+When evaluating different versions of the same cell, such as an AND gate, we can observe distinct trade-offs in performance and resource utilization. 
+
+1. **and2_0**: This version occupies the least area, resulting in more delay and lower power consumption. It is ideal for compact designs where minimizing space is critical.
+
+2. **and2_1**: This configuration takes up more area but offers reduced delay and higher power consumption. It's suitable for applications where speed is prioritized over space.
+
+3. **and2_2**: This variant has the largest area, resulting in increased delay and the highest power usage. It may be selected for applications that demand maximum performance, such as high-speed circuits or systems that can accommodate larger footprints.
+
+These different versions highlight the importance of balancing area, speed, and power in circuit design. Selecting the appropriate version depends on the specific requirements of the application, including size constraints, performance needs, and power efficiency goals.
+
+![image](https://github.com/user-attachments/assets/d0c1e0a3-1b19-473f-be6e-43bdd3067a77)
+
+
+### Hierarchical vs. Flat Synthesis
+
+**Hierarchical Synthesis** breaks down a complex design into smaller sub-modules, synthesizing each separately to generate gate-level netlists. This approach enhances organization, promotes module reuse, and allows for incremental design changes without affecting the entire system. Hierarchical synthesis also facilitates easier debugging and testing, as individual modules can be verified independently before integration.
+
+**Flat Synthesis**, in contrast, treats the entire design as a single entity, synthesizing it into one monolithic netlist without regard for its hierarchical structure. While flat synthesis can optimize specific designs for performance or area, it poses significant challenges in maintenance and modification. The lack of modularity can make it difficult to analyze and debug, as changes in one part of the design may impact others unexpectedly.
+
+For instance, consider the Verilog file `multiple_modules.v` located in the `verilog_files` directory. If this file contains several interconnected modules, using hierarchical synthesis would allow each module to be developed and tested independently, streamlining the overall design process. In contrast, flat synthesis would generate a single netlist encompassing all modules, potentially complicating future modifications and testing efforts. 
+
+Ultimately, the choice between hierarchical and flat synthesis depends on the specific needs of the design project, including complexity, required optimization, and team workflow preferences.
+
+
+```
+module sub_module2 (input a, input b, output y);
+    assign y = a | b;
+endmodule
+
+module sub_module1 (input a, input b, output y);
+    assign y = a&b;
+endmodule
+
+
+module multiple_modules (input a, input b, input c , output y);
+    wire net1;
+    sub_module1 u1(.a(a),.b(b),.y(net1));  //net1 = a&b
+    sub_module2 u2(.a(net1),.b(c),.y(y));  //y = net1|c ,ie y = a&b + c;
+endmodule
+```
+
+
+To conduct hierarchical synthesis on the `multiple_modules.v` file, execute the following commands:
+
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog multiple_modules.v
+synth -top multiple_modules
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show multiple_modules
+write_verilog -noattr multiple_modules_hier.v
+```
+
+
+</details>
 </details>
 
 
