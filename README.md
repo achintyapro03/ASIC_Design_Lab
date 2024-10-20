@@ -1812,7 +1812,7 @@ The following images show the output waveforms obtained from the simulation:
 
 Yosys is a versatile synthesis tool that can be customized for various synthesis tasks by combining its existing algorithms, called "passes," through synthesis scripts. Additional passes can also be added by modifying the Yosys C++ code base. It serves as a backend for several formal verification tools, such as sby, which utilizes SMT solvers for formal property checking, and mcy, which assesses testbench quality using mutation coverage metrics. Yosys is open-source software licensed under the ISC license, which is compatible with GPL and is similar to the MIT or 2-clause BSD licenses.
 
-```
+```bash
 git clone https://github.com/YosysHQ/yosys.git
 cd yosys 
 sudo apt install make
@@ -1833,7 +1833,7 @@ sudo make install
 
 Icarus Verilog is a free, open-source Verilog compiler that generates netlists in formats like EDIF. It supports Verilog standards from 1995, 2001, and 2005, as well as parts of SystemVerilog and some extensions. Released under the GNU General Public License, it includes a Verilog compiler with a preprocessor, supports plug-in backends, and features a virtual machine for simulating designs.
 
-```
+```bash
 sudo apt-get install iverilog
 ```
 ![Screenshot from 2024-10-20 19-29-30](https://github.com/user-attachments/assets/12d4715b-acc5-4e3d-a110-0b22922684d4)
@@ -1843,7 +1843,7 @@ sudo apt-get install iverilog
 
 GTKWave is a comprehensive waveform viewer built with GTK+ for Unix and Win32 systems. It supports various file formats such as LXT, LXT2, VZT, FST, GHW, as well as standard Verilog VCD/EVCD files, enabling users to view and analyze waveforms with ease.
 
-```
+```bash
 sudo apt install gtkwave
 ```
 ![image](https://github.com/user-attachments/assets/ae0deca6-e58c-4dd2-94f8-8506082ad239)
@@ -1875,7 +1875,7 @@ sudo apt-get install build-essential
 sudo apt-get install libxaw7-dev
 ```
 
-```
+```bash
 # Dependency for ngspice:
 sudo apt-get install build-essential
 sudo apt-get install libxaw7-dev
@@ -1894,7 +1894,7 @@ sudo make install
 
 MAGIC is a layout tool used for creating, editing, and verifying IC (Integrated Circuit) layouts. As an open-source tool, MAGIC is accessible to students, researchers, and professionals involved in VLSI circuit design and simulation. The software enables users to visually create geometric patterns representing various components like transistors and wires in a chip.
 
-```
+```bash
 sudo apt-get install m4
 sudo apt-get install tcsh
 sudo apt-get install csh
@@ -1916,14 +1916,14 @@ sudo make install
 
 OpenLane is an open-source, automated RTL-to-GDSII flow built on top of several open-source EDA tools. Developed as part of the Google SkyWater PDK (Process Design Kit) initiative, OpenLane offers a fully open-source process for chip design and fabrication. Its goal is to provide a flow that takes in RTL code (describing circuit functionality) and outputs final GDSII files required for chip fabrication.
 
-```
+```bash
 sudo apt-get update
 sudo apt-get upgrade
 sudo apt install -y build-essential python3 python3-venv python3-pip make git
 ```
 
 ### Docker Installation :
-```
+```bash
 sudo apt install apt-transport-https ca-certificates curl software-properties-common
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
@@ -1945,7 +1945,7 @@ sudo docker run hello-world
 
 
 ### OpenLane Installation :
-```
+```bash
 cd $HOME
 git clone https://github.com/The-OpenROAD-Project/OpenLane
 cd OpenLane
@@ -1966,7 +1966,7 @@ The VCD file captures signal transitions and is viewed using GTKWave, which allo
 
 Start by executing the following commands:
 
-```
+```bash
 mkdir ASIC
 cd ASIC
 git clone https://github.com/kunalg123/vsdflow.git
@@ -1984,7 +1984,7 @@ THe following verilog files will be used in the lab:
 
 Several Verilog design and testbench files are available for simulation. To simulate the Verilog code in 'good_mux.v', follow these steps. First, compile the design and testbench by running the given command. This checks for syntax errors, and if successful, generates an executable file named 'a.out'. Running 'a.out' will create a VCD file, which logs changes in input and output values during the simulation. Finally, use GTKWave to view and analyze the waveform data captured in the VCD file.
 
-```
+```bash
 iverilog good_mux.v tb_good_mux.v
 ./a.out
 gtkwave tb_good_mux.vcd
@@ -1997,48 +1997,48 @@ gtkwave tb_good_mux.vcd
 
 ## good_mux.v Code
 
-```
+```verilog
 module good_mux (input i0 , input i1 , input sel , output reg y);
-always @ (*)
-begin
-if(sel)
-y <= i1;
-else 
-y <= i0;
-end
+  always @ (*)
+    begin
+      if(sel)
+      y <= i1;
+    else 
+      y <= i0;
+  end
 endmodule
 ```
 
 ## tb_good_mux.v Code
-```
+```verilog
 `timescale 1ns / 1ps
 module tb_good_mux;
-// Inputs
-reg i0,i1,sel;
-// Outputs
-wire y;
-
-  // Instantiate the Unit Under Test (UUT)
-good_mux uut (
-.sel(sel),
-.i0(i0),
-.i1(i1),
-.y(y)
-);
-
-initial begin
-$dumpfile("tb_good_mux.vcd");
-$dumpvars(0,tb_good_mux);
-// Initialize Inputs
-sel = 0;
-i0 = 0;
-i1 = 0;
-#300 $finish;
-end
-
-always #75 sel = ~sel;
-always #10 i0 = ~i0;
-always #55 i1 = ~i1;
+  // Inputs
+  reg i0,i1,sel;
+  // Outputs
+  wire y;
+  
+    // Instantiate the Unit Under Test (UUT)
+  good_mux uut (
+    .sel(sel),
+    .i0(i0),
+    .i1(i1),
+    .y(y)
+  );
+  
+  initial begin
+  $dumpfile("tb_good_mux.vcd");
+  $dumpvars(0,tb_good_mux);
+  // Initialize Inputs
+  sel = 0;
+  i0 = 0;
+  i1 = 0;
+  #300 $finish;
+  end
+  
+  always #75 sel = ~sel;
+  always #10 i0 = ~i0;
+  always #55 i1 = ~i1;
 endmodule
 ```
 
@@ -2080,7 +2080,7 @@ The selection of cells during synthesis must strike a balance among area, power,
 
 ## Code for synthesis:
 
-```
+```bash
 yosys
 read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 read_verilog good_mux.v
@@ -2102,7 +2102,7 @@ write_verilog -noattr good_mux_netlist.v
 
 ## Overview of the .lib file
 Execute the following commands to check the contents of the .lib file:
-```
+```bash
 cd ASIC/sky130RTLDesignAndSynthesisWorkshop/lib/
 vim sky130_fd_sc_hd__tt_025C_1v80.lib
 ```
@@ -2144,7 +2144,7 @@ For instance, consider the Verilog file `multiple_modules.v` located in the `ver
 Ultimately, the choice between hierarchical and flat synthesis depends on the specific needs of the design project, including complexity, required optimization, and team workflow preferences.
 
 
-```
+```verilog
 module sub_module2 (input a, input b, output y);
     assign y = a | b;
 endmodule
@@ -2164,7 +2164,7 @@ endmodule
 
 To conduct hierarchical synthesis on the `multiple_modules.v` file, execute the following commands:
 
-```
+```bash
 yosys
 read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 read_verilog multiple_modules.v
@@ -2173,7 +2173,96 @@ abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 show multiple_modules
 write_verilog -noattr multiple_modules_hier.v
 ```
+### Statistics
+![image](https://github.com/user-attachments/assets/3d4d56ff-248d-41e9-a625-d7e7a42321f6)
 
+### Schematics
+![image](https://github.com/user-attachments/assets/4a9f3868-07c3-47c2-8219-d29226532aef)
+
+```verilog
+/* Generated by Yosys 0.44+60 (git sha1 c25448f1d, g++ 11.4.0-1ubuntu1~22.04 -fPIC -O3) */
+
+module multiple_modules(a, b, c, y);
+  input a;
+  wire a;
+  input b;
+  wire b;
+  input c;
+  wire c;
+  wire net1;
+  output y;
+  wire y;
+  sub_module1 u1 (
+    .a(a),
+    .b(b),
+    .y(net1)
+  );
+  sub_module2 u2 (
+    .a(net1),
+    .b(c),
+    .y(y)
+  );
+endmodule
+
+module sub_module1(a, b, y);
+  wire _0_;
+  wire _1_;
+  wire _2_;
+  input a;
+  wire a;
+  input b;
+  wire b;
+  output y;
+  wire y;
+  sky130_fd_sc_hd__and2_0 _3_ (
+    .A(_1_),
+    .B(_0_),
+    .X(_2_)
+  );
+  assign _1_ = b;
+  assign _0_ = a;
+  assign y = _2_;
+endmodule
+
+module sub_module2(a, b, y);
+  wire _0_;
+  wire _1_;
+  wire _2_;
+  input a;
+  wire a;
+  input b;
+  wire b;
+  output y;
+  wire y;
+  sky130_fd_sc_hd__or2_0 _3_ (
+    .A(_1_),
+    .B(_0_),
+    .X(_2_)
+  );
+  assign _1_ = b;
+  assign _0_ = a;
+  assign y = _2_;
+endmodule
+```
+
+To conduct flat synthesis on the `multiple_modules.v` file, execute the following commands:
+
+```bash
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog multiple_modules.v
+synth -top multiple_modules
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+flatten
+show
+write_verilog -noattr multiple_modules_flat.v
+```
+
+### Statistics
+![image](https://github.com/user-attachments/assets/abfd7f57-2939-4677-885f-e811d8257ff2)
+
+### Schematics
+![image](https://github.com/user-attachments/assets/d7b54310-82d3-4590-8887-13d4df8f8246)
 
 </details>
 </details>
