@@ -1806,8 +1806,11 @@ The following images show the output waveforms obtained from the simulation:
 
   <details>
     <summary>Software Installation</summary>
-    1 Yosys
-    Yosys is a versatile synthesis tool that can be customized for various synthesis tasks by combining its existing algorithms, called "passes," through synthesis scripts. Additional passes can also be added by modifying the Yosys C++ code base. Yosys is used as a backend in several formal verification tools, such as **sby**, which utilizes SMT solvers for formal property checking, and **mcy**, which assesses testbench quality using mutation coverage metrics. It is open-source software licensed under the ISC license, which is compatible with GPL and similar to the MIT or 2-clause BSD licenses.
+    
+## 1. Yosys
+
+
+Yosys is a versatile synthesis tool that can be customized for various synthesis tasks by combining its existing algorithms, called "passes," through synthesis scripts. Additional passes can also be added by modifying the Yosys C++ code base. It serves as a backend for several formal verification tools, such as sby, which utilizes SMT solvers for formal property checking, and mcy, which assesses testbench quality using mutation coverage metrics. Yosys is open-source software licensed under the ISC license, which is compatible with GPL and is similar to the MIT or 2-clause BSD licenses.
 
     ```
     git clone https://github.com/YosysHQ/yosys.git
@@ -1826,8 +1829,9 @@ The following images show the output waveforms obtained from the simulation:
 ![image](https://github.com/user-attachments/assets/91381644-a88d-492c-b69c-899eea5d4edb)
 
 
-  2. i vreilog
-Icarus Verilog is a free, open-source Verilog compiler that generates netlists in formats like EDIF. It supports Verilog standards from 1995, 2001, and 2005, as well as parts of SystemVerilog and some extensions. Released under the GNU General Public License, it includes a Verilog compiler with a preprocessor, supports plug-in backends, and features a virtual machine for simulating designs.  
+## 2. Icarus Verilog
+
+Icarus Verilog is a free, open-source Verilog compiler that generates netlists in formats like EDIF. It supports Verilog standards from 1995, 2001, and 2005, as well as parts of SystemVerilog and some extensions. Released under the GNU General Public License, it includes a Verilog compiler with a preprocessor, supports plug-in backends, and features a virtual machine for simulating designs.
 
   ```
     sudo apt-get install iverilog
@@ -1835,23 +1839,41 @@ Icarus Verilog is a free, open-source Verilog compiler that generates netlists i
 ![Screenshot from 2024-10-20 19-29-30](https://github.com/user-attachments/assets/12d4715b-acc5-4e3d-a110-0b22922684d4)
 
 
-3. GTKwave
+## 3. GTKWave
 
-   GTKWave is a comprehensive waveform viewer built with GTK+ for Unix and Win32 systems. It supports various file formats such as LXT, LXT2, VZT, FST, GHW, as well as standard Verilog VCD/EVCD files, enabling users to easily view and analyze waveforms.
+GTKWave is a comprehensive waveform viewer built with GTK+ for Unix and Win32 systems. It supports various file formats such as LXT, LXT2, VZT, FST, GHW, as well as standard Verilog VCD/EVCD files, enabling users to view and analyze waveforms with ease.
 
    ```
        sudo apt install gtkwave
    ```
 ![image](https://github.com/user-attachments/assets/ae0deca6-e58c-4dd2-94f8-8506082ad239)
 
+## 4. NGspice
 
-4. NGspice
+ngspice is an open-source SPICE simulator used for simulating electronic circuits, including analog, digital, and mixed-signal designs. It supports a variety of devices such as:
 
-  ngspice is an open-source SPICE simulator used for simulating electronic circuits, including analog, digital, and mixed-signal designs. It supports a variety of devices such as JFETs, MOSFETs, bipolar transistors, resistors, capacitors, inductors, diodes, and transmission lines, which are interconnected through a netlist. ngspice offers a wide range of device models provided by semiconductor manufacturers and foundries. Users can simulate their circuits and obtain outputs like voltage, current, and other electrical parameters in the form of graphs or data files for analysis.
+- JFETs
+- MOSFETs
+- Bipolar transistors
+- Resistors
+- Capacitors
+- Inductors
+- Diodes
+- Transmission lines
 
-Visit ngspice on SourceForge and download the latest tarball (.tar.gz file) to your local directory.
+These devices are interconnected through a **netlist**, allowing users to simulate their circuits and obtain outputs such as voltage, current, and other electrical parameters in the form of graphs or data files for further analysis.
 
-https://sourceforge.net/projects/ngspice/
+### Installation
+
+1. Visit [ngspice on SourceForge](https://sourceforge.net/projects/ngspice/).
+2. Download the latest tarball (.tar.gz file) to your local directory.
+
+### Dependencies
+
+```bash
+sudo apt-get install build-essential
+sudo apt-get install libxaw7-dev
+```
 
 ```
 # Dependency for ngspice:
@@ -1868,8 +1890,9 @@ make
 sudo make install
 ```
 
-5. MAGIC is a layout tool used for creating, editing, and verifying IC (Integrated Circuit) layouts. It has been developed as an open-source tool, making it accessible for students, researchers, and industry professionals who want to design and simulate VLSI circuits. MAGIC allows users to visually create the geometric patterns that represent the various components (transistors, wires, etc.) in a chip.
+## 5. MAGIC
 
+MAGIC is a layout tool used for creating, editing, and verifying IC (Integrated Circuit) layouts. As an open-source tool, MAGIC is accessible to students, researchers, and professionals involved in VLSI circuit design and simulation. The software enables users to visually create geometric patterns representing various components like transistors and wires in a chip.
 
 ```
 sudo apt-get install m4
@@ -1889,60 +1912,43 @@ sudo make install
 
 ![Screenshot from 2024-10-20 19-43-43](https://github.com/user-attachments/assets/393c80f4-3652-4cdf-a15a-a9d21dc741cd)
 
+## 6. OpenLane
 
-6. OpenLane is an open-source, automated RTL-to-GDSII flow that is built on top of several open-source EDA tools. It was developed as part of the Google SkyWater PDK (Process Design Kit) initiative, which provides a fully open-source process for chip design and fabrication. The goal of OpenLane is to offer a flow that takes in RTL code (describing the functionality of a circuit) and outputs the final GDSII files required for chip fabrication.
-dependencies
+OpenLane is an open-source, automated RTL-to-GDSII flow built on top of several open-source EDA tools. Developed as part of the Google SkyWater PDK (Process Design Kit) initiative, OpenLane offers a fully open-source process for chip design and fabrication. Its goal is to provide a flow that takes in RTL code (describing circuit functionality) and outputs final GDSII files required for chip fabrication.
+
    ```
    sudo apt-get update
   sudo apt-get upgrade
   sudo apt install -y build-essential python3 python3-venv python3-pip make git
    ```
 
-Docker Installation :
+### Docker Installation :
+  ```
+    sudo apt install apt-transport-https ca-certificates curl software-properties-common
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+    
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    
+    sudo apt update
+    sudo apt install docker-ce docker-ce-cli containerd.io
+    sudo docker run hello-world
+    
+    sudo groupadd docker
+    sudo usermod -aG docker $USER
+    sudo reboot 
+    
+    
+    # Check for installation
+    sudo docker run hello-world
+  ```
 
-```
-sudo apt install apt-transport-https ca-certificates curl software-properties-common
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-
-echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-
-sudo apt update
-sudo apt install docker-ce docker-ce-cli containerd.io
-sudo docker run hello-world
-
-sudo groupadd docker
-sudo usermod -aG docker $USER
-sudo reboot 
-
-
-# Check for installation
-sudo docker run hello-world
-```
-sudo apt install apt-transport-https ca-certificates curl software-properties-common
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-
-echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-
-sudo apt update
-sudo apt install docker-ce docker-ce-cli containerd.io
-sudo docker run hello-world
-
-sudo groupadd docker
-sudo usermod -aG docker $USER
-sudo reboot 
-
-
-# Check for installation
-sudo docker run hello-world
-```
-
-open lane install
-```
-cd $HOME
-git clone https://github.com/The-OpenROAD-Project/OpenLane
-cd OpenLane
-make
-make test
-```
+### OpenLane Installation :
+  ```
+    cd $HOME
+    git clone https://github.com/The-OpenROAD-Project/OpenLane
+    cd OpenLane
+    make
+    make test
+  ```
 </details>
 </details>
