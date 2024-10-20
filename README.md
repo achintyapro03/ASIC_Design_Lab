@@ -2313,6 +2313,42 @@ module multiple_modules(a, b, c, y);
   assign net1 = \u1.y ;
 endmodule
 ```
+Sub module synthesis can beperformed by typing the below commands:
+
+```verilog
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+read_verilog multiple_modules.v 
+synth -top sub_module
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+show
+```
+
+![image](https://github.com/user-attachments/assets/79972ea5-ec94-4728-bd7d-71509421549a)
+
+```verilog
+module sub_module1(a, b, y);
+  input a;
+  input b;
+  output y;
+
+  wire _0_;
+  wire _1_;
+  wire _2_;
+
+  assign _1_ = b;
+  assign _0_ = a;
+
+  sky130_fd_sc_hd__and2_0 _3_ (
+    .A(_1_),
+    .B(_0_),
+    .X(_2_)
+  );
+
+  assign y = _2_;
+
+endmodule
+```
 
 # Flip-Flop Design and Optimization Techniques
 
