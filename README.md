@@ -1956,58 +1956,145 @@ The following images show the output waveforms obtained from the simulation:
 
   <details>
     <summary>Day 1: Introduction to Verilog RTL Design and Synthesis</summary>
+
+    A simulator helps ensure that a hardware design meets its specifications by simulating circuit behavior. It monitors input signals and re-evaluates outputs when inputs change, identifying errors early on. In RTL design, Verilog code models a circuit's functionality, and a testbench is written to simulate the design. Using Icarus Verilog, the testbench is simulated, and a Value Change Dump (VCD) file is generated.
+  
+  The VCD file captures signal transitions and is viewed using GTKWave, which allows designers to inspect waveforms, timing relationships, and signal interactions. This process helps verify and debug the design before moving to synthesis or physical implementation. The typical Icarus Verilog-based flow involves writing RTL code, running simulations, generating VCD files, and analyzing them with GTKWave to ensure correct circuit behavior.
+  
+  
+  ![image](https://github.com/user-attachments/assets/0084288d-b8d9-4fa3-ba8c-8712738a4cd1)
+  
+  Start by executing the following commands:
+  
+  ```
+    mkdir ASIC
+    cd ASIC
+    git clone https://github.com/kunalg123/vsdflow.git
+    git clone https://github.com/kunalg123/sky130RTLDesignAndSynthesisWorkshop.git
+    cd sky130RTLDesignAndSynthesisWorkshop
+    ls -R
+  ```
+  
+  ![image](https://github.com/user-attachments/assets/8fde7f46-f5e9-4e84-bdc0-12e76220c8ff)
+  
+  THe following verilog files will be used in the lab:
+  
+  ![image](https://github.com/user-attachments/assets/d6c3d7c6-ac86-491a-925b-0d0aef1f2a45)
+  
+  
+  Several Verilog design and testbench files are available for simulation. To simulate the Verilog code in 'good_mux.v', follow these steps. First, compile the design and testbench by running the given command. This checks for syntax errors, and if successful, generates an executable file named 'a.out'. Running 'a.out' will create a VCD file, which logs changes in input and output values during the simulation. Finally, use GTKWave to view and analyze the waveform data captured in the VCD file.
+  
+  ```
+    iverilog good_mux.v tb_good_mux.v
+    ./a.out
+    gtkwave tb_good_mux.vcd
+  ```
+  
+  ![image](https://github.com/user-attachments/assets/67530f41-a815-4d8d-ae99-aea5246d284b)
+  
+  ![image](https://github.com/user-attachments/assets/3bf58e6d-a0b5-4654-b167-a8eb52408563)
+  
+  
+  ## good_mux.v Code
+  
+  ```
+    module good_mux (input i0 , input i1 , input sel , output reg y);
+    always @ (*)
+    begin
+    	if(sel)
+    		y <= i1;
+    	else 
+    		y <= i0;
+    end
+    endmodule
+  ```
+  
+  ## tb_good_mux.v Code
+  ```
+    `timescale 1ns / 1ps
+    module tb_good_mux;
+    	// Inputs
+    	reg i0,i1,sel;
+    	// Outputs
+    	wire y;
+    
+            // Instantiate the Unit Under Test (UUT)
+    	good_mux uut (
+    		.sel(sel),
+    		.i0(i0),
+    		.i1(i1),
+    		.y(y)
+    	);
+    
+    	initial begin
+    	$dumpfile("tb_good_mux.vcd");
+    	$dumpvars(0,tb_good_mux);
+    	// Initialize Inputs
+    	sel = 0;
+    	i0 = 0;
+    	i1 = 0;
+    	#300 $finish;
+    	end
+    
+    always #75 sel = ~sel;
+    always #10 i0 = ~i0;
+    always #55 i1 = ~i1;
+    endmodule
+  ```
+  
+  A synthesizer is a tool that converts RTL code into a netlist. One example of an open-source synthesizer is Yosys. Yosys not only optimizes the design but also maps it to specific technology libraries or FPGA architectures, producing an optimized netlist that can be analyzed and prepared for physical layout and fabrication.
+
+  ### Yosys Flow
+  ![image](https://github.com/user-attachments/assets/595cea2e-7620-48e6-aeff-f637e68b94b1)
+  ![image](https://github.com/user-attachments/assets/01d1c8af-19c0-4a5d-8fb9-d73016ec3a9d)
+  ![image](https://github.com/user-attachments/assets/f03056ed-1ba3-454f-ac83-bbd30475c4a1)
+  ![image](https://github.com/user-attachments/assets/350088b2-293a-48c9-bcc3-edbba170faaa)
+![image](https://github.com/user-attachments/assets/385a8f43-857c-43f9-ba3b-d6627b2e1e9b)
+
+### Synthesis Overview
+
+Synthesis is a crucial process in digital circuit design that consists of three main steps:
+
+1. **RTL to Gate-Level Translation**: The design described in Register Transfer Level (RTL) is transformed into a gate-level representation. 
+
+2. **Gate Implementation**: The design is converted into specific logic gates, with the necessary connections established between them.
+
+3. **Netlist Generation**: The output of the synthesis process is a file known as the netlist, which details the interconnections of the gates.
+
+### Liberty File (.lib)
+
+A Liberty file is a collection of logical modules that includes various logic gates, such as AND, OR, and NOT. This file contains multiple variants of each gate, differentiated by characteristics like:
+
+- **Number of Inputs**: e.g., 2-input, 3-input, 4-input gates.
+- **Speed Variants**: Gates classified as slow, medium, or fast.
+
+The choice of gate speed impacts design performance:
+
+- **Fast Cells**: These are utilized when high performance is essential, but their selection may lead to increased area and power consumption, as well as potential hold time violations.
+- **Slow Cells**: While they help mitigate hold time issues, relying too much on slower cells can result in suboptimal circuit performance.
+
+### Optimal Cell Selection
+
+The selection of cells during synthesis must strike a balance among area, power, and timing constraints. Effective synthesis requires careful consideration of these factors to ensure optimal circuit performance.
+
+
+## Code for synthesis:
+
+  ```
+  yosys
+  read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+  read_verilog good_mux.v
+  synth -top good_mux
+  abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+  show
+  write_verlog good_mux_netlist.v
+  write_verilog -noattr good_mux_netlist.v
+  ```
+
+![image](https://github.com/user-attachments/assets/f9a33419-d9b0-4a98-ab5a-c87f0dd2998c)
+![image](https://github.com/user-attachments/assets/2aef21ea-65c1-4c9a-90fd-dfc42dc7d21d)
+
   </details>
-
-
-  A simulator helps ensure that a hardware design meets its specifications by simulating circuit behavior. It monitors input signals and re-evaluates outputs when inputs change, identifying errors early on. In RTL design, Verilog code models a circuit's functionality, and a testbench is written to simulate the design. Using Icarus Verilog, the testbench is simulated, and a Value Change Dump (VCD) file is generated.
-
-The VCD file captures signal transitions and is viewed using GTKWave, which allows designers to inspect waveforms, timing relationships, and signal interactions. This process helps verify and debug the design before moving to synthesis or physical implementation. The typical Icarus Verilog-based flow involves writing RTL code, running simulations, generating VCD files, and analyzing them with GTKWave to ensure correct circuit behavior.
-
-
-![image](https://github.com/user-attachments/assets/0084288d-b8d9-4fa3-ba8c-8712738a4cd1)
-
-Start by executing the following commands:
-
-```
-  mkdir ASIC
-  cd ASIC
-  git clone https://github.com/kunalg123/vsdflow.git
-  git clone https://github.com/kunalg123/sky130RTLDesignAndSynthesisWorkshop.git
-  cd sky130RTLDesignAndSynthesisWorkshop
-  ls -R
-```
-
-![image](https://github.com/user-attachments/assets/8fde7f46-f5e9-4e84-bdc0-12e76220c8ff)
-
-THe following verilog files will be used in the lab:
-
-![image](https://github.com/user-attachments/assets/d6c3d7c6-ac86-491a-925b-0d0aef1f2a45)
-
-
-Several Verilog design and testbench files are available for simulation. To simulate the Verilog code in 'good_mux.v', follow these steps. First, compile the design and testbench by running the given command. This checks for syntax errors, and if successful, generates an executable file named 'a.out'. Running 'a.out' will create a VCD file, which logs changes in input and output values during the simulation. Finally, use GTKWave to view and analyze the waveform data captured in the VCD file.
-
-```
-  iverilog good_mux.v tb_good_mux.v
-  ./a.out
-  gtkwave tb_good_mux.vcd
-```
-
-![image](https://github.com/user-attachments/assets/67530f41-a815-4d8d-ae99-aea5246d284b)
-
-![image](https://github.com/user-attachments/assets/3bf58e6d-a0b5-4654-b167-a8eb52408563)
-
-
-## Good_Mux.v Code
-
-```
-  module good_mux (input i0 , input i1 , input sel , output reg y);
-  always @ (*)
-  begin
-  	if(sel)
-  		y <= i1;
-  	else 
-  		y <= i0;
-  end
-  endmodule
-```
 </details>
+
+
