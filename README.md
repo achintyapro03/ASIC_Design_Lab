@@ -1745,7 +1745,7 @@ Thus from he waveforms, we can concule both give same result od 2d.
 </details>
 
 <details>
-<summary>Task 7: Generate PLL and DAC output waveforms</summary>
+<summary>Task 7 : Generate PLL and DAC output waveforms</summary>
   
 ## Verilog and GTKWave Installation
 
@@ -4069,12 +4069,10 @@ This illustrates how synthesis tools can correct certain errors, but it's still 
 </details>
 
 <details>
-	<summary>Task 9: Simulating Pre-Synthesis and Post-Synthesis Output for RVMyth</summary> 
+	<summary>Task 9 : Simulating Pre-Synthesis and Post-Synthesis Output for RVMyth</summary> 
 
-#### 1. **Pre-Synthesis Simulation:**
-In this task, we first simulate the pre-synthesis output of the `rvmyth.v` file, which was previously generated using Sandpiper and a TL-Verilog (TLV) file.
-
-Follow these steps to perform the pre-synthesis simulation:
+### 1. **Pre-Synthesis Simulation:**
+The pre-synthesis output of the `rvmyth.v` file is generated using Sandpiper and a TL-Verilog (TLV) file. Follow the steps below to perform the pre-synthesis simulation:
 
 ```sh
 cd VSDBabySoC
@@ -4082,59 +4080,99 @@ make pre_synth_sim
 gtkwave output/pre_synth_sim/pre_synth_sim.vcd
 ```
 
-This will generate a waveform file (`.vcd`) that can be opened and visualized in GTKWave.
+This will generate a waveform file (`.vcd`) that can be opened and visualized using GTKWave. Below is an example of the pre-synthesis waveform:
 
 ![Pre-synthesis simulation waveform](https://github.com/user-attachments/assets/78f4ad1b-8eca-43ae-905f-b8fcaa1e24df)
+
+The output waveform:
+
 ![Pre-synthesis simulation result](https://github.com/user-attachments/assets/407ad14f-941c-4a6c-bde6-9a6799a4bd12)
 
-#### 2. **Post-Synthesis Simulation:**
-Next, we proceed with the post-synthesis simulation. The synthesis is performed using Yosys, a popular open-source synthesis tool. We will synthesize the `rvmyth.v` design with a standard cell library from the Sky130 PDK.
+Here is a zoomed-out view showing multiple PLL cycles:
 
-Here are the steps to perform the post-synthesis simulation:
+![Zoomed pre-synthesis waveform](https://github.com/user-attachments/assets/c8105bee-f2b2-4b54-abfa-f61ba0c0bb46)
 
-1. Open Yosys:
+---
+
+### 2. **Post-Synthesis Simulation:**
+Next, we proceed with the post-synthesis simulation using Yosys, an open-source synthesis tool. The `rvmyth.v` design is synthesized with the Sky130 PDK standard cell library.
+
+#### Steps for Post-Synthesis Simulation:
+
+1. **Open Yosys**:
     ```sh
     yosys
     ```
 
-2. Read the standard cell library and Verilog design files:
+2. **Read the standard cell library and Verilog design files**:
     ```sh
     read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
     read_verilog clk_gate.v
     read_verilog rvmyth.v
     ```
 
-3. Synthesize the design with the top module `rvmyth`:
+3. **Synthesize the design with the top module `rvmyth`**:
     ```sh
     synth -top rvmyth
     ```
 
-4. Map the design to the standard cells and generate the gate-level netlist:
+4. **Map the design to standard cells and generate the gate-level netlist**:
     ```sh
     abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
     show
     write_verilog -noattr rvmyth_net.v
     ```
 
-5. View the generated gate-level netlist (`rvmyth_net.v`):
+5. **View the generated gate-level netlist** (`rvmyth_net.v`):
     ```sh
     !gedit rvmyth_net.v
     exit
     ```
 
-The post-synthesis netlist and the gate-level diagram can be visualized as shown below:
+The post-synthesis netlist and gate-level design can be visualized as shown below:
 
 ![Yosys post-synthesis result](https://github.com/user-attachments/assets/a351dd82-9da0-4b14-87fc-f04e2b0825db)
-![Screenshot from Yosys: gate-level design](https://github.com/user-attachments/assets/0f8e26eb-5a2b-4430-8746-e63568479852)
+
+Synthesis statistics:
+
+![Yosys gate-level design](https://github.com/user-attachments/assets/0f8e26eb-5a2b-4430-8746-e63568479852)
+
+Post-synthesis visualization:
+
 ![Post-synthesis visualization](https://github.com/user-attachments/assets/ca87d612-7c04-4b86-adca-f652a1e8aeeb)
 
-These steps complete the simulation of both the pre-synthesis and post-synthesis outputs for the RVMyth design.
+Netlist Generated:
 
-The syntehis genertaes the gate level .v code as shown in the image below.
-![Screenshot from 2024-10-24 02-42-02](https://github.com/user-attachments/assets/c72e9283-51e7-44e1-aeec-4be512dd6e8c)
-![Screenshot from 2024-10-24 02-43-08](https://github.com/user-attachments/assets/33a6b3af-03c8-4788-91ab-e8dc0b7adbf3)
+![image](https://github.com/user-attachments/assets/eab56876-75b8-4f32-a7d5-8aa58d27e708)
 
 
+---
+
+After synthesis, the gate-level `.v` code is generated, as shown below:
+
+![Gate-level Verilog code](https://github.com/user-attachments/assets/c72e9283-51e7-44e1-aeec-4be512dd6e8c)
+
+![Another view of gate-level Verilog code](https://github.com/user-attachments/assets/33a6b3af-03c8-4788-91ab-e8dc0b7adbf3)
+
+---
+
+#### Viewing Post-Synthesis Simulation Waveforms:
+To view the post-synthesis waveforms, use the following commands:
+
+```sh
+cd ~/VSDBabySoC
+make post_synth_sim
+gtkwave output/post_synth_sim/post_synth_sim.vcd
+```
+
+Here is an example of the post-synthesis waveform:
+
+![Post-synthesis waveform](https://github.com/user-attachments/assets/09dd63b5-8f5f-4f41-b56b-ad98c1e1a89f)
+
+---
+
+#### Conclusion:
+Both pre-synthesis and post-synthesis waveforms are the same, confirming that the synthesis process preserves the correct functionality of the design.
 </details>
 
 
