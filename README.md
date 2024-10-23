@@ -4065,8 +4065,77 @@ GLS results show a mismatch between the RTL and post-synthesis waveforms due to 
 
 This illustrates how synthesis tools can correct certain errors, but it's still crucial to write clean Verilog code to avoid mismatches and unintended behaviors.
 </details>
+
 </details>
 
+<details>
+	<summary>Task 9: Simulating Pre-Synthesis and Post-Synthesis Output for RVMyth</summary> 
+
+#### 1. **Pre-Synthesis Simulation:**
+In this task, we first simulate the pre-synthesis output of the `rvmyth.v` file, which was previously generated using Sandpiper and a TL-Verilog (TLV) file.
+
+Follow these steps to perform the pre-synthesis simulation:
+
+```sh
+cd VSDBabySoC
+make pre_synth_sim
+gtkwave output/pre_synth_sim/pre_synth_sim.vcd
+```
+
+This will generate a waveform file (`.vcd`) that can be opened and visualized in GTKWave.
+
+![Pre-synthesis simulation waveform](https://github.com/user-attachments/assets/78f4ad1b-8eca-43ae-905f-b8fcaa1e24df)
+![Pre-synthesis simulation result](https://github.com/user-attachments/assets/407ad14f-941c-4a6c-bde6-9a6799a4bd12)
+
+#### 2. **Post-Synthesis Simulation:**
+Next, we proceed with the post-synthesis simulation. The synthesis is performed using Yosys, a popular open-source synthesis tool. We will synthesize the `rvmyth.v` design with a standard cell library from the Sky130 PDK.
+
+Here are the steps to perform the post-synthesis simulation:
+
+1. Open Yosys:
+    ```sh
+    yosys
+    ```
+
+2. Read the standard cell library and Verilog design files:
+    ```sh
+    read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+    read_verilog clk_gate.v
+    read_verilog rvmyth.v
+    ```
+
+3. Synthesize the design with the top module `rvmyth`:
+    ```sh
+    synth -top rvmyth
+    ```
+
+4. Map the design to the standard cells and generate the gate-level netlist:
+    ```sh
+    abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+    show
+    write_verilog -noattr rvmyth_net.v
+    ```
+
+5. View the generated gate-level netlist (`rvmyth_net.v`):
+    ```sh
+    !gedit rvmyth_net.v
+    exit
+    ```
+
+The post-synthesis netlist and the gate-level diagram can be visualized as shown below:
+
+![Yosys post-synthesis result](https://github.com/user-attachments/assets/a351dd82-9da0-4b14-87fc-f04e2b0825db)
+![Screenshot from Yosys: gate-level design](https://github.com/user-attachments/assets/0f8e26eb-5a2b-4430-8746-e63568479852)
+![Post-synthesis visualization](https://github.com/user-attachments/assets/ca87d612-7c04-4b86-adca-f652a1e8aeeb)
+
+These steps complete the simulation of both the pre-synthesis and post-synthesis outputs for the RVMyth design.
+
+The syntehis genertaes the gate level .v code as shown in the image below.
+![Screenshot from 2024-10-24 02-42-02](https://github.com/user-attachments/assets/c72e9283-51e7-44e1-aeec-4be512dd6e8c)
+![Screenshot from 2024-10-24 02-43-08](https://github.com/user-attachments/assets/33a6b3af-03c8-4788-91ab-e8dc0b7adbf3)
+
+
+</details>
 
 
 
