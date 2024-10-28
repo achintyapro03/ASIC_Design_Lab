@@ -4177,3 +4177,96 @@ Both pre-synthesis and post-synthesis waveforms are the same, confirming that th
 
 
 
+<details>
+	<summary>Task 10 : Post-Synthesis Static Timing Analysis of VSDBabySoC Using OpenSTA </summary>
+<br>
+In this task, we utilize `OpenSTA` (Open Source Static Timing Analyzer) to conduct a post-synthesis static timing analysis on the `VSDBabySoC` design. The primary objective of static timing analysis (STA) is to verify that the synthesized design adheres to timing constraints for setup and hold times, ensuring reliable performance across all paths.
+
+### SDC File Configuration
+
+The timing constraints are specified in the `vsdbabysoc_synthesis.sdc` file, which outlines the clock period, clock uncertainty, and input transitions. Below is a detailed breakdown of each line in the SDC file:
+
+```tcl
+# Define the clock period
+set PERIOD 11.35
+
+# Set timing units to nanoseconds (ns)
+set_units -time ns
+
+# Create a clock named 'clk' with a period of 11.35 ns, based on the pll/CLK pin
+create_clock [get_pins {pll/CLK}] -name clk -period $PERIOD
+
+# Define setup uncertainty as 5% of the clock period
+set_clock_uncertainty -setup [expr $PERIOD * 0.05] [get_clocks clk]
+
+# Define clock transition time as 5% of the clock period
+set_clock_transition [expr $PERIOD * 0.05] [get_clocks clk]
+
+# Define hold uncertainty as 8% of the clock period
+set_clock_uncertainty -hold [expr $PERIOD * 0.08] [get_clocks clk]
+
+# Define input transition times for the specified ports
+set_input_transition [expr $PERIOD * 0.08] [get_ports ENb_CP]
+set_input_transition [expr $PERIOD * 0.08] [get_ports ENb_VCO]
+set_input_transition [expr $PERIOD * 0.08] [get_ports REF]
+set_input_transition [expr $PERIOD * 0.08] [get_ports VCO_IN]
+set_input_transition [expr $PERIOD * 0.08] [get_ports VREFH]
+```
+
+### Execution Commands for Timing Analysis
+
+To perform the static timing analysis using OpenSTA, execute the following commands sequentially:
+
+```bash
+cd VSDBabySoc/src
+sta
+
+# Load Liberty files for cell delays and constraints
+read_liberty -min ./lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_liberty -min ./lib/avsdpll.lib
+read_liberty -min ./lib/avsddac.lib
+read_liberty -max ./lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_liberty -max ./lib/avsdpll.lib
+read_liberty -max ./lib/avsddac.lib
+
+# Load the synthesized Verilog file
+read_verilog ../output/synth/vsdbabysoc.synth.v
+
+# Link the design for analysis
+link_design vsdbabysoc
+
+# Apply timing constraints from the SDC file
+read_sdc ./sdc/vsdbabysoc_synthesis.sdc
+
+# Generate a detailed timing report including min/max delays
+report_checks -path_delay min_max -format full_clock_expanded -digits 4
+```
+
+### Timing Report: Key Metrics
+
+#### Overall Timing Analysis
+![Overall Timing Analysis](https://github.com/user-attachments/assets/52a3e12b-3c1a-46ef-88e5-382c85d9a297)
+
+#### Setup Time Analysis
+
+The setup time analysis verifies that signals have stabilized before the clock edge, ensuring data integrity. The following image presents a snapshot of the setup time analysis for `VSDBabySoC`:
+
+*Setup Time Report:*
+![Setup Time](https://github.com/user-attachments/assets/7302bcd5-2aae-4edd-8bb2-ba206e6e8fa4)
+
+#### Hold Time Analysis
+
+The hold time analysis ensures that data remains stable for a brief period after the clock edge, allowing proper data capture. Below is the hold time analysis for `VSDBabySoC`:
+
+*Hold Time Report:*
+![Hold Time](https://github.com/user-attachments/assets/fa490618-e7e9-4831-b0c0-a596781563f8)
+
+---
+
+### Conclusion
+
+Upon analyzing the timing reports, it is evident that the setup time was violated due to an insufficient clock period (Tc). This indicates that the current timing constraints do not allow for reliable data capture and may require adjustments to the design or constraints to ensure proper functionality and performance.
+
+</details>
+
+
