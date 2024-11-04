@@ -4362,7 +4362,7 @@ This task involved executing a post-synthesis static timing analysis (STA) on a 
    ```bash
    cd VSDBabySoC/src
    sta
-   source script.tcl.tcl
+   source script.tcl
    ```
 
 4. **Output and Report Generation**
