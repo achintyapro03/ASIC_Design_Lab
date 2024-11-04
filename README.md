@@ -1,4 +1,4 @@
-![sta_wns](https://github.com/user-attachments/assets/3abc580d-baad-49c7-b23e-65fcaedf016e)# ASIC Design Lab
+# ASIC Design Lab
 
 ## Overview
 This project comprises a series of tasks aimed at designing and implementing various components and programs for ASIC design.
