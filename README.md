@@ -4270,16 +4270,19 @@ Upon analyzing the timing reports, it is evident that the setup time was violate
 </details>
 
 <details>
-	<summary>Task 11 : Post-Synthesis Static Timing Analysis Using OpenSTA for Sky130 Libraries </summary>
+	<summary>Task 11 : </summary>
 
-This task involved performing post-synthesis static timing analysis using OpenSTA for various `sky130` library files. The process included setting up the timing analysis environment, reading the necessary library and synthesized Verilog files, and generating detailed timing reports across different process-voltage-temperature (PVT) corners. The steps taken are detailed below, with explanations provided for clarity.
+ ### Task 11: Post-Synthesis Static Timing Analysis Using OpenSTA for Sky130 Libraries
+
+This task involved executing a post-synthesis static timing analysis (STA) on a synthesized Verilog netlist using OpenSTA with Sky130 library files. The objective was to set up a timing analysis environment, read in the necessary library and netlist files, and generate detailed timing reports for various process-voltage-temperature (PVT) corners. Below is an organized procedure and explanation of each step.
 
 #### Procedure
 
-1. **Preparation of the Environment and Library Files**
-   - To facilitate the analysis, all required `lib` files were stored in a directory named `timing_libs`, organized within the project directory for easy access during analysis.
+1. **Environment and Library File Preparation**
+   - To streamline the analysis process, all required `.lib` files were stored in a directory named `timing_libs` within the main project directory (`VSDBabySoC`). This structure allowed for easy access to library files during analysis.
 
-   **Directory Structure Used:**
+   **Directory Structure:**
+
    ```
    VSDBabySoC/
    ├── output/
@@ -4288,86 +4291,98 @@ This task involved performing post-synthesis static timing analysis using OpenST
    ├── src/
    │   └── sta_across_pvt.tcl
    ├── timing_libs/
-       ├── sky130_fd_sc_hd__ff_100C_1v65.lib
-       ├── sky130_fd_sc_hd__ff_100C_1v95.lib
-       ├── ... (remaining .lib files)
+   │   ├── sky130_fd_sc_hd__ff_100C_1v65.lib
+   │   ├── sky130_fd_sc_hd__ff_100C_1v95.lib
+   │   ├── ... (additional .lib files)
    └── sdc/
        └── vsdbabysoc_synthesis.sdc
    ```
 
-2. **Creation of the TCL Script (`sta_across_pvt.tcl`)**
-   - A TCL script was created in the `VSDBabySoC/src` directory named `sta_across_pvt.tcl` to automate the process of reading the library files, loading the synthesized Verilog code, and generating timing reports.
+2. **TCL Script Creation (`sta_across_pvt.tcl`)**
+   - A TCL script, `sta_across_pvt.tcl`, was created in the `VSDBabySoC/src` directory to automate the process. This script reads library files, loads the synthesized Verilog code, and generates timing reports across different PVT corners.
 
-   **Content of `sta_across_pvt.tcl`:**
+   **Script Content:**
+
    ```tcl
-   # Array defined to store paths to the library files
-	set list_of_lib_files(1) "sky130_fd_sc_hd__ff_100C_1v65.lib"
-	set list_of_lib_files(2) "sky130_fd_sc_hd__ff_100C_1v95.lib"
-	set list_of_lib_files(3) "sky130_fd_sc_hd__ff_n40C_1v56.lib"
-	set list_of_lib_files(4) "sky130_fd_sc_hd__ff_n40C_1v65.lib"
-	set list_of_lib_files(5) "sky130_fd_sc_hd__ff_n40C_1v76.lib"
-	set list_of_lib_files(6) "sky130_fd_sc_hd__ff_n40C_1v95.lib"
-	set list_of_lib_files(7) "sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib.part1"
-	set list_of_lib_files(8) "sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib.part2"
-	set list_of_lib_files(9) "sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib.part3"
-	set list_of_lib_files(10) "sky130_fd_sc_hd__ss_100C_1v40.lib"
-	set list_of_lib_files(11) "sky130_fd_sc_hd__ss_100C_1v60.lib"
-	set list_of_lib_files(12) "sky130_fd_sc_hd__ss_n40C_1v28.lib"
-	set list_of_lib_files(13) "sky130_fd_sc_hd__ss_n40C_1v35.lib"
-	set list_of_lib_files(14) "sky130_fd_sc_hd__ss_n40C_1v40.lib"
-	set list_of_lib_files(15) "sky130_fd_sc_hd__ss_n40C_1v44.lib"
-	set list_of_lib_files(16) "sky130_fd_sc_hd__ss_n40C_1v60.lib"
-	set list_of_lib_files(17) "sky130_fd_sc_hd__ss_n40C_1v60_ccsnoise.lib.part1"
-	set list_of_lib_files(18) "sky130_fd_sc_hd__ss_n40C_1v60_ccsnoise.lib.part2"
-	set list_of_lib_files(19) "sky130_fd_sc_hd__ss_n40C_1v60_ccsnoise.lib.part3"
-	set list_of_lib_files(20) "sky130_fd_sc_hd__ss_n40C_1v76.lib"
-	set list_of_lib_files(21) "sky130_fd_sc_hd__tt_025C_1v80.lib"
-	set list_of_lib_files(22) "sky130_fd_sc_hd__tt_100C_1v80.lib"
+	set lib_li(1) "sky130_fd_sc_hd__ff_100C_1v65.lib"
+	set lib_li(2) "sky130_fd_sc_hd__ff_100C_1v95.lib"
+	set lib_li(3) "sky130_fd_sc_hd__ff_n40C_1v56.lib"
+	set lib_li(4) "sky130_fd_sc_hd__ff_n40C_1v65.lib"
+	set lib_li(5) "sky130_fd_sc_hd__ff_n40C_1v76.lib"
+	set lib_li(6) "sky130_fd_sc_hd__ff_n40C_1v95.lib"
+	set lib_li(7) "sky130_fd_sc_hd__ss_100C_1v40.lib"
+	set lib_li(8) "sky130_fd_sc_hd__ss_100C_1v60.lib"
+	set lib_li(9) "sky130_fd_sc_hd__ss_n40C_1v28.lib"
+	set lib_li(10) "sky130_fd_sc_hd__ss_n40C_1v35.lib"
+	set lib_li(11) "sky130_fd_sc_hd__ss_n40C_1v40.lib"
+	set lib_li(12) "sky130_fd_sc_hd__ss_n40C_1v44.lib"
+	set lib_li(13) "sky130_fd_sc_hd__ss_n40C_1v60.lib"
+	set lib_li(14) "sky130_fd_sc_hd__ss_n40C_1v76.lib"
+	set lib_li(15) "sky130_fd_sc_hd__tt_025C_1v80.lib"
+	set lib_li(16) "sky130_fd_sc_hd__tt_100C_1v80.lib"
 
-   # Loop through each library file and run STA
-   for {set i 1} {$i <= [array size list_of_lib_files]} {incr i} {
-       read_liberty ./timing_libs/$list_of_lib_files($i)
+   
+   read_liberty -min ./lib/avsdpll.lib
+   read_liberty -min ./lib/avsddac.lib
+   read_liberty -max ./lib/avsdpll.lib
+   read_liberty -max ./lib/avsddac.lib
+   
+   for {set i 1} {$i <= [array size lib_li]} {incr i} {
+       read_liberty ./timing_libs/$lib_li($i)
        read_verilog ../output/synth/vsdbabysoc.synth.v
        link_design vsdbabysoc
        read_sdc ./sdc/vsdbabysoc_synthesis.sdc
        check_setup -verbose
-       report_checks -path_delay min_max -fields {nets cap slew input_pins fanout} -digits {4} > ./sta_output/min_max_$list_of_lib_files($i).txt
+       report_checks -path_delay min_max -fields {nets cap slew input_pins fanout} -digits 4 > ./out_sta/min_max_$lib_li($i).txt
+       
+       exec echo "$lib_li($i)" >> ./out_sta/sta_worst_max_slack.txt
+       report_worst_slack -max -digits 4 >> ./out_sta/sta_worst_max_slack.txt
+       
+       exec echo "$lib_li($i)" >> ./out_sta/sta_worst_min_slack.txt
+       report_worst_slack -min -digits 4 >> ./out_sta/sta_worst_min_slack.txt
+       
+       exec echo "$lib_li($i)" >> ./out_sta/sta_tns.txt
+       report_tns -digits 4 >> ./out_sta/sta_tns.txt
+       
+       exec echo "$lib_li($i)" >> ./out_sta/sta_wns.txt
+       report_wns -digits 4 >> ./out_sta/sta_wns.txt
    }
    ```
 
-   **Explanation of the Script:**
-   - `read_liberty`: Reads the specified timing library file.
+   **Explanation of the Commands in the Script:**
+   - `read_liberty`: Reads a specified timing library file.
    - `read_verilog`: Loads the synthesized Verilog netlist for analysis.
-   - `link_design`: Ensures all cells and nets are properly connected in the design.
-   - `read_sdc`: Reads the SDC file containing design constraints.
-   - `check_setup`: Checks for setup time violations with detailed output.
-   - `report_checks`: Generates a report that includes path delays, capacitance, slew, and fanout details for analysis.
+   - `link_design`: Ensures all cells and nets are correctly connected in the design.
+   - `read_sdc`: Reads the SDC (design constraint) file.
+   - `check_setup`: Checks setup timing violations and provides a detailed output.
+   - `report_checks`: Generates a report containing information such as path delays, capacitance, slew, and fanout, with results formatted to four decimal places.
+   - `report_worst_slack`, `report_tns`, and `report_wns`: Generate reports on worst-case slack, total negative slack, and worst negative slack across timing paths, with results appended to dedicated output files.
 
-3. **Execution of OpenSTA Commands**
-   - Once the TCL script was prepared, navigation to the `VSDBabySoC/src` directory was completed, and OpenSTA was run with the following commands:
+3. **Running OpenSTA with the TCL Script**
+   - After creating the TCL script, OpenSTA was run from the `VSDBabySoC/src` directory with the following commands:
 
-   **Commands Executed:**
    ```bash
    cd VSDBabySoC/src
    sta
    source sta_across_pvt.tcl
    ```
 
-4. **Output and Report Analysis**
-   - Detailed timing reports were generated for each library file processed, saved in the `sta_output` directory, and named according to the library file used.
+4. **Output and Report Generation**
+   - Detailed timing reports were generated for each library file, saved in the `out_sta` directory, and named according to the library file used (e.g., `min_max_sky130_fd_sc_hd__ff_100C_1v65.lib.txt`).
 
-   **Example of an Output File:**
-   ```
-   min_max_sky130_fd_sc_hd__ff_100C_1v65.lib.txt
-   ```
+5. **Report Analysis and Visualization**
+   - The output reports were analyzed to detect setup or hold violations and to evaluate timing characteristics such as worst-case paths, slew rates, and fanout. Visualization tools were used to plot data from the reports, assisting in identifying potential bottlenecks and areas for optimization.
 
-5. **Reviewing and Visualizing Results**
-   - The output reports were reviewed to identify any setup or hold violations and to evaluate timing characteristics, including worst-case paths, slew rates, and fanout. Visualization tools were utilized to plot timing data, helping to pinpoint design bottlenecks and areas requiring optimization.
+   **Example Report Snapshots and Graphs:**
 
-   **Report Snapshots and Graphs:**
-   ![report_sample](https://github.com/user-attachments/assets/0c2962ef-d883-4cec-807b-9ea069a7a00c)
-   ![graph_example](https://github.com/user-attachments/assets/c6a16309-d461-4bdf-a16c-0efda04b5225)
-   ![graph_example_2](https://github.com/user-attachments/assets/47a9c697-250f-497a-8072-e7c763ac494d)
+   - `sta_worst_max_slack`: Visual representation of the worst-case slack for maximum delay paths.
+   - `sta_wns`: Chart of the worst negative slack.
+   - `sta_tns`: Graph depicting the total negative slack across timing paths.
+   - `sta_worst_min_slack`: Snapshot of worst-case slack for minimum delay paths.
 
-This approach provided detailed insights into timing across different PVT corners, guiding further design optimization and ensuring timing closure.
+   ![sta_worst_max_slack](https://github.com/user-attachments/assets/ccb93cf8-d76b-42f5-b81b-768e7274079c)
+   ![sta_wns](https://github.com/user-attachments/assets/ed688ee8-190c-4869-9077-c999aa0baabe)
+   ![sta_tns](https://github.com/user-attachments/assets/4290b286-fdc2-4fa3-ac24-8a391bb992ee)
+   ![sta_worst_min_slack](https://github.com/user-attachments/assets/33f206cf-a01c-47ca-b10d-502985d9319c)
+
 </details>
