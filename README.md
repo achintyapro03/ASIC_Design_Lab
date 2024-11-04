@@ -1,4 +1,4 @@
-# ASIC Design Lab
+![sta_wns](https://github.com/user-attachments/assets/3abc580d-baad-49c7-b23e-65fcaedf016e)# ASIC Design Lab
 
 ## Overview
 This project comprises a series of tasks aimed at designing and implementing various components and programs for ASIC design.
@@ -4379,10 +4379,11 @@ This task involved executing a post-synthesis static timing analysis (STA) on a 
    - `sta_tns`: Graph depicting the total negative slack across timing paths.
 
    ![image](https://github.com/user-attachments/assets/3df44dcb-1cb2-4214-9eb9-233ff7ed2928)
+   
+![sta_worst_max_slack](https://github.com/user-attachments/assets/819a273b-ffdb-4ba3-8a5b-fc9c6c1983e5)
+![sta_worst_min_slack](https://github.com/user-attachments/assets/2be8727a-cfa7-47e8-8f86-ad9ab7178230)
+![sta_wns](https://github.com/user-attachments/assets/ab612b36-61d6-45a3-b24f-6ede7ba1df56)
+![sta_tns](https://github.com/user-attachments/assets/a4c4530e-2334-4cd5-8816-dbd29db528f5)
 
-![sta_worst_min_slack](https://github.com/user-attachments/assets/7262d78f-cced-407f-90ca-aefbc7d035ac)
-![sta_worst_max_slack](https://github.com/user-attachments/assets/f8e34144-0f3a-4fa8-9fa6-edca15a69878)
-![sta_wns](https://github.com/user-attachments/assets/5e6d7d35-f145-486a-a3bc-c52dab14f1b1)
-![sta_tns](https://github.com/user-attachments/assets/7fe85b38-57ff-4d05-858f-d4c61f00d9f8)
 
 </details>
