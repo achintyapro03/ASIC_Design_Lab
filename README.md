@@ -4353,10 +4353,6 @@ This task involved performing post-synthesis static timing analysis using OpenST
    source sta_across_pvt.tcl
    ```
 
-   **Explanation of Commands:**
-   - `sta`: Initiates OpenSTA in interactive mode.
-   - `source`: Runs the specified TCL script, automating the reading of the library files, loading the Verilog design, applying constraints, and generating the reports.
-
 4. **Output and Report Analysis**
    - Detailed timing reports were generated for each library file processed, saved in the `sta_output` directory, and named according to the library file used.
 
