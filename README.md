@@ -4374,15 +4374,15 @@ This task involved executing a post-synthesis static timing analysis (STA) on a 
    **Example Report Snapshots and Graphs:**
 
    - `sta_worst_max_slack`: Visual representation of the worst-case slack for maximum delay paths.
+   - `sta_worst_min_slack`: Snapshot of worst-case slack for minimum delay paths.
    - `sta_wns`: Chart of the worst negative slack.
    - `sta_tns`: Graph depicting the total negative slack across timing paths.
-   - `sta_worst_min_slack`: Snapshot of worst-case slack for minimum delay paths.
 
    ![image](https://github.com/user-attachments/assets/3df44dcb-1cb2-4214-9eb9-233ff7ed2928)
 
-   ![sta_worst_max_slack](https://github.com/user-attachments/assets/ccb93cf8-d76b-42f5-b81b-768e7274079c)
-   ![sta_wns](https://github.com/user-attachments/assets/ed688ee8-190c-4869-9077-c999aa0baabe)
-   ![sta_tns](https://github.com/user-attachments/assets/4290b286-fdc2-4fa3-ac24-8a391bb992ee)
-   ![sta_worst_min_slack](https://github.com/user-attachments/assets/33f206cf-a01c-47ca-b10d-502985d9319c)
+![sta_worst_min_slack](https://github.com/user-attachments/assets/7262d78f-cced-407f-90ca-aefbc7d035ac)
+![sta_worst_max_slack](https://github.com/user-attachments/assets/f8e34144-0f3a-4fa8-9fa6-edca15a69878)
+![sta_wns](https://github.com/user-attachments/assets/5e6d7d35-f145-486a-a3bc-c52dab14f1b1)
+![sta_tns](https://github.com/user-attachments/assets/7fe85b38-57ff-4d05-858f-d4c61f00d9f8)
 
 </details>
