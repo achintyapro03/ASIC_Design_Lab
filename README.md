@@ -4270,10 +4270,8 @@ Upon analyzing the timing reports, it is evident that the setup time was violate
 </details>
 
 <details>
-	<summary>Task 11 : </summary>
-
- ### Task 11: Post-Synthesis Static Timing Analysis Using OpenSTA for Sky130 Libraries
-
+	<summary>Task 11 : Post-Synthesis Static Timing Analysis Using OpenSTA for Sky130 Libraries</summary>
+<br>
 This task involved executing a post-synthesis static timing analysis (STA) on a synthesized Verilog netlist using OpenSTA with Sky130 library files. The objective was to set up a timing analysis environment, read in the necessary library and netlist files, and generate detailed timing reports for various process-voltage-temperature (PVT) corners. Below is an organized procedure and explanation of each step.
 
 #### Procedure
@@ -4289,7 +4287,7 @@ This task involved executing a post-synthesis static timing analysis (STA) on a 
    │   └── synth/
    │       └── vsdbabysoc.synth.v
    ├── src/
-   │   └── sta_across_pvt.tcl
+   │   └── script.tcl.tcl
    ├── timing_libs/
    │   ├── sky130_fd_sc_hd__ff_100C_1v65.lib
    │   ├── sky130_fd_sc_hd__ff_100C_1v95.lib
@@ -4298,8 +4296,8 @@ This task involved executing a post-synthesis static timing analysis (STA) on a 
        └── vsdbabysoc_synthesis.sdc
    ```
 
-2. **TCL Script Creation (`sta_across_pvt.tcl`)**
-   - A TCL script, `sta_across_pvt.tcl`, was created in the `VSDBabySoC/src` directory to automate the process. This script reads library files, loads the synthesized Verilog code, and generates timing reports across different PVT corners.
+2. **TCL Script Creation (`script.tcl.tcl`)**
+   - A TCL script, `script.tcl.tcl`, was created in the `VSDBabySoC/src` directory to automate the process. This script reads library files, loads the synthesized Verilog code, and generates timing reports across different PVT corners.
 
    **Script Content:**
 
@@ -4364,7 +4362,7 @@ This task involved executing a post-synthesis static timing analysis (STA) on a 
    ```bash
    cd VSDBabySoC/src
    sta
-   source sta_across_pvt.tcl
+   source script.tcl.tcl
    ```
 
 4. **Output and Report Generation**
@@ -4379,6 +4377,8 @@ This task involved executing a post-synthesis static timing analysis (STA) on a 
    - `sta_wns`: Chart of the worst negative slack.
    - `sta_tns`: Graph depicting the total negative slack across timing paths.
    - `sta_worst_min_slack`: Snapshot of worst-case slack for minimum delay paths.
+
+   ![image](https://github.com/user-attachments/assets/3df44dcb-1cb2-4214-9eb9-233ff7ed2928)
 
    ![sta_worst_max_slack](https://github.com/user-attachments/assets/ccb93cf8-d76b-42f5-b81b-768e7274079c)
    ![sta_wns](https://github.com/user-attachments/assets/ed688ee8-190c-4869-9077-c999aa0baabe)
