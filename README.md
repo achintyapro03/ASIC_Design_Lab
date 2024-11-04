@@ -4277,7 +4277,7 @@ This task involved executing a post-synthesis static timing analysis (STA) on a 
 #### Procedure
 
 1. **Environment and Library File Preparation**
-   - To streamline the analysis process, all required `.lib` files were stored in a directory named `timing_libs` within the main project directory (`VSDBabySoC`). This structure allowed for easy access to library files during analysis.
+   - To streamline the analysis process, all required `.lib` files were stored in a directory named `lib_dir` within the main project directory (`VSDBabySoC`). This structure allowed for easy access to library files during analysis.
 
    **Directory Structure:**
 
@@ -4288,7 +4288,7 @@ This task involved executing a post-synthesis static timing analysis (STA) on a 
    │       └── vsdbabysoc.synth.v
    ├── src/
    │   └── script.tcl.tcl
-   ├── timing_libs/
+   ├── lib_dir/
    │   ├── sky130_fd_sc_hd__ff_100C_1v65.lib
    │   ├── sky130_fd_sc_hd__ff_100C_1v95.lib
    │   ├── ... (additional .lib files)
@@ -4297,7 +4297,7 @@ This task involved executing a post-synthesis static timing analysis (STA) on a 
    ```
 
 2. **TCL Script Creation (`script.tcl.tcl`)**
-   - A TCL script, `script.tcl.tcl`, was created in the `VSDBabySoC/src` directory to automate the process. This script reads library files, loads the synthesized Verilog code, and generates timing reports across different PVT corners.
+   - A TCL script, `script.tcl`, was created in the `VSDBabySoC/src` directory to automate the process. This script reads library files, loads the synthesized Verilog code, and generates timing reports across different PVT corners.
 
    **Script Content:**
 
@@ -4326,7 +4326,7 @@ This task involved executing a post-synthesis static timing analysis (STA) on a 
    read_liberty -max ./lib/avsddac.lib
    
    for {set i 1} {$i <= [array size lib_li]} {incr i} {
-       read_liberty ./timing_libs/$lib_li($i)
+       read_liberty ./lib_dir/$lib_li($i)
        read_verilog ../output/synth/vsdbabysoc.synth.v
        link_design vsdbabysoc
        read_sdc ./sdc/vsdbabysoc_synthesis.sdc
