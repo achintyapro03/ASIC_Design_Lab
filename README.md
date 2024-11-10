@@ -4417,6 +4417,9 @@ A **Die** is a single, square section of a silicon wafer that holds all the acti
 
 To run an application on hardware, software must be translated from a high-level programming language into binary code that hardware can interpret:
 
+![image](https://github.com/user-attachments/assets/a8871bcf-e13e-4233-9e1f-42362faf5b40)
+
+
 1. **System Software Translation**: The system software layer processes high-level code into machine language. The Operating System (OS), compiler, and assembler play key roles in this transformation.
 
 2. **Execution Process**:
@@ -4425,7 +4428,12 @@ To run an application on hardware, software must be translated from a high-level
    - The **Assembler** then converts these instructions into binary (machine code), which the hardware can read and execute.
    - The **Hardware** finally executes these instructions, performing tasks as dictated by the program.
 
+	![image](https://github.com/user-attachments/assets/73d3ef7f-f149-42c1-97d4-9a87405fed51)
+
+
    **Example**: Consider a stopwatch application running on a RISC-V core. The OS takes a function written in C, which is compiled into RISC-V-specific assembly instructions. The assembler converts this into binary code, and the hardware executes it, providing stopwatch functionality.
+
+![image](https://github.com/user-attachments/assets/ed63bcb4-e349-4a74-996b-4d1161d08ae8)
 
 3. **Hardware Translation to Layout**: In hardware design, the RTL (Register Transfer Level) describes functionality in an HDL (Hardware Description Language) like Verilog. This is synthesized into a netlist of gates that are then mapped onto a physical layout, eventually forming the chip.
 
@@ -4434,6 +4442,9 @@ To run an application on hardware, software must be translated from a high-level
 ### ASIC Design Flow Overview
 
 The process of creating an ASIC (Application-Specific Integrated Circuit) involves several stages, moving from a high-level description to a final, physical layout for fabrication:
+
+![image](https://github.com/user-attachments/assets/8b723882-fd73-4da3-8af6-a0c90567424b)
+
 
 1. **RTL Design**: Describes the intended logic and function of the circuit in Verilog or VHDL. This high-level code specifies data paths, logic operations, and interactions between different parts of the chip.
 
@@ -4456,6 +4467,9 @@ The process of creating an ASIC (Application-Specific Integrated Circuit) involv
 ### OpenLane ASIC Flow
 
 OpenLane is an open-source ASIC design flow that integrates multiple open-source tools for each stage of the ASIC development process:
+
+![image](https://github.com/user-attachments/assets/063d9773-caeb-488c-9710-e920a014d93f)
+
 
 1. **RTL Synthesis, Technology Mapping, and Formal Verification**: Yosys (RTL synthesis), ABC (technology mapping, formal verification).
 2. **Static Timing Analysis**: OpenSTA is used for timing verification.
