@@ -1,4 +1,4 @@
-# ASIC Design Lab
+![image](https://github.com/user-attachments/assets/f662532a-9697-4a08-9c5b-5cc6735e480c)# ASIC Design Lab
 
 ## Overview
 This project comprises a series of tasks aimed at designing and implementing various components and programs for ASIC design.
@@ -4508,35 +4508,35 @@ This directory structure ensures compatibility with open-source EDA tools by sep
 
 ### OpenLane Synthesis Process for `picorv32a` Design
 
-1. **Open the OpenLane Directory**
-   - Go to the OpenLane working directory within VSD Virtual Box:
+### **1. Open the OpenLane Directory**
+   - Navigate to the OpenLane working directory within the VSD Virtual Box:
      ```bash
      cd Desktop/work/tools/openlane_working_dir/openlane
-     ```
-
-2. **Launch OpenLane in Interactive Mode**
-   - Start the Docker container and enter OpenLane interactive mode:
-     ```bash
      docker
      ./flow.tcl -interactive
-     package require openlane 0.9
      ```
 
-3. **Prepare the Design for Synthesis**
-   - Initialize the design for `picorv32a` and execute the synthesis process:
+### **2. Launch OpenLane in Interactive Mode**
+   - Start the Docker container and enter OpenLane's interactive mode:
      ```bash
+     package require openlane 0.9
      prep -design picorv32a
      run_synthesis
      ```
+![image](https://github.com/user-attachments/assets/bebc9c98-bbcc-4939-a2fd-04ae7ad36c60)
+
 ---
 
 ### Viewing the Netlist
    - After synthesis completes, go to the folder containing the netlist:
      ```bash
-     cd designs/picorv32a/runs/09-11_06-33/results/synthesis/
+     cd designs/picorv32a/runs/10-11_22-19/results/synthesis/
      gedit picorv32a.synthesis.v
      ```
 ---
+![image](https://github.com/user-attachments/assets/2e92ed31-c58f-416d-8e16-05944f404aeb)
+![image](https://github.com/user-attachments/assets/2928bfc1-429d-46b6-a138-1fdc5cdfa9df)
+
 
 ### Viewing the Yosys Report
 ```bash
@@ -4545,6 +4545,84 @@ cd reports/synthesis
 gedit 1-yosys_4.stat.rpt
 ```
 
+![image](https://github.com/user-attachments/assets/09440b89-005b-4f7a-b4f7-f4d19a51fc67)
+
+```
+
+28. Printing statistics.
+
+=== picorv32a ===
+
+   Number of wires:              14596
+   Number of wire bits:          14978
+   Number of public wires:        1565
+   Number of public wire bits:    1947
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:              14876
+     sky130_fd_sc_hd__a2111o_2       1
+     sky130_fd_sc_hd__a211o_2       35
+     sky130_fd_sc_hd__a211oi_2      60
+     sky130_fd_sc_hd__a21bo_2      149
+     sky130_fd_sc_hd__a21boi_2       8
+     sky130_fd_sc_hd__a21o_2        57
+     sky130_fd_sc_hd__a21oi_2      244
+     sky130_fd_sc_hd__a221o_2       86
+     sky130_fd_sc_hd__a22o_2      1013
+     sky130_fd_sc_hd__a2bb2o_2    1748
+     sky130_fd_sc_hd__a2bb2oi_2     81
+     sky130_fd_sc_hd__a311o_2        2
+     sky130_fd_sc_hd__a31o_2        49
+     sky130_fd_sc_hd__a31oi_2        7
+     sky130_fd_sc_hd__a32o_2        46
+     sky130_fd_sc_hd__a41o_2         1
+     sky130_fd_sc_hd__and2_2       157
+     sky130_fd_sc_hd__and3_2        58
+     sky130_fd_sc_hd__and4_2       345
+     sky130_fd_sc_hd__and4b_2        1
+     sky130_fd_sc_hd__buf_1       1656
+     sky130_fd_sc_hd__buf_2          8
+     sky130_fd_sc_hd__conb_1        42
+     sky130_fd_sc_hd__dfxtp_2     1613
+     sky130_fd_sc_hd__inv_2       1615
+     sky130_fd_sc_hd__mux2_1      1224
+     sky130_fd_sc_hd__mux2_2         2
+     sky130_fd_sc_hd__mux4_1       221
+     sky130_fd_sc_hd__nand2_2       78
+     sky130_fd_sc_hd__nor2_2       524
+     sky130_fd_sc_hd__nor2b_2        1
+     sky130_fd_sc_hd__nor3_2        42
+     sky130_fd_sc_hd__nor4_2         1
+     sky130_fd_sc_hd__o2111a_2       2
+     sky130_fd_sc_hd__o211a_2       69
+     sky130_fd_sc_hd__o211ai_2       6
+     sky130_fd_sc_hd__o21a_2        54
+     sky130_fd_sc_hd__o21ai_2      141
+     sky130_fd_sc_hd__o21ba_2      209
+     sky130_fd_sc_hd__o21bai_2       1
+     sky130_fd_sc_hd__o221a_2      204
+     sky130_fd_sc_hd__o221ai_2       7
+     sky130_fd_sc_hd__o22a_2      1312
+     sky130_fd_sc_hd__o22ai_2       59
+     sky130_fd_sc_hd__o2bb2a_2     119
+     sky130_fd_sc_hd__o2bb2ai_2     92
+     sky130_fd_sc_hd__o311a_2        8
+     sky130_fd_sc_hd__o31a_2        19
+     sky130_fd_sc_hd__o31ai_2        1
+     sky130_fd_sc_hd__o32a_2       109
+     sky130_fd_sc_hd__o41a_2         2
+     sky130_fd_sc_hd__or2_2       1088
+     sky130_fd_sc_hd__or2b_2        25
+     sky130_fd_sc_hd__or3_2         68
+     sky130_fd_sc_hd__or3b_2         5
+     sky130_fd_sc_hd__or4_2         93
+     sky130_fd_sc_hd__or4b_2         6
+     sky130_fd_sc_hd__or4bb_2        2
+
+   Chip area for module '\picorv32a': 147712.918400
+
+```
 
 
 ### **Day-2: Good Floorplan vs Bad Floorplan and Introduction to Library Cells**
