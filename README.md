@@ -4505,4 +4505,53 @@ The OpenLane directory structure is organized to support open-source ASIC design
 
 This directory structure ensures compatibility with open-source EDA tools by separating files specific to each design, technology node, and tool.
 
+
+### OpenLane Synthesis Process for `picorv32a` Design
+
+1. **Open the OpenLane Directory**
+   - Go to the OpenLane working directory within VSD Virtual Box:
+     ```bash
+     cd Desktop/work/tools/openlane_working_dir/openlane
+     ```
+
+2. **Launch OpenLane in Interactive Mode**
+   - Start the Docker container and enter OpenLane interactive mode:
+     ```bash
+     docker
+     ./flow.tcl -interactive
+     package require openlane 0.9
+     ```
+
+3. **Prepare the Design for Synthesis**
+   - Initialize the design for `picorv32a` and execute the synthesis process:
+     ```bash
+     prep -design picorv32a
+     run_synthesis
+     ```
+---
+
+### Viewing the Netlist
+
+1. **Navigate to the Synthesis Results Directory**
+   - After synthesis completes, go to the folder containing the netlist:
+     ```bash
+     cd designs/picorv32a/runs/09-11_06-33/results/synthesis/
+     ```
+
+2. **Open the Netlist File**
+   - View the synthesized Verilog netlist in a text editor:
+     ```bash
+     gedit picorv32a.synthesis.v
+     ```
+
+---
+
+### Viewing the Yosys Report
+
+```bash
+cd ../..
+cd reports/synthesis
+gedit 1-yosys_4.stat.rpt
+```
+
 </details>
