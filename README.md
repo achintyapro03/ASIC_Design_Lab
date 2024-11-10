@@ -4394,6 +4394,9 @@ This task involved executing a post-synthesis static timing analysis (STA) on a 
 
 A **QFN-48 Package** (Quad Flat No-leads with 48 connections) is a type of IC packaging that places 48 metal connection pads around the perimeter of the chip without any protruding leads, creating a compact, low-profile package. This design offers high thermal efficiency and superior electrical performance, making it well-suited for densely packed applications where space is limited and effective heat dissipation is needed.
 
+![image](https://github.com/user-attachments/assets/cfd53c2c-cfc9-488f-bf9c-18391bad1ef2)
+![image](https://github.com/user-attachments/assets/80ee2ed1-7503-43b9-85e0-eada001cfb8a)
+
 A **Chip**, or integrated circuit (IC), consists of various functional units—like memory, processing units, and input/output (I/O) interfaces—that are embedded in a silicon substrate. Chips are tailored to handle specific applications in electronics, from processing and data storage to communication and control functions.
 
 **Pads** are the small, metallic regions on an IC or package that connect internal circuits to external connections. These areas enable electrical signals to flow in and out of the chip, bridging internal processing to external components.
@@ -4402,7 +4405,11 @@ The **Core** of a chip is where the primary processing units and logic are locat
 
 A **Die** is a single, square section of a silicon wafer that holds all the active circuitry for an IC. Each die contains transistors, capacitors, and other components. Once the die is cut from the wafer and packaged, it becomes a functional chip ready for integration into electronic devices.
 
+![image](https://github.com/user-attachments/assets/475eac67-c627-42ca-b48c-887b0a057d5b)
+
 **IPs (Intellectual Properties)** are pre-designed functional modules, such as USB controllers, memory blocks, and processor cores, that are used as building blocks within a chip. Licensing IPs saves time and costs in chip design, as companies can reuse these verified modules across different designs rather than creating each component from scratch.
+
+![image](https://github.com/user-attachments/assets/6232d723-4ebf-4f1e-8407-6c1d82acc064)
 
 ---
 
