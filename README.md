@@ -4388,7 +4388,9 @@ This task involved executing a post-synthesis static timing analysis (STA) on a 
 </details>
 
 <details>
-	<summary>Task : Advanced Physical Design using OpenLANE - Sky130 </summary>
+	<summary>Task 12 : Advanced Physical Design using OpenLANE - Sky130 </summary>
+
+## Day 1 :  Inception of open-source EDA, OpenLANE and Sky130 PDK
 
  
 </details>
