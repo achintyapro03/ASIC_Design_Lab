@@ -4392,5 +4392,85 @@ This task involved executing a post-synthesis static timing analysis (STA) on a 
 
 ## Day 1 :  Inception of open-source EDA, OpenLANE and Sky130 PDK
 
- 
+A **QFN-48 Package** is a compact, leadless IC package with 48 connection pads around its perimeter. It offers good thermal and electrical performance, ideal for high-density applications.
+
+A **Chip** is an integrated circuit (IC) on a silicon substrate with blocks like memory, processing units, and I/O, performing specific electronic functions.
+
+**Pads** are small metallic areas on a chip or package that connect internal circuits to external connections, allowing signal transfer.
+
+The **Core** is the main part of a chip with essential processing logic, optimized for power and performance.
+
+A **Die** is the individual section of a silicon wafer containing the circuitry for a single chip, hosting all active elements before packaging.
+
+**IPs (Intellectual Properties)** are reusable, pre-designed modules like USB controllers or memory interfaces, licensed for use in different designs, saving time and cost.
+
+---
+
+**From Software Applications to Hardware Execution**
+
+Running an application on hardware involves multiple steps:
+
+1. **System Software** translates high-level code into binary instructions for hardware. This includes OS, compiler, and assembler layers.
+
+2. **Execution Flow**:
+   - **OS** breaks down application functions in languages like C/C++.
+   - **Compiler** translates these into architecture-specific instructions.
+   - **Assembler** converts them into binary machine code.
+   - **Hardware** then executes these instructions.
+
+For example, a stopwatch app on a RISC-V core: The OS converts app functions in C, sending them to a RISC-V compiler. The compiler creates RISC-V instructions, which the assembler translates to binary, guiding hardware operations to run the stopwatch.
+
+3. **Hardware Translation**: The RTL (Register Transfer Level) design of hardware, written in an HDL (Hardware Description Language), is synthesized into a gate-level netlist, which undergoes physical design steps to achieve a functional layout for the chip.
+
+---
+
+**ASIC Design Flow**
+
+ASIC development involves turning an RTL design into a physical chip layout:
+
+1. **RTL Design** specifies the logic and data paths in HDLs like Verilog.
+2. **RTL Synthesis** creates a gate-level netlist optimized for area, power, and timing.
+3. **Floor and Power Planning** arranges major components and defines power and I/O layout.
+4. **Placement** assigns physical cell locations to minimize wire length and delays.
+5. **Clock Tree Synthesis (CTS)** balances clock distribution to reduce skew.
+6. **Routing** connects components, optimizing for signal integrity and congestion.
+7. **Sign-off** verifies timing, power, and design rules for fabrication readiness.
+8. **GDSII File Generation** creates the final layout file used in chip fabrication.
+
+---
+
+**OpenLane ASIC Flow**
+
+OpenLane is an open-source ASIC design toolchain with a flow integrating multiple tools:
+
+1. **RTL Synthesis & Mapping**: Yosys and ABC for synthesis and verification.
+2. **Timing Analysis**: OpenSTA for static timing.
+3. **Floor Planning**: init_fp, ioPlacer, pdn, tapcell.
+4. **Placement**: RePLace, OpenDP for cell placement.
+5. **Clock Tree Synthesis**: TritonCTS for clock distribution.
+6. **Routing**: FastRoute, TritonRoute for connection optimization.
+7. **SPEF Extraction**: OpenRCX for parasitic data extraction.
+8. **GDSII Generation**: Magic, KLayout for layout generation.
+9. **DRC Checks**: Magic, KLayout for design rule compliance.
+10. **LVS Check**: Netgen for layout vs. schematic checks.
+11. **Antenna Checks**: Magic for manufacturing reliability.
+
+---
+
+**OpenLane Directory Structure**
+
+```
+├── OpenLane               -> Root directory to invoke the tool
+│   ├── designs            -> Stores all design folders
+│   │   ├── picorv32a      -> Case study example
+│   │   ├── ...            -> Additional design folders
+│   ├── pdks               -> PDK files for specific technology nodes
+│   │   ├── skywater-pdk   -> Skywater 130nm files
+│   │   ├── open-pdks      -> Scripts for open-source compatibility
+│   │   ├── sky130A        -> PDK variant compatible with open tools
+│   │   │   ├── libs.ref   -> Node-specific files (timing, cell LEF)
+│   │   │   ├── libs.tech  -> Tool-specific files (for Magic, KLayout)
+``` 
+
+This structure supports compatibility and streamlines design files and PDK data for open-source ASIC development.
 </details>
