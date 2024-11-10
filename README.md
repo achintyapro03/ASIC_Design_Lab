@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/f662532a-9697-4a08-9c5b-5cc6735e480c)# ASIC Design Lab
+# ASIC Design Lab
 
 ## Overview
 This project comprises a series of tasks aimed at designing and implementing various components and programs for ASIC design.
@@ -4624,32 +4624,33 @@ gedit 1-yosys_4.stat.rpt
 
 ```
 
+---
 
-### **Day-2: Good Floorplan vs Bad Floorplan and Introduction to Library Cells**
 
-#### **Core Concepts in IC Floorplanning**
+## **Day-2: Good Floorplan vs Bad Floorplan and Introduction to Library Cells**
 
-1. **Utilization Factor**: 
-   - The utilization factor is an essential metric that compares the area occupied by the circuit (netlist) to the total core area of the chip. A higher utilization means more of the chip's area is being used effectively, but over-utilization can cause issues with routing and space for other necessary components.
-   - In ideal scenarios, we'd aim for a utilization factor of 1 (100%), but in reality, a range of **0.5 to 0.6** is preferred to account for buffer zones, routing channels, and the flexibility for adjustments.
+### **Core Concepts in IC Floorplanning**
 
-   **Utilization Factor Formula**:
-   \[
-   \text{Utilization Factor} = \frac{\text{Area Occupied by Netlist}}{\text{Total Core Area}}
-   \]
+#### 1. **Utilization Factor**
+The utilization factor is an essential metric that compares the area occupied by the circuit (netlist) to the total core area of the chip. A higher utilization means more of the chip's area is being used effectively, but over-utilization can cause issues with routing and space for other necessary components.
 
-2. **Aspect Ratio**: 
-   - The aspect ratio describes the shape of the chip, calculated as the ratio of height to width.
-   - **Aspect ratio of 1** gives a square shape, while other values result in a rectangular layout. The ideal aspect ratio is determined by factors like functionality, packaging, and manufacturing constraints.
+In ideal scenarios, we'd aim for a utilization factor of 1 (100%), but in reality, a range of **0.5 to 0.6** is preferred to account for buffer zones, routing channels, and the flexibility for adjustments.
 
-   **Aspect Ratio Formula**:
-   \[
-   \text{Aspect Ratio} = \frac{\text{Height}}{\text{Width}}
-   \]
+##### **Utilization Factor Formula**:
+\[
+\text{Utilization Factor} = \frac{\text{Area Occupied by Netlist}}{\text{Total Core Area}}
+\]
+
+#### 2. **Aspect Ratio**
+The aspect ratio describes the shape of the chip, calculated as the ratio of height to width. An **aspect ratio of 1** gives a square shape, while other values result in a rectangular layout. The ideal aspect ratio is determined by factors like functionality, packaging, and manufacturing constraints.
+
+##### **Aspect Ratio Formula**:
+\[
+\text{Aspect Ratio} = \frac{\text{Height}}{\text{Width}}
+\]
 
 #### **Pre-Placed Cells**
-- Pre-placed cells are essential functional blocks like memory units, custom processors, and analog circuits, which are manually positioned in fixed locations during the floorplanning stage.
-- These blocks are **critical to the chip's operation** and cannot be moved during the placement and routing phases to ensure their functionality remains intact.
+Pre-placed cells are essential functional blocks like memory units, custom processors, and analog circuits, which are manually positioned in fixed locations during the floorplanning stage. These blocks are **critical to the chip's operation** and cannot be moved during the placement and routing phases to ensure their functionality remains intact.
 
 #### **Decoupling Capacitors**
 - **Purpose**: These capacitors are placed near logic circuits to **smooth out power supply fluctuations** during high-speed switching.
@@ -4659,59 +4660,58 @@ gedit 1-yosys_4.stat.rpt
   - Ensure **reliable power delivery**, especially to sensitive circuits
 
 #### **Power Planning**
-- In a well-designed IC, power planning ensures that **VDD and VSS** are distributed evenly across the chip using a **power mesh**.
-- The goal is to provide a stable power supply, minimize **voltage drops**, and optimize the overall **power efficiency** of the design. More power and ground points help reduce the likelihood of instability.
+In a well-designed IC, power planning ensures that **VDD and VSS** are distributed evenly across the chip using a **power mesh**. The goal is to provide a stable power supply, minimize **voltage drops**, and optimize the overall **power efficiency** of the design. More power and ground points help reduce the likelihood of instability.
 
 #### **Pin Placement**
-- The placement of **I/O pins** is crucial for the chip’s overall performance. A careful pin distribution minimizes signal integrity issues and heat buildup, which contributes to the chip’s stability and manufacturability.
+The placement of **I/O pins** is crucial for the chip’s overall performance. A careful pin distribution minimizes signal integrity issues and heat buildup, which contributes to the chip’s stability and manufacturability.
 
 ---
 
 ### **Floorplanning with OpenLANE**
 
-1. **Set Up OpenLANE**:
-   - First, navigate to the OpenLANE directory and initiate the interactive session:
-   ```bash
-   cd Desktop/work/tools/openlane_working_dir/openlane
-   docker
-   ```
+#### 1. **Set Up OpenLANE**
+First, navigate to the OpenLANE directory and initiate the interactive session:
+```bash
+cd Desktop/work/tools/openlane_working_dir/openlane
+docker
+```
 
-2. **Run OpenLANE Flow**:
-   - To prepare the design (`picorv32a`) and begin the floorplanning process, execute the following commands:
-   ```bash
-   ./flow.tcl -interactive
-   package require openlane 0.9
-   prep -design picorv32a
-   run_synthesis
-   run_floorplan
-   ```
+#### 2. **Run OpenLANE Flow**
+To prepare the design (`picorv32a`) and begin the floorplanning process, execute the following commands:
+```bash
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design picorv32a
+run_synthesis
+run_floorplan
+```
 
-   **Floorplan Results**:
-   - After executing the commands, you’ll get the floorplan results, which you can visualize in the OpenLANE output directory.
+##### **Floorplan Results**:
+After executing the commands, you’ll get the floorplan results, which you can visualize in the OpenLANE output directory.
 
-3. **Floorplan Definition**:
-   - Once the floorplan is generated, you can inspect the `.def` file:
-   ```bash
-   cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/09-11_07-10/results/floorplan
-   gedit picorv32a.floorplan.def
-   ```
+#### 3. **Floorplan Definition**
+Once the floorplan is generated, you can inspect the `.def` file:
+```bash
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/09-11_07-10/results/floorplan
+gedit picorv32a.floorplan.def
+```
 
-   **Floorplan Calculation**:
-   - **Unit Distance**: 1 micron = 1000 unit distance
-   - **Die Dimensions**:
-     - **Width**: 660,685 unit distance → 660.685 microns
-     - **Height**: 671,405 unit distance → 671.405 microns
-   - **Area of the Die**: 660.685 × 671.405 = 443,587.212 µm²
+##### **Floorplan Calculation**:
+- **Unit Distance**: 1 micron = 1000 unit distance
+- **Die Dimensions**:
+  - **Width**: 660,685 unit distance → 660.685 microns
+  - **Height**: 671,405 unit distance → 671.405 microns
+- **Area of the Die**: 660.685 × 671.405 = 443,587.212 µm²
 
-4. **View Floorplan in Magic**:
-   - Use Magic to visualize the floorplan:
-   ```bash
-   cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/17-03_12-06/results/floorplan/
-   magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def &
-   ```
+#### 4. **View Floorplan in Magic**
+Use Magic to visualize the floorplan:
+```bash
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/17-03_12-06/results/floorplan/
+magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def &
+```
 
-   **Floorplan Visualizations**:
-   - Once the command runs, you’ll see a graphical representation of the chip layout in Magic, which shows how cells and components are placed.
+##### **Floorplan Visualizations**:
+Once the command runs, you’ll see a graphical representation of the chip layout in Magic, which shows how cells and components are placed.
 
 ---
 
@@ -4726,55 +4726,55 @@ gedit 1-yosys_4.stat.rpt
 
 ### **Placement Process**
 
-1. **Unplaced Standard Cells**:
-   - Initially, cells are unplaced, appearing at the origin. These will be moved into place during the placement phase.
+### 1. **Unplaced Standard Cells**
+Initially, cells are unplaced, appearing at the origin. These will be moved into place during the placement phase.
 
-   ![Unplaced Standard Cells](https://github.com/user-attachments/assets/ad0f9db1-a5b2-4237-ac47-1a2030ee9a54)
+![Unplaced Standard Cells](https://github.com/user-attachments/assets/ad0f9db1-a5b2-4237-ac47-1a2030ee9a54)
 
-2. **Run Placement**:
-   - Execute placement after floorplanning:
-   ```bash
-   run_placement
-   ```
+#### 2. **Run Placement**
+Execute placement after floorplanning:
+```bash
+run_placement
+```
 
-3. **View Placement in Magic**:
-   - Once placement is complete, you can view the result using Magic:
-   ```bash
-   cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/17-03_12-06/results/placement/
-   magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
-   ```
+#### 3. **View Placement in Magic**
+Once placement is complete, you can view the result using Magic:
+```bash
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/17-03_12-06/results/placement/
+magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
+```
 
-   **Placement Visualizations**:
-   - After running the command, you will see how the standard cells are placed on the chip layout.
+##### **Placement Visualizations**:
+After running the command, you will see how the standard cells are placed on the chip layout.
 
 ---
 
 ### **Cell Design and Characterization Flow**
 
-1. **Library Cells**: 
-   - A library contains cells that define different functionalities, sizes, and thresholds. It is crucial for creating the building blocks of an IC.
+#### 1. **Library Cells** 
+A library contains cells that define different functionalities, sizes, and thresholds. It is crucial for creating the building blocks of an IC.
 
-2. **Design Flow**:
-   - **Inputs**: PDKs, SPICE models, DRC, LVS, and user-defined specifications.
-   - **Steps**:
-     - **Circuit design**
-     - **Layout design**
-     - **Parasitic extraction**
-     - **Characterization (timing, noise, and power)**
-   - **Outputs**:
-     - CDL (Circuit Description Language), LEF, GDSII, SPICE netlist, and various characterization files like `.lib` for timing, noise, and power.
+#### 2. **Design Flow**:
+- **Inputs**: PDKs, SPICE models, DRC, LVS, and user-defined specifications.
+- **Steps**:
+  - **Circuit design**
+  - **Layout design**
+  - **Parasitic extraction**
+  - **Characterization (timing, noise, and power)**
+- **Outputs**:
+  - CDL (Circuit Description Language), LEF, GDSII, SPICE netlist, and various characterization files like `.lib` for timing, noise, and power.
 
 ---
 
 ### **Standard Cell Characterization Flow**
 
-1. **Steps in Characterization**:
-   - **Load Models and Tech Files**: These provide process-specific details.
-   - **Extract Spice Netlist**: Extract the circuit netlist for analysis.
-   - **Characterization with GUNA**: Using characterization software like GUNA, the following models are generated:
-     - **Timing Models**
-     - **Power Models**
-     - **Noise Models**
+#### 1. **Steps in Characterization**:
+- **Load Models and Tech Files**: These provide process-specific details.
+- **Extract Spice Netlist**: Extract the circuit netlist for analysis.
+- **Characterization with GUNA**: Using characterization software like GUNA, the following models are generated:
+  - **Timing Models**
+  - **Power Models**
+  - **Noise Models**
 
 ---
 
@@ -4792,14 +4792,14 @@ gedit 1-yosys_4.stat.rpt
 | **Output Fall Threshold**     | 50%                |
 
 #### **Propagation Delay**:
-- Propagation delay is the time it takes for an input signal to propagate and affect the output signal.
+Propagation delay is the time it takes for an input signal to propagate and affect the output signal.
 
 \[
 \text{Rise Delay} = \text{time(out\_fall\_thr)} - \text{time(in\_rise\_thr)}
 \]
 
 #### **Transition Time**:
-- Transition time is the time taken for a signal to change between logic levels. This is typically measured between **10% and 90%** or **20% and 80%** of the signal’s swing.
+Transition time is the time taken for a signal to change between logic levels. This is typically measured between **10% and 90%** or **20% and 80%** of the signal’s swing.
 
 \[
 \text{Fall Transition Time} = \text{time(slew\_high\_fall\_thr)} - \text{time(slew\_low\_fall\_thr)}
@@ -4808,7 +4808,6 @@ gedit 1-yosys_4.stat.rpt
 \text{Rise Transition Time} = \text{time(slew\_high\_rise\_thr)} - \text{time(slew\_low\_rise\_thr)}
 \]
 
-This concludes the detailed breakdown of floorplanning, placement, and cell characterization in the design flow.
-
+---
 
 </details>
