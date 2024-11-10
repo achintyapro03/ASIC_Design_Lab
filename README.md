@@ -4722,11 +4722,10 @@ cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/10-11
 magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def &
 ```
 
-![image](https://github.com/user-attachments/assets/de7254ba-a0f5-4175-aa0d-6fa08c9ee907)
-
-
 #### **Floorplan Visualizations**:
 Once the command runs, you’ll see a graphical representation of the chip layout in Magic, which shows how cells and components are placed.
+
+![image](https://github.com/user-attachments/assets/de7254ba-a0f5-4175-aa0d-6fa08c9ee907)
 
 ---
 
