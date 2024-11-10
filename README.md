@@ -4385,5 +4385,10 @@ This task involved executing a post-synthesis static timing analysis (STA) on a 
 ![sta_wns](https://github.com/user-attachments/assets/ab612b36-61d6-45a3-b24f-6ede7ba1df56)
 ![sta_tns](https://github.com/user-attachments/assets/a4c4530e-2334-4cd5-8816-dbd29db528f5)
 
+</details>
 
+<details>
+	<summary>Task : Advanced Physical Design using OpenLANE - Sky130 </summary>
+
+ 
 </details>
