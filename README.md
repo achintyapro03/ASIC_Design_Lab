@@ -4691,6 +4691,8 @@ prep -design picorv32a
 run_synthesis
 run_floorplan
 ```
+![image](https://github.com/user-attachments/assets/7226b330-ca85-4442-a69c-d79a95cde99f)
+![image](https://github.com/user-attachments/assets/226730e7-af1e-453a-bafb-a367dac53d9e)
 
 #### **Floorplan Results**:
 After executing the commands, you’ll get the floorplan results, which you can visualize in the OpenLANE output directory.
@@ -4698,9 +4700,13 @@ After executing the commands, you’ll get the floorplan results, which you can 
 ### 3. **Floorplan Definition**
 Once the floorplan is generated, you can inspect the `.def` file:
 ```bash
-cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/09-11_07-10/results/floorplan
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/10-11_22-57/results/floorplan/
 gedit picorv32a.floorplan.def
 ```
+
+
+
+![image](https://github.com/user-attachments/assets/6945f225-abb9-4783-b2d8-f1117f1b6ee2)
 
 #### **Floorplan Calculation**:
 - **Unit Distance**: 1 micron = 1000 unit distance
@@ -4712,9 +4718,12 @@ gedit picorv32a.floorplan.def
 ### 4. **View Floorplan in Magic**
 Use Magic to visualize the floorplan:
 ```bash
-cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/17-03_12-06/results/floorplan/
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/10-11_22-57/results/floorplan/
 magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def &
 ```
+
+![image](https://github.com/user-attachments/assets/de7254ba-a0f5-4175-aa0d-6fa08c9ee907)
+
 
 #### **Floorplan Visualizations**:
 Once the command runs, you’ll see a graphical representation of the chip layout in Magic, which shows how cells and components are placed.
@@ -4735,7 +4744,7 @@ Once the command runs, you’ll see a graphical representation of the chip layou
 ### 1. **Unplaced Standard Cells**
 Initially, cells are unplaced, appearing at the origin. These will be moved into place during the placement phase.
 
-![Unplaced Standard Cells](https://github.com/user-attachments/assets/ad0f9db1-a5b2-4237-ac47-1a2030ee9a54)
+![image](https://github.com/user-attachments/assets/ae5804c9-6a0a-40ee-9e20-f007a94792a6)
 
 ### 2. **Run Placement**
 Execute placement after floorplanning:
@@ -4750,8 +4759,13 @@ cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/17-03
 magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
 ```
 
+![image](https://github.com/user-attachments/assets/118cce61-6826-4b07-afd0-f5d0f4c43c43)
+
+
 #### **Placement Visualizations**:
 After running the command, you will see how the standard cells are placed on the chip layout.
+
+![image](https://github.com/user-attachments/assets/bdc84efb-2cbf-4585-bade-e9570c356783)
 
 ---
 
