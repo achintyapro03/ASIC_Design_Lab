@@ -4405,7 +4405,7 @@ The **Core** of a chip is where the primary processing units and logic are locat
 
 A **Die** is a single, square section of a silicon wafer that holds all the active circuitry for an IC. Each die contains transistors, capacitors, and other components. Once the die is cut from the wafer and packaged, it becomes a functional chip ready for integration into electronic devices.
 
-![image](https://github.com/user-attachments/assets/475eac67-c627-42ca-b48c-887b0a057d5b)
+![image](https://github.com/user-attachments/assets/00d85e01-9693-4a2b-ae48-881dc1c2bba6)
 
 **IPs (Intellectual Properties)** are pre-designed functional modules, such as USB controllers, memory blocks, and processor cores, that are used as building blocks within a chip. Licensing IPs saves time and costs in chip design, as companies can reuse these verified modules across different designs rather than creating each component from scratch.
 
