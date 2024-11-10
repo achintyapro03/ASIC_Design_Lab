@@ -4390,8 +4390,12 @@ This task involved executing a post-synthesis static timing analysis (STA) on a 
 <details>
 	<summary>Task 12 : Advanced Physical Design using OpenLANE - Sky130 </summary>
 
-## Day 1 :  Inception of open-source EDA, OpenLANE and Sky130 PDK
 
+<br>
+ <details>
+	 <summary>Day 1 :  Inception of open-source EDA, OpenLANE and Sky130 PDK</summary>
+<br>
+  
 A **QFN-48 Package** (Quad Flat No-leads with 48 connections) is a type of IC packaging that places 48 metal connection pads around the perimeter of the chip without any protruding leads, creating a compact, low-profile package. This design offers high thermal efficiency and superior electrical performance, making it well-suited for densely packed applications where space is limited and effective heat dissipation is needed.
 
 ![image](https://github.com/user-attachments/assets/cfd53c2c-cfc9-488f-bf9c-18391bad1ef2)
@@ -4625,58 +4629,60 @@ gedit 1-yosys_4.stat.rpt
 ```
 
 ---
+ </details>
 
+<details>
+	<summary>Day-2: Good Floorplan vs Bad Floorplan and Introduction to Library Cells</summary>
 
-## **Day-2: Good Floorplan vs Bad Floorplan and Introduction to Library Cells**
+ 
+## **Core Concepts in IC Floorplanning**
 
-### **Core Concepts in IC Floorplanning**
-
-#### 1. **Utilization Factor**
+### 1. **Utilization Factor**
 The utilization factor is an essential metric that compares the area occupied by the circuit (netlist) to the total core area of the chip. A higher utilization means more of the chip's area is being used effectively, but over-utilization can cause issues with routing and space for other necessary components.
 
 In ideal scenarios, we'd aim for a utilization factor of 1 (100%), but in reality, a range of **0.5 to 0.6** is preferred to account for buffer zones, routing channels, and the flexibility for adjustments.
 
-##### **Utilization Factor Formula**:
-\[
+#### **Utilization Factor Formula**:
+$$
 \text{Utilization Factor} = \frac{\text{Area Occupied by Netlist}}{\text{Total Core Area}}
-\]
+$$
 
-#### 2. **Aspect Ratio**
+### 2. **Aspect Ratio**
 The aspect ratio describes the shape of the chip, calculated as the ratio of height to width. An **aspect ratio of 1** gives a square shape, while other values result in a rectangular layout. The ideal aspect ratio is determined by factors like functionality, packaging, and manufacturing constraints.
 
-##### **Aspect Ratio Formula**:
-\[
+#### **Aspect Ratio Formula**:
+$$
 \text{Aspect Ratio} = \frac{\text{Height}}{\text{Width}}
-\]
+$$
 
-#### **Pre-Placed Cells**
+### **Pre-Placed Cells**
 Pre-placed cells are essential functional blocks like memory units, custom processors, and analog circuits, which are manually positioned in fixed locations during the floorplanning stage. These blocks are **critical to the chip's operation** and cannot be moved during the placement and routing phases to ensure their functionality remains intact.
 
-#### **Decoupling Capacitors**
+### **Decoupling Capacitors**
 - **Purpose**: These capacitors are placed near logic circuits to **smooth out power supply fluctuations** during high-speed switching.
 - **Benefits**:
   - Minimize **voltage fluctuations**
   - Reduce **electromagnetic interference (EMI)**
   - Ensure **reliable power delivery**, especially to sensitive circuits
 
-#### **Power Planning**
+### **Power Planning**
 In a well-designed IC, power planning ensures that **VDD and VSS** are distributed evenly across the chip using a **power mesh**. The goal is to provide a stable power supply, minimize **voltage drops**, and optimize the overall **power efficiency** of the design. More power and ground points help reduce the likelihood of instability.
 
-#### **Pin Placement**
+### **Pin Placement**
 The placement of **I/O pins** is crucial for the chip’s overall performance. A careful pin distribution minimizes signal integrity issues and heat buildup, which contributes to the chip’s stability and manufacturability.
 
 ---
 
-### **Floorplanning with OpenLANE**
+## **Floorplanning with OpenLANE**
 
-#### 1. **Set Up OpenLANE**
+### 1. **Set Up OpenLANE**
 First, navigate to the OpenLANE directory and initiate the interactive session:
 ```bash
 cd Desktop/work/tools/openlane_working_dir/openlane
 docker
 ```
 
-#### 2. **Run OpenLANE Flow**
+### 2. **Run OpenLANE Flow**
 To prepare the design (`picorv32a`) and begin the floorplanning process, execute the following commands:
 ```bash
 ./flow.tcl -interactive
@@ -4686,36 +4692,36 @@ run_synthesis
 run_floorplan
 ```
 
-##### **Floorplan Results**:
+#### **Floorplan Results**:
 After executing the commands, you’ll get the floorplan results, which you can visualize in the OpenLANE output directory.
 
-#### 3. **Floorplan Definition**
+### 3. **Floorplan Definition**
 Once the floorplan is generated, you can inspect the `.def` file:
 ```bash
 cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/09-11_07-10/results/floorplan
 gedit picorv32a.floorplan.def
 ```
 
-##### **Floorplan Calculation**:
+#### **Floorplan Calculation**:
 - **Unit Distance**: 1 micron = 1000 unit distance
 - **Die Dimensions**:
   - **Width**: 660,685 unit distance → 660.685 microns
   - **Height**: 671,405 unit distance → 671.405 microns
 - **Area of the Die**: 660.685 × 671.405 = 443,587.212 µm²
 
-#### 4. **View Floorplan in Magic**
+### 4. **View Floorplan in Magic**
 Use Magic to visualize the floorplan:
 ```bash
 cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/17-03_12-06/results/floorplan/
 magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def &
 ```
 
-##### **Floorplan Visualizations**:
+#### **Floorplan Visualizations**:
 Once the command runs, you’ll see a graphical representation of the chip layout in Magic, which shows how cells and components are placed.
 
 ---
 
-### **Decap and Tap Cells**
+## **Decap and Tap Cells**
 
 - **Decap Cells**: These are placed near logic cells to manage transient power supply fluctuations and stabilize the power delivery network.
 - **Tap Cells**: Used for **connection to the power grid** and to reduce **substrate noise** that could affect the chip's performance.
@@ -4724,37 +4730,37 @@ Once the command runs, you’ll see a graphical representation of the chip layou
 
 ---
 
-### **Placement Process**
+## **Placement Process**
 
 ### 1. **Unplaced Standard Cells**
 Initially, cells are unplaced, appearing at the origin. These will be moved into place during the placement phase.
 
 ![Unplaced Standard Cells](https://github.com/user-attachments/assets/ad0f9db1-a5b2-4237-ac47-1a2030ee9a54)
 
-#### 2. **Run Placement**
+### 2. **Run Placement**
 Execute placement after floorplanning:
 ```bash
 run_placement
 ```
 
-#### 3. **View Placement in Magic**
+### 3. **View Placement in Magic**
 Once placement is complete, you can view the result using Magic:
 ```bash
 cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/17-03_12-06/results/placement/
 magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
 ```
 
-##### **Placement Visualizations**:
+#### **Placement Visualizations**:
 After running the command, you will see how the standard cells are placed on the chip layout.
 
 ---
 
-### **Cell Design and Characterization Flow**
+## **Cell Design and Characterization Flow**
 
-#### 1. **Library Cells** 
+### 1. **Library Cells** 
 A library contains cells that define different functionalities, sizes, and thresholds. It is crucial for creating the building blocks of an IC.
 
-#### 2. **Design Flow**:
+### 2. **Design Flow**:
 - **Inputs**: PDKs, SPICE models, DRC, LVS, and user-defined specifications.
 - **Steps**:
   - **Circuit design**
@@ -4766,9 +4772,9 @@ A library contains cells that define different functionalities, sizes, and thres
 
 ---
 
-### **Standard Cell Characterization Flow**
+## **Standard Cell Characterization Flow**
 
-#### 1. **Steps in Characterization**:
+### 1. **Steps in Characterization**:
 - **Load Models and Tech Files**: These provide process-specific details.
 - **Extract Spice Netlist**: Extract the circuit netlist for analysis.
 - **Characterization with GUNA**: Using characterization software like GUNA, the following models are generated:
@@ -4778,7 +4784,7 @@ A library contains cells that define different functionalities, sizes, and thres
 
 ---
 
-### **Timing Parameters**
+## **Timing Parameters**
 
 | **Timing Parameter**         | **Value**          |
 |------------------------------|--------------------|
@@ -4791,23 +4797,25 @@ A library contains cells that define different functionalities, sizes, and thres
 | **Output Rise Threshold**     | 50%                |
 | **Output Fall Threshold**     | 50%                |
 
-#### **Propagation Delay**:
+### **Propagation Delay**:
 Propagation delay is the time it takes for an input signal to propagate and affect the output signal.
 
-\[
-\text{Rise Delay} = \text{time(out\_fall\_thr)} - \text{time(in\_rise\_thr)}
-\]
+$$
+\text{Rise Delay} = \text{time(out-fall-thr)} - \text{time(in-rise-thr)}
+$$
 
-#### **Transition Time**:
+### **Transition Time**:
 Transition time is the time taken for a signal to change between logic levels. This is typically measured between **10% and 90%** or **20% and 80%** of the signal’s swing.
 
-\[
-\text{Fall Transition Time} = \text{time(slew\_high\_fall\_thr)} - \text{time(slew\_low\_fall\_thr)}
-\]
-\[
-\text{Rise Transition Time} = \text{time(slew\_high\_rise\_thr)} - \text{time(slew\_low\_rise\_thr)}
-\]
+$$
+\text{Fall Transition Time} = \text{time(slew-high-fall-thr)} - \text{time(slew-low-fall-thr)}
+$$
 
----
+$$
+\text{Rise Transition Time} = \text{time(slew-high-rise-thr)} - \text{time(slew-low-rise-thr)}
+$$
+
+</details>
+
 
 </details>
