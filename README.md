@@ -5003,7 +5003,6 @@ magic -T sky130A.tech sky130_inv.mag &
 
 ### 2. Inverter Layout and CMOS Fabrication Process
 
-
 #### CMOS Fabrication Process (16-Mask Method)
 
 The CMOS fabrication process is a series of precise, photolithographic and chemical steps to create integrated circuits on a silicon wafer. This process includes multiple layers and utilizes 16 photomasks to define and protect specific areas of the wafer at various stages. Each step in this process is carefully controlled to ensure that the resulting chips are reliable and functionally correct.
@@ -5025,6 +5024,21 @@ The CMOS fabrication process is a series of precise, photolithographic and chemi
 15. **Passivation Layer Deposition**: Apply a protective silicon dioxide or nitride layer over the wafer.
 16. **Final Testing and Packaging**: Test the wafer, separate functioning chips, and package for deployment. 
 
+![image](https://github.com/user-attachments/assets/6b392b55-1b91-4aef-9926-c8835b543286)
+
+#### Identification of Transistors in the Inverter
+
+In the Magic layout viewer, hover over the required transistor and press `S` to select it. In the Magic terminal, type `what` to get information about the component type.
+
+**NMOS Transistor:**
+![NMOS Transistor](https://github.com/user-attachments/assets/0692d81f-63c2-4945-b3d1-699994d46b78)
+
+**PMOS Transistor:**
+![PMOS Transistor](https://github.com/user-attachments/assets/73c13e97-c938-4117-811b-3bf87a15cd03)
+
+**Output Node - Y:**
+ss![image](https://github.com/user-attachments/assets/7dd9b871-1bb0-48ce-b0b8-edb99a5c543f)
+
 
 ### 3. SPICE Extraction in Magic
 
@@ -5035,6 +5049,9 @@ The CMOS fabrication process is a series of precise, photolithographic and chemi
     ext2spice cthresh 0 rthresh 0
     ext2spice
     ```
+
+    ![image](https://github.com/user-attachments/assets/7c0726a6-a3e7-49c5-88f6-bb8adce7d8a2)
+
 
 2. **View SPICE File**:
     The extracted SPICE file (`sky130_inv.spice`) contains transistor models and capacitances.
