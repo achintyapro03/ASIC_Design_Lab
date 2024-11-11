@@ -4833,7 +4833,7 @@ $$
 
 <details>
 	<summary>Day 3 : Design library cell using Magic Layout and ngspice characterization</summary>
-	
+<br>
 A CMOS inverter, which consists of a PMOS and NMOS transistor, is one of the fundamental components in digital circuits. The circuit switches between high and low output states based on the input voltage level. This guide includes details on how to model and simulate this behavior in SPICE.
 
 ---
@@ -4899,11 +4899,6 @@ Example:
 
 The switching threshold (Vm) is a critical voltage level at which the inverter transitions between logic high and low states. Vm is observed when both transistors are in the saturation region, resulting in high leakage current due to simultaneous conduction.
 
-Example DC sweep to find the switching threshold:
-```spice
-Vin IN 0 DC 0V
-.dc Vin 0 2.5 0.05
-```
 
 #### Simulation Steps
 - **Load the Circuit**: Load the SPICE deck with `.cir` extension.
@@ -4917,7 +4912,16 @@ setplot dc1
 plot OUT vs IN
 ```
 
+![aa(1)](https://github.com/user-attachments/assets/1a050859-3284-438d-80b5-9f1f125655d8)
+
+Example DC sweep to find the switching threshold:
+```spice
+Vin IN 0 DC 0V
+.dc Vin 0 2.5 0.05
+```
+
 ![image](https://github.com/user-attachments/assets/d4ae7894-4f4c-4e9a-b22c-dcaa160faf49)
+
 
 ### 2. **Transient Analysis: Propagation Delay**
 
@@ -4928,6 +4932,9 @@ Example pulse signal for transient analysis:
 Vin IN 0 pulse 0 2.5 0 10p 10p 1n 2n
 .tran 10p 4n
 ```
+
+![image](https://github.com/user-attachments/assets/ef6c879d-181c-4d2d-a738-c709d8f73e94)
+
 
 #### Simulation Steps
 - **Setup Input Pulse**: Define the pulse with specified rise/fall times and pulse width.
@@ -4967,21 +4974,114 @@ Vin IN 0 pulse 0 2.5 0 10p 10p 1n 2n
 .end
 ```
 
----
-
-## Running the Simulation
-
-To run the simulation in SPICE:
-1. **Load the SPICE Deck**: Use `source [filename].cir`.
-2. **Run the Simulation**: Execute `run`.
-3. **DC Plot**: `setplot dc1` and `plot OUT vs IN`.
-4. **Transient Plot**: `plot OUT vs time`.
-
 ### Interpreting Results
 - **Switching Threshold**: Identified at the Vm point, where leakage current is high.
 - **Propagation Delay**: Measured from the transient plot, showing the time taken for output transitions.
 
+---
 
+## CMOS Custom Inverter Simulation
+
+### 1. Cloning and Setting Up Custom Inverter
+
+Clone the custom inverter library for use with the OpenLane toolchain:
+```bash
+cd <openlane_directory>/openlane
+git clone https://github.com/nickson-jose/vsdstdcelldesign
+cd vsdstdcelldesign
+cp <path_to_sky130A>/sky130A.tech .
+magic -T sky130A.tech sky130_inv.mag &
+```
+
+**Layout in Magic**:
+- Launch Magic with the custom `sky130_inv.mag` layout file.
+- Identify the components: `NMOS`, `PMOS`, output `Y`, and connections to `VDD` and `GND`.
+
+### 2. Inverter Layout and CMOS Fabrication Process
+
+The 16-step CMOS fabrication process for an inverter includes:
+1. Substrate Preparation
+2. N-Well and P-Well Formation
+3. Gate Oxide and Poly-Silicon Deposition
+4. Source/Drain Implantation
+5. Metal Interconnects and Passivation Layer Deposition
+
+These steps are illustrated in images, marking each process layer for clarity.
+
+### 3. SPICE Extraction in Magic
+
+1. **Run SPICE Extraction Commands**:
+    In Magic’s tkcon window:
+    ```tcl
+    extract all
+    ext2spice cthresh 0 rthresh 0
+    ext2spice
+    ```
+
+2. **View SPICE File**:
+    The extracted SPICE file (`sky130_inv.spice`) contains transistor models and capacitances.
+
+    ```spice
+    * SPICE3 file created from sky130_inv.ext - technology: sky130A
+    .subckt sky130_inv A Y VPWR VGND
+    X0 Y A VGND VGND sky130_fd_pr__nfet_01v8 w=35 l=23
+    X1 Y A VPWR VPWR sky130_fd_pr__pfet_01v8 w=37 l=23
+    .ends
+    ```
+
+### 4. Transient Response Analysis
+
+Modify the SPICE file to perform transient response analysis and determine propagation delay.
+
+```spice
+* SPICE file for transient analysis
+.option scale=0.01u
+.include ./libs/pshort.lib
+.include ./libs/nshort.lib
+
+M1000 Y A VGND VGND nshort_model.0 w=35 l=23
+M1001 Y A VPWR VPWR pshort_model.0 w=37 l=23
+
+VDD VPWR 0 3.3V
+Va A VGND PULSE(0V 3.3V 0 0.1ns 0.1ns 2ns 4ns)
+.tran 1n 20n
+.control
+run
+.endc
+.end
+```
+
+Run the modified file in ngspice:
+```bash
+ngspice sky130_inv.spice
+```
+
+**Plot the Waveform**:
+```spice
+plot y vs time a
+```
+
+### 5. DRC Rules in Magic
+
+Perform DRC checks on the layout using the following commands in Magic:
+
+1. **Download DRC Tests**:
+    ```bash
+    cd ~
+    wget http://opencircuitdesign.com/open_pdks/archive/drc_tests.tgz
+    tar xfz drc_tests.tgz
+    cd drc_tests
+    gvim .magicrc
+    ```
+
+2. **Load and Check**:
+    ```tcl
+    tech load sky130A.tech
+    drc check
+    drc why
+    ```
+
+This completes the layout and SPICE simulation of a CMOS inverter, providing insights into layout characteristics, transient response, and delay analysis.
  
 </details>
 
