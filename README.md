@@ -4986,12 +4986,16 @@ Vin IN 0 pulse 0 2.5 0 10p 10p 1n 2n
 
 Clone the custom inverter library for use with the OpenLane toolchain:
 ```bash
-cd <openlane_directory>/openlane
+cd Desktop/work/tools/openlane_working_dir/openlane
 git clone https://github.com/nickson-jose/vsdstdcelldesign
 cd vsdstdcelldesign
-cp <path_to_sky130A>/sky130A.tech .
+cp /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech .
 magic -T sky130A.tech sky130_inv.mag &
 ```
+![image](https://github.com/user-attachments/assets/51c7f3de-9e1b-4628-a8e8-5512e3b8322d)
+
+![image](https://github.com/user-attachments/assets/2bc8fc3b-0b55-443c-ac11-9eb341a0c139)
+
 
 **Layout in Magic**:
 - Launch Magic with the custom `sky130_inv.mag` layout file.
@@ -4999,14 +5003,28 @@ magic -T sky130A.tech sky130_inv.mag &
 
 ### 2. Inverter Layout and CMOS Fabrication Process
 
-The 16-step CMOS fabrication process for an inverter includes:
-1. Substrate Preparation
-2. N-Well and P-Well Formation
-3. Gate Oxide and Poly-Silicon Deposition
-4. Source/Drain Implantation
-5. Metal Interconnects and Passivation Layer Deposition
 
-These steps are illustrated in images, marking each process layer for clarity.
+#### CMOS Fabrication Process (16-Mask Method)
+
+The CMOS fabrication process is a series of precise, photolithographic and chemical steps to create integrated circuits on a silicon wafer. This process includes multiple layers and utilizes 16 photomasks to define and protect specific areas of the wafer at various stages. Each step in this process is carefully controlled to ensure that the resulting chips are reliable and functionally correct.
+
+1. **Substrate Preparation**: Start with a cleaned, polished silicon wafer as the base.
+2. **N-Well Formation**: Form N-well regions in the p-type substrate using ion implantation with phosphorus.
+3. **P-Well Formation**: Create P-well regions in n-type areas by implanting boron.
+4. **Gate Oxide Deposition**: Deposit a thin silicon dioxide layer as insulation between the gate and channel.
+5. **Polysilicon Deposition**: Apply a polysilicon layer to serve as the gate electrode.
+6. **Polysilicon Masking and Etching**: Mask and etch to shape polysilicon into gate structures.
+7. **N-Well Masking and Implantation**: Define and implant N-well areas with phosphorus.
+8. **P-Well Masking and Implantation**: Define and implant P-well areas with boron.
+9. **Source/Drain Implantation**: Form source/drain regions by implanting dopants (e.g., arsenic for NMOS, boron for PMOS).
+10. **Gate Formation**: Use a mask to define and etch the gate structure.
+11. **Source/Drain Masking and Etching**: Etch to expose source/drain areas for further processing.
+12. **Contact/Via Formation**: Etch holes to access source, drain, and gate regions for connections.
+13. **Metal Deposition**: Deposit metal (e.g., aluminum or copper) to form interconnections.
+14. **Metal Masking and Etching**: Mask and etch metal to create interconnect patterns.
+15. **Passivation Layer Deposition**: Apply a protective silicon dioxide or nitride layer over the wafer.
+16. **Final Testing and Packaging**: Test the wafer, separate functioning chips, and package for deployment. 
+
 
 ### 3. SPICE Extraction in Magic
 
