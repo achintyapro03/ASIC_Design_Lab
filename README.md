@@ -5057,12 +5057,24 @@ ss![image](https://github.com/user-attachments/assets/7dd9b871-1bb0-48ce-b0b8-ed
     The extracted SPICE file (`sky130_inv.spice`) contains transistor models and capacitances.
 
     ```spice
-    * SPICE3 file created from sky130_inv.ext - technology: sky130A
-    .subckt sky130_inv A Y VPWR VGND
-    X0 Y A VGND VGND sky130_fd_pr__nfet_01v8 w=35 l=23
-    X1 Y A VPWR VPWR sky130_fd_pr__pfet_01v8 w=37 l=23
-    .ends
+	* SPICE3 file created from sky130_inv.ext - technology: sky130A
+	
+	.option scale=10m
+	
+	.subckt sky130_inv A Y VPWR VGND
+	X0 Y A VGND VGND sky130_fd_pr__nfet_01v8 ad=1.44n pd=0.152m as=1.37n ps=0.148m w=35 l=23
+	X1 Y A VPWR VPWR sky130_fd_pr__pfet_01v8 ad=1.44n pd=0.152m as=1.52n ps=0.156m w=37 l=23
+	C0 VPWR Y 0.117f
+	C1 A Y 0.0754f
+	C2 A VPWR 0.0774f
+	C3 Y VGND 0.279f
+	C4 A VGND 0.45f
+	C5 VPWR VGND 0.781f
+	.ends
     ```
+
+    ![image](https://github.com/user-attachments/assets/26341293-fd5d-4f43-b243-5557d02dd0b3)
+
 
 ### 4. Transient Response Analysis
 
