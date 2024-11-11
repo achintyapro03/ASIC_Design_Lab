@@ -4831,4 +4831,158 @@ $$
 </details>
 
 
+<details>
+	<summary>Day 3 : Design library cell using Magic Layout and ngspice characterization</summary>
+	
+A CMOS inverter, which consists of a PMOS and NMOS transistor, is one of the fundamental components in digital circuits. The circuit switches between high and low output states based on the input voltage level. This guide includes details on how to model and simulate this behavior in SPICE.
+
+---
+
+## SPICE Deck Structure
+
+### 1. **Netlist Creation**
+
+The netlist defines the interconnections between the components (PMOS and NMOS transistors) in the inverter circuit. Here’s a sample netlist structure for a CMOS inverter with labeled nodes for easy identification:
+
+- **Input Node:** Input signal (IN)
+- **Output Node:** Output of the inverter (OUT)
+- **Power Supply Node:** Connected to VDD
+- **Ground Node:** Connected to GND
+
+Example of transistor description syntax:
+```spice
+[component name] [drain] [gate] [source] [substrate] [transistor type] W=[width] L=[length]
+```
+
+### 2. **Device Sizing**
+
+Define the Width-to-Length (W/L) ratios of the PMOS and NMOS transistors. Proper sizing ensures balanced drive strength, typically achieved with a PMOS width 2x–3x that of the NMOS.
+
+Example sizing:
+```spice
+M1 OUT IN VDD VDD PMOS W=2u L=0.25u
+M2 OUT IN GND GND NMOS W=1u L=0.25u
+```
+
+### 3. **Voltage Levels**
+
+Set the input (gate) voltage and the supply voltage (VDD). Adjust the levels as per design requirements; in this case, we use 2.5V as a supply voltage reference.
+
+Example:
+```spice
+Vin IN 0 DC 0V
+VDD VDD 0 DC 2.5V
+```
+
+### 4. **Node Naming**
+
+Assign names to nodes for clarity in the netlist, such as `VDD`, `GND`, `IN`, and `OUT`, which SPICE uses to reference and simulate each component.
+
+![image](https://github.com/user-attachments/assets/79463427-6c48-45f7-b40e-73b4ec978baf)
+
+---
+
+## Model File
+
+Include the MOSFET model file specific to the fabrication technology. For instance, `tsmc_025um_model.mod` contains parameters for 0.25µm technology.
+
+Example:
+```spice
+.include tsmc_025um_model.mod
+```
+
+---
+
+## Simulation Commands
+
+### 1. **DC Analysis: Switching Threshold**
+
+The switching threshold (Vm) is a critical voltage level at which the inverter transitions between logic high and low states. Vm is observed when both transistors are in the saturation region, resulting in high leakage current due to simultaneous conduction.
+
+Example DC sweep to find the switching threshold:
+```spice
+Vin IN 0 DC 0V
+.dc Vin 0 2.5 0.05
+```
+
+#### Simulation Steps
+- **Load the Circuit**: Load the SPICE deck with `.cir` extension.
+- **Run DC Analysis**: Execute a sweep from 0V to 2.5V.
+- **Plot Results**: Plot `OUT` vs `IN` to identify the switching threshold.
+
+```spice
+source filename.cir
+run
+setplot dc1
+plot OUT vs IN
+```
+
+![image](https://github.com/user-attachments/assets/d4ae7894-4f4c-4e9a-b22c-dcaa160faf49)
+
+### 2. **Transient Analysis: Propagation Delay**
+
+Transient analysis helps calculate the propagation delay of the inverter by applying a pulse input signal.
+
+Example pulse signal for transient analysis:
+```spice
+Vin IN 0 pulse 0 2.5 0 10p 10p 1n 2n
+.tran 10p 4n
+```
+
+#### Simulation Steps
+- **Setup Input Pulse**: Define the pulse with specified rise/fall times and pulse width.
+- **Run Transient Analysis**: Execute the transient simulation to observe the inverter’s response.
+- **Plot Output**: Analyze `OUT` vs `time` to determine delay characteristics.
+
+
+![image](https://github.com/user-attachments/assets/0180c876-36a1-4e6e-b796-6d3c36702b34)
+
+---
+
+## Sample SPICE Deck
+
+Combining the above components, here’s a complete SPICE deck for simulating a CMOS inverter:
+
+```spice
+*** CMOS Inverter SPICE Simulation ***
+
+* Device Netlist
+M1 OUT IN VDD VDD PMOS W=2u L=0.25u
+M2 OUT IN GND GND NMOS W=1u L=0.25u
+
+* Voltage Sources
+VDD VDD 0 DC 2.5V
+Vin IN 0 DC 0V
+
+* Model File
+.include tsmc_025um_model.mod
+
+* DC Analysis
+.dc Vin 0 2.5 0.05
+
+* Transient Analysis
+Vin IN 0 pulse 0 2.5 0 10p 10p 1n 2n
+.tran 10p 4n
+
+.end
+```
+
+---
+
+## Running the Simulation
+
+To run the simulation in SPICE:
+1. **Load the SPICE Deck**: Use `source [filename].cir`.
+2. **Run the Simulation**: Execute `run`.
+3. **DC Plot**: `setplot dc1` and `plot OUT vs IN`.
+4. **Transient Plot**: `plot OUT vs time`.
+
+### Interpreting Results
+- **Switching Threshold**: Identified at the Vm point, where leakage current is high.
+- **Propagation Delay**: Measured from the transient plot, showing the time taken for output transitions.
+
+
+ 
+</details>
+
 </details>
