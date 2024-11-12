@@ -5056,6 +5056,7 @@ ss![image](https://github.com/user-attachments/assets/7dd9b871-1bb0-48ce-b0b8-ed
 2. **View SPICE File**:
     The extracted SPICE file (`sky130_inv.spice`) contains transistor models and capacitances.
 
+
     ```spice
 	* SPICE3 file created from sky130_inv.ext - technology: sky130A
 	
@@ -5080,17 +5081,40 @@ ss![image](https://github.com/user-attachments/assets/7dd9b871-1bb0-48ce-b0b8-ed
 
 Modify the SPICE file to perform transient response analysis and determine propagation delay.
 
+Check the dimensions of the box.
+
+![image](https://github.com/user-attachments/assets/39150b1c-3bdf-446f-b580-c22b050297c2)
+
+It is 0.01 microns. This has to accordingly updated in the spice file.
+
 ```spice
-* SPICE file for transient analysis
+* SPICE3 file created from sky130_inv.ext - technology: sky130A
+
 .option scale=0.01u
+
 .include ./libs/pshort.lib
 .include ./libs/nshort.lib
 
+// .subckt sky130_inv A Y VPWR VGND
+
 M1000 Y A VGND VGND nshort_model.0 w=35 l=23
++  ad=1.44n pd=0.152m as=1.37n ps=0.148m
 M1001 Y A VPWR VPWR pshort_model.0 w=37 l=23
++  ad=1.44n pd=0.152m as=1.52n ps=0.156m
 
 VDD VPWR 0 3.3V
+VSS VGND 0 0V
 Va A VGND PULSE(0V 3.3V 0 0.1ns 0.1ns 2ns 4ns)
+
+C0 VPWR Y 0.117f
+C1 A Y 0.0754f
+C2 A VPWR 0.0774f
+C3 Y VGND 2f
+C4 A VGND 0.45f
+C5 VPWR VGND 0.781f
+// .ends
+
+
 .tran 1n 20n
 .control
 run
@@ -5102,11 +5126,16 @@ Run the modified file in ngspice:
 ```bash
 ngspice sky130_inv.spice
 ```
+![image](https://github.com/user-attachments/assets/49f4b402-a478-4b6e-9dad-f2ee78169b26)
+
 
 **Plot the Waveform**:
 ```spice
 plot y vs time a
 ```
+
+![image](https://github.com/user-attachments/assets/64ea923b-8f9b-4738-ab0f-6bb43ffcafcd)
+
 
 ### 5. DRC Rules in Magic
 
