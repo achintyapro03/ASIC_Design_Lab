@@ -5377,6 +5377,8 @@ To view the specific inverter cell in Magic:
 
 In pre-layout STA, effects of clock buffers and net delays are included, with wire delay estimated from the PDK library wire model. The initial synthesis run may have significant timing violations, while an improved timing run achieves zero WNS (Worst Negative Slack). Here, we perform timing analysis on the initial synthesis to highlight optimization opportunities.
 
+![image](https://github.com/user-attachments/assets/24f57078-1fc7-4cd5-bd47-0fcd3630a31e)
+
 **Setup Steps**
 
 1. **Initialize OpenLANE Environment**  
@@ -5401,15 +5403,15 @@ In pre-layout STA, effects of clock buffers and net delays are included, with wi
 3. **Prepare STA Config File (`pre_sta.conf`)**  
    The file sets units, loads libraries, links the design, reads timing constraints, and reports timing metrics:
    ```tcl
-   set_cmd_units -time ns -capacitance pF -current mA -voltage V -resistance kOhm -distance um
-   read_liberty -max path/to/sky130_fd_sc_hd__slow.lib
-   read_liberty -min path/to/sky130_fd_sc_hd__fast.lib
-   read_verilog path/to/picorv32a.synthesis.v
-   link_design picorv32a
-   read_sdc path/to/my_base.sdc
-   report_checks -path_delay min_max -fields {slew trans net cap input_pin}
-   report_tns
-   report_wns
+	set_cmd_units -time ns -capacitance pF -current mA -voltage V -resistance kOhm -distance um
+	read_liberty -max /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/sky130_fd_sc_hd__slow.lib
+	read_liberty -min /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/sky130_fd_sc_hd__fast.lib
+	read_verilog /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/12-11_19-30/results/synthesis/picorv32a.synthesis.v
+	link_design picorv32a
+	read_sdc /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/my_base.sdc
+	report_checks -path_delay min_max -fields {slew trans net cap input_pin}
+	report_tns
+	report_wns
    ```
 
 4. **Constraints File (`my_base.sdc`)**  
@@ -5435,7 +5437,8 @@ In pre-layout STA, effects of clock buffers and net delays are included, with wi
    sta pre_sta.conf
    ```
 
-   ![STA Result](https://github.com/user-attachments/assets/23bce842-bdd3-449c-ba66-da6b51c62a1e)
+	![image](https://github.com/user-attachments/assets/6734f34a-8891-4e08-8c70-608c0fa46d6a)
+	![image](https://github.com/user-attachments/assets/b9269e25-52d8-4454-a568-cd50f7759f48)
 
 ---
 
@@ -5450,10 +5453,18 @@ set ::env(SYNTH_SIZING) 1
 set ::env(SYNTH_MAX_FANOUT) 4
 run_synthesis
 ```
+
+![image](https://github.com/user-attachments/assets/928d2fa2-01b7-441b-9f93-0eecf6b2bb4e)
+
+
 Repeat STA to check timing improvements:
 ```bash
 sta pre_sta.conf
 ```
+
+![image](https://github.com/user-attachments/assets/274c0cb8-f925-4482-b0e4-aaf4b9c169aa)
+
+![image](https://github.com/user-attachments/assets/70ed358b-15a5-4280-a89d-e3b7f6584914)
 
 ### Basic Timing ECO (Engineering Change Order)
 
