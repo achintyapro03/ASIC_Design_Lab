@@ -6,7 +6,7 @@ This project comprises a series of tasks aimed at designing and implementing var
 ## Tasks
 
 <details>
-  <summary>Task 1 : C program to calculate the sum of numbers from 1 to n </summary>
+  <summary>**Task 1 :** C program to calculate the sum of numbers from 1 to n </summary>
 
 The task involves creating a simple C program that calculates the sum of numbers from 1 to n. This was achieved using the following steps:
 
