@@ -5206,6 +5206,8 @@ In the `tkcon` window, set the grid for the routing tracks on the local-intercon
 ```tcl
 grid 0.46um 0.34um 0.23um 0.17um
 ```
+![image](https://github.com/user-attachments/assets/58467426-50c1-4994-ba27-8b8d1a534afc)
+
 
 This sets the pitch for the wires, aligning them with the required guidelines for the local-interconnect layer.
 
@@ -5213,9 +5215,9 @@ This sets the pitch for the wires, aligning them with the required guidelines fo
 
 Save your design with a custom name, then open it with `magic`.
 
-```tcl
-save sky130_akainv.mag
-magic -T sky130A.tech sky130_akainv.mag &
+```tcl 
+save sky130_achinv.mag
+magic -T sky130A.tech sky130_achinv.mag &
 ```
 
 After saving, type the following in the `tkcon` window to export the LEF file:
@@ -5224,6 +5226,10 @@ After saving, type the following in the `tkcon` window to export the LEF file:
 lef write
 ```
 
+![image](https://github.com/user-attachments/assets/55d4acaa-fa81-4af3-90c0-10606f6840e5)
+
+![image](https://github.com/user-attachments/assets/d67fc6a6-1335-4560-9170-b4cb662f2366)
+
 ### 4. **Modifying `config.tcl` for the OpenLANE Flow**
 
 Modify the `config.tcl` file to set up the environment variables for your design:
@@ -5231,24 +5237,24 @@ Modify the `config.tcl` file to set up the environment variables for your design
 ```tcl
 # Design
 set ::env(DESIGN_NAME) "picorv32a"
+
 set ::env(VERILOG_FILES) "./designs/picorv32a/src/picorv32a.v"
 set ::env(SDC_FILES) "./designs/picorv32a/src/picorv32a.sdc"
 
-# Clock settings
+
 set ::env(CLOCK_PERIOD) "5.000"
 set ::env(CLOCK_PORT) "clk"
-set ::env(CLOCK_MET) $::env(CLOCK_PORT)
 
-# Library files for synthesis and STA
-set ::env(LIB_SYNTH) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__typical.lib"
+set ::env(CLOCK_MET) $::env(CLOCK_PORT) 
+
+
+set ::env(LIB_SYNTH) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__typical.lib "
 set ::env(LIB_FASTEST) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__fast.lib"
-set ::env(LIB_SLOWEST) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__slow.lib"
+set ::env(LIB_SLOWEST) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__slow.lib "
 set ::env(LIB_TYPICAL) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__typical.lib"
 
-# Additional LEFs
-set ::env(EXTRA_LEFS) [glob $::env(OPENLANE_ROOT)/designs/$::env(DESIGN_NAME)/src/*.lef]
+set ::env(EXTRA_LEFS) [glob $::env(OPENLANE_ROOT)/designs/$::env(DESIGN_NAME)/src/*.lef]   ## this is the new line added to the existing config.tcl file
 
-# Load configuration if exists
 set filename $::env(OPENLANE_ROOT)/designs/$::env(DESIGN_NAME)/$::env(PDK)_$::env(STD_CELL_LIBRARY)_config.tcl
 if { [file exists $filename] == 1 } {
   source $filename
@@ -5263,17 +5269,22 @@ Navigate to the OpenLANE directory, start a Docker session, and initialize the O
 cd Desktop/work/tools/openlane_working_dir/openlane
 docker
 ./flow.tcl -interactive
-package require openlane 0.9
-prep -design picorv32a
 ```
 
 Add the LEF files to the design:
 
 ```tcl
+package require openlane 0.9
+prep -design picorv32a
 set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
 add_lefs -src $lefs
 run_synthesis
 ```
+
+![image](https://github.com/user-attachments/assets/1b2b61ab-78d9-4f89-9a57-e2a13b1f37c1)
+![image](https://github.com/user-attachments/assets/ee718233-c4c8-4fb6-9d44-bc164955a7bb)
+![image](https://github.com/user-attachments/assets/15070cf1-96d7-412a-bcd9-ab2a62d7cb40)
+
 
 ### 6. **Fixing Slack**
 
