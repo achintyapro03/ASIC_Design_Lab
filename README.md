@@ -5588,5 +5588,101 @@ In timing analysis, a real clock accounts for practical challenges such as clock
    
 </details>
 
+<details>
+	<summary>Day 5: Final Steps for RTL-to-GDS using TritonRoute and OpenSTA</summary>
 
+#### Maze Routing and Lee's Algorithm
+
+Routing establishes physical connections between pins on a grid, and algorithms like Maze Routing, especially Lee’s algorithm, are used to create efficient paths. The Lee algorithm assigns incremental labels to neighboring cells starting from the source pin until reaching the target pin. This method typically prioritizes L-shaped routes, using zigzag paths if needed. However, while effective for finding the shortest path, Lee's algorithm is computationally intense and can be slow for large designs, leading to the adoption of faster alternatives for complex routing tasks.
+
+---
+
+#### Generating the Power Distribution Network (PDN)
+
+To generate the PDN, issue the command:
+
+```bash
+gen_pdn
+```
+
+Then, in a new terminal, navigate to the floorplan directory and open Magic:
+
+```bash
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/25-03_18-52/tmp/floorplan/
+magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read 18-pdn.def &
+```
+
+**PDN Structure and Components**:
+
+The PDN consists of:
+- **Power Rings**: Initial distribution of VDD and VSS from pads.
+- **Straps**: Horizontal and vertical connections from power rings.
+- **Rails**: Positioned at standard cell heights, distributed through metal layers 4 and 5 for straps, and metal layer 1 for rails, ensuring consistent power supply via vias across layers.
+
+---
+
+#### Detailed Routing with TritonRoute
+
+TritonRoute performs detailed routing by adhering to pre-processed global route guides. This is achieved using:
+
+```bash
+echo $::env(CURRENT_DEF)
+echo $::env(ROUTING_STRATEGY)
+run_routing
+```
+
+In another terminal:
+
+```bash
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/25-03_18-52/results/routing/
+magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.def &
+```
+
+##### TritonRoute's Routing Features:
+
+1. **Intra-layer Routing**: Within a single metal layer, routing is done in parallel.
+2. **Inter-layer Routing**: Conducted sequentially across layers, ensuring alignment with LEF-defined directions (e.g., met1 horizontal, met2 vertical).
+3. **Route Guides**: Global route guides provide an initial path outline, aiding TritonRoute in detailed routing with minimized conflicts and enhanced connectivity.
+4. **Inter-guide Connectivity**: TritonRoute maintains signal flow across adjacent guides, reducing gaps for improved design continuity.
+
+##### Routing Topology Algorithms
+
+Routing topology algorithms define connection paths between pins, optimizing for minimal path cost and connectivity efficiency.
+
+---
+
+#### SPEF Extraction for Parasitic Analysis
+
+For Post-Route parasitic extraction using SPEF, navigate to the `spef_extractor` directory and run:
+
+```bash
+cd Desktop/work/tools/openlane_working_dir/openlane/scripts/spef_extractor
+python3 main.py -l /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/25-03_18-52/tmp/merged.lef -d /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/25-03_18-52/results/routing/picorv32a.def
+```
+
+This extracts parasitics to aid in timing analysis.
+
+---
+
+#### Post-Route Timing Analysis with OpenSTA
+
+To perform timing analysis on the routed design with extracted parasitics, use the following sequence in OpenSTA:
+
+```bash
+openroad
+read_lef /openLANE_flow/designs/picorv32a/runs/25-03_18-52/tmp/merged.lef
+read_def /openLANE_flow/designs/picorv32a/runs/25-03_18-52/results/routing/picorv32a.def
+write_db pico_route.db
+read_db pico_route.db
+read_verilog /openLANE_flow/designs/picorv32a/runs/25-03_18-52/results/synthesis/picorv32a.synthesis_preroute.v
+read_liberty $::env(LIB_SYNTH_COMPLETE)
+link_design picorv32a
+read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
+set_propagated_clock [all_clocks]
+read_spef /openLANE_flow/designs/picorv32a/runs/25-03_18-52/results/routing/picorv32a.spef
+report_checks -path_delay min_max -fields {slew trans net cap input_pins} -format full_clock_expanded -digits 4
+exit
+```
+
+</details>
 </details>
