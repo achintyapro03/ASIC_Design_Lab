@@ -5180,10 +5180,150 @@ spacing npres allpolynonres 480 touching_illegal \
     ```
 
 ![image](https://github.com/user-attachments/assets/91be0f96-34d1-4f5a-b347-af48e7e60620)
-
-
-This completes the layout and SPICE simulation of a CMOS inverter, providing insights into layout characteristics, transient response, and delay analysis.
  
 </details>
+
+<details>
+	<summary>Day 4 : Pre-layout timing analysis and importance of good clock tree</summary>
+
+### 1. **Extracting the `tracks.info` File**
+   
+Navigate to the required directory and use `less` to view the `tracks.info` file.
+
+```bash
+cd Desktop/work/tools/openlane_working_dir/openlane/vsdstdcelldesign
+cd ../../pdks/sky130A/libs.tech/openlane/sky130_fd_sc_hd/
+gedit tracks.info
+```
+
+![image](https://github.com/user-attachments/assets/7fc35868-4cb6-41e0-8382-fb152d9caa32)
+
+
+### 2. **Setting Grid in tkcon for Local-Interconnect Layer**
+
+In the `tkcon` window, set the grid for the routing tracks on the local-interconnect layer:
+
+```tcl
+grid 0.46um 0.34um 0.23um 0.17um
+```
+
+This sets the pitch for the wires, aligning them with the required guidelines for the local-interconnect layer.
+
+### 3. **Saving and Opening Custom Layout Files**
+
+Save your design with a custom name, then open it with `magic`.
+
+```tcl
+save sky130_akainv.mag
+magic -T sky130A.tech sky130_akainv.mag &
+```
+
+After saving, type the following in the `tkcon` window to export the LEF file:
+
+```tcl
+lef write
+```
+
+### 4. **Modifying `config.tcl` for the OpenLANE Flow**
+
+Modify the `config.tcl` file to set up the environment variables for your design:
+
+```tcl
+# Design
+set ::env(DESIGN_NAME) "picorv32a"
+set ::env(VERILOG_FILES) "./designs/picorv32a/src/picorv32a.v"
+set ::env(SDC_FILES) "./designs/picorv32a/src/picorv32a.sdc"
+
+# Clock settings
+set ::env(CLOCK_PERIOD) "5.000"
+set ::env(CLOCK_PORT) "clk"
+set ::env(CLOCK_MET) $::env(CLOCK_PORT)
+
+# Library files for synthesis and STA
+set ::env(LIB_SYNTH) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__typical.lib"
+set ::env(LIB_FASTEST) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__fast.lib"
+set ::env(LIB_SLOWEST) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__slow.lib"
+set ::env(LIB_TYPICAL) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__typical.lib"
+
+# Additional LEFs
+set ::env(EXTRA_LEFS) [glob $::env(OPENLANE_ROOT)/designs/$::env(DESIGN_NAME)/src/*.lef]
+
+# Load configuration if exists
+set filename $::env(OPENLANE_ROOT)/designs/$::env(DESIGN_NAME)/$::env(PDK)_$::env(STD_CELL_LIBRARY)_config.tcl
+if { [file exists $filename] == 1 } {
+  source $filename
+}
+```
+
+### 5. **Running the OpenLANE Flow**
+
+Navigate to the OpenLANE directory, start a Docker session, and initialize the OpenLANE flow.
+
+```bash
+cd Desktop/work/tools/openlane_working_dir/openlane
+docker
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design picorv32a
+```
+
+Add the LEF files to the design:
+
+```tcl
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+run_synthesis
+```
+
+### 6. **Fixing Slack**
+
+For slack fixing, configure the synthesis strategy and other synthesis parameters before re-running synthesis.
+
+```tcl
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design picorv32a -tag 24-03_10-03 -overwrite
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+set ::env(SYNTH_STRATEGY) "DELAY 3"
+set ::env(SYNTH_SIZING) 1
+run_synthesis
+```
+
+### 7. **Floorplanning**
+
+Start the floorplan process. If any issues arise, use individual floorplan commands:
+
+```tcl
+run_floorplan
+# Alternative commands if facing issues
+init_floorplan
+place_io
+tap_decap_or
+```
+
+### 8. **Placement**
+
+Continue with the placement step:
+
+```tcl
+run_placement
+```
+
+To view the placement in `magic`, open a new terminal and run:
+
+```bash
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/24-03_10-03/results/placement/
+magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
+```
+
+### 9. **Timing Analysis with OpenSTA**
+
+Pre-layout STA will consider clock buffers and RC parasitics. 
+
+If achieving zero WNS after improving timing, perform an initial timing analysis to identify violations in synthesis.
+
+</details>
+
 
 </details>
