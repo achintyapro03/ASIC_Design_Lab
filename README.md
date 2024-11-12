@@ -5156,6 +5156,7 @@ Perform DRC checks on the layout using the following commands in Magic:
     cd drc_tests
     gvim .magicrc
     ```
+![image](https://github.com/user-attachments/assets/d4f773c2-36a0-47d1-9f36-bf78c4fc3ce1)
 
 2. **Load and Check**:
     ```tcl
