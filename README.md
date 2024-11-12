@@ -5303,9 +5303,6 @@ run_synthesis
 ![image](https://github.com/user-attachments/assets/9f7afdc0-4c2b-4950-8168-9a85f36d3aa4)
 ![image](https://github.com/user-attachments/assets/fd5ca063-b79e-4025-9825-694957d9d944)
 ![image](https://github.com/user-attachments/assets/265e613f-4d9a-4fe0-a5e6-81883ec0ebe6)
-Here is a reformatted guide for your floorplanning and placement steps, with labeled images:
-
----
 
 ### 7. **Floorplanning**
 
@@ -5376,12 +5373,171 @@ To view the specific inverter cell in Magic:
    ![Expanded Inverter Cell](https://github.com/user-attachments/assets/35fd2dbd-3de1-4d57-8fca-c845636b8c75)
 
 
-### 9. **Timing Analysis with OpenSTA**
+### 9. **Timing Analysis with Ideal Clocks Using OpenSTA**
 
-Pre-layout STA will consider clock buffers and RC parasitics. 
+In pre-layout STA, effects of clock buffers and net delays are included, with wire delay estimated from the PDK library wire model. The initial synthesis run may have significant timing violations, while an improved timing run achieves zero WNS (Worst Negative Slack). Here, we perform timing analysis on the initial synthesis to highlight optimization opportunities.
 
-If achieving zero WNS after improving timing, perform an initial timing analysis to identify violations in synthesis.
+**Setup Steps**
 
+1. **Initialize OpenLANE Environment**  
+   Navigate to the OpenLANE directory and launch the tool:
+   ```bash
+   cd Desktop/work/tools/openlane_working_dir/openlane
+   docker
+   ./flow.tcl -interactive
+   package require openlane 0.9
+   ```
+
+2. **Setup Synthesis and LEF**  
+   Prepare the design by adding necessary LEF files and enabling sizing optimization:
+   ```tcl
+   prep -design picorv32a
+   set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+   add_lefs -src $lefs
+   set ::env(SYNTH_SIZING) 1
+   run_synthesis
+   ```
+
+3. **Prepare STA Config File (`pre_sta.conf`)**  
+   The file sets units, loads libraries, links the design, reads timing constraints, and reports timing metrics:
+   ```tcl
+   set_cmd_units -time ns -capacitance pF -current mA -voltage V -resistance kOhm -distance um
+   read_liberty -max path/to/sky130_fd_sc_hd__slow.lib
+   read_liberty -min path/to/sky130_fd_sc_hd__fast.lib
+   read_verilog path/to/picorv32a.synthesis.v
+   link_design picorv32a
+   read_sdc path/to/my_base.sdc
+   report_checks -path_delay min_max -fields {slew trans net cap input_pin}
+   report_tns
+   report_wns
+   ```
+
+4. **Constraints File (`my_base.sdc`)**  
+   Sets up clock definitions, input/output delay constraints, and load conditions:
+   ```tcl
+   set ::env(CLOCK_PORT) clk
+   set ::env(CLOCK_PERIOD) 12.000
+   set ::env(SYNTH_DRIVING_CELL) sky130_fd_sc_hd__inv_8
+   create_clock [get_ports $::env(CLOCK_PORT)] -name $::env(CLOCK_PORT) -period $::env(CLOCK_PERIOD)
+   set IO_PCT 0.2
+   set input_delay_value [expr $::env(CLOCK_PERIOD) * $IO_PCT]
+   set output_delay_value [expr $::env(CLOCK_PERIOD) * $IO_PCT]
+   set_input_delay $input_delay_value -clock [get_clocks $::env(CLOCK_PORT)] [all_inputs_wo_clk_rst]
+   set_output_delay $output_delay_value -clock [get_clocks $::env(CLOCK_PORT)] [all_outputs]
+   set_driving_cell -lib_cell $::env(SYNTH_DRIVING_CELL) -pin $::env(SYNTH_DRIVING_CELL_PIN) [all_inputs]
+   set_load [expr $::env(SYNTH_CAP_LOAD) / 1000.0] [all_outputs]
+   ```
+
+5. **Run STA**  
+   Invoke STA using the `pre_sta.conf`:
+   ```bash
+   cd Desktop/work/tools/openlane_working_dir/openlane
+   sta pre_sta.conf
+   ```
+
+   ![STA Result](https://github.com/user-attachments/assets/23bce842-bdd3-449c-ba66-da6b51c62a1e)
+
+---
+
+### Synthesis Optimization
+
+Adjust synthesis parameters to improve timing by setting maximum fanout and driving cell:
+```tcl
+prep -design picorv32a -tag optimized_synthesis -overwrite
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+set ::env(SYNTH_SIZING) 1
+set ::env(SYNTH_MAX_FANOUT) 4
+run_synthesis
+```
+Repeat STA to check timing improvements:
+```bash
+sta pre_sta.conf
+```
+
+### Basic Timing ECO (Engineering Change Order)
+
+In this ECO, a NOR gate with a drive strength of 2 was driving five fanouts, causing a timing issue. Adjustments were made to improve timing by replacing the cell:
+```tcl
+report_net -connections _13111_
+replace_cell _16171_ sky130_fd_sc_hd__nor3_2
+report_checks -fields {net cap slew input_pins} -digits 4
+```
+
+Results show reduced TNS (Total Negative Slack) and WNS:
+![ECO Result](https://github.com/user-attachments/assets/49667f40-1eb1-42a8-ad22-0a287eb92de0)
+
+---
+
+### Clock Tree Synthesis (CTS) and Signal Integrity
+
+CTS organizes the clock distribution network for optimal timing across the design. Techniques vary by design requirements:
+
+- **Balanced Tree CTS:** Binary-like structure for minimal clock skew.
+- **H-Tree CTS:** H-shaped structure, good for large designs.
+- **Star CTS:** Centralized clock distribution, reducing skew.
+- **Global-Local CTS:** Combines star and tree for scalable distribution.
+- **Mesh CTS:** Uses a grid pattern, balancing simplicity and skew.
+- **Adaptive CTS:** Adjusts dynamically, ideal for complex designs.
+
+**Crosstalk and Clock Net Shielding**
+
+- **Crosstalk:** Signal interference due to electromagnetic coupling. Mitigated by optimized layout and shielding.
+- **Clock Net Shielding:** Prevents glitches by isolating clock nets with shields tied to power or ground. Shielding reduces interference and maintains signal integrity.
+
+---
+
+### Inserting Updated Netlist in PnR Flow
+
+Replace the synthesis netlist with the updated one, making a backup first:
+```bash
+cd path/to/synthesis/results/
+cp picorv32a.synthesis.v picorv32a.synthesis_old.v
+write_verilog path/to/picorv32a.synthesis.v
+```
+
+---
+
+### Running CTS and Post-CTS Timing Analysis
+
+1. **Run CTS**
+   ```tcl
+   prep -design picorv32a -tag post_cts
+   run_cts
+   ```
+
+   ![CTS Result](https://github.com/user-attachments/assets/7e329a64-2b8c-4006-a2b6-32d3b66ab790)
+
+2. **Setup Real Clocks in STA**
+
+   Use a real clock model for timing analysis to include clock skew and jitter:
+   ```tcl
+   openroad
+   read_lef /path/to/merged.lef
+   read_def /path/to/picorv32a.cts.def
+   write_db pico_cts.db
+   read_db pico_cts.db
+   read_verilog /path/to/picorv32a.synthesis_cts.v
+   read_liberty $::env(LIB_SYNTH_COMPLETE)
+   link_design picorv32a
+   read_sdc /path/to/my_base.sdc
+   set_propagated_clock [all_clocks]
+   report_checks -path_delay min_max -fields {slew trans net cap input_pins} -format full_clock_expanded -digits 4
+   exit
+   ```
+
+3. **Clock Buffer List Modification**  
+   Explore CTS by adjusting the buffer list variable `CTS_CLK_BUFFER_LIST`:
+   ```tcl
+   set ::env(CTS_CLK_BUFFER_LIST) [lreplace $::env(CTS_CLK_BUFFER_LIST) 0 0]
+   run_cts
+   openroad
+   report_clock_skew -hold
+   report_clock_skew -setup
+   exit
+   set ::env(CTS_CLK_BUFFER_LIST) [linsert $::env(CTS_CLK_BUFFER_LIST) 0 sky130_fd_sc_hd__clkbuf_1]
+   ```
+   
 </details>
 
 
