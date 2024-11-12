@@ -1,4 +1,4 @@
-# ASIC Design Lab
+![Screenshot from 2024-11-13 00-51-35](https://github.com/user-attachments/assets/8bf3e4d3-c94a-432d-a00d-5a81d201e418)# ASIC Design Lab
 
 ## Overview
 This project comprises a series of tasks aimed at designing and implementing various components and programs for ASIC design.
@@ -5280,10 +5280,9 @@ set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
 add_lefs -src $lefs
 run_synthesis
 ```
-
-![image](https://github.com/user-attachments/assets/1b2b61ab-78d9-4f89-9a57-e2a13b1f37c1)
-![image](https://github.com/user-attachments/assets/ee718233-c4c8-4fb6-9d44-bc164955a7bb)
-![image](https://github.com/user-attachments/assets/15070cf1-96d7-412a-bcd9-ab2a62d7cb40)
+![Screenshot from 2024-11-13 00-51-35](https://github.com/user-attachments/assets/a44ad211-1fe4-4edc-bac3-d08cac3f9999)
+![Screenshot from 2024-11-13 00-51-46](https://github.com/user-attachments/assets/094c7fa2-955b-417c-9221-21ce0ba81a7a)
+![Screenshot from 2024-11-13 00-51-57](https://github.com/user-attachments/assets/a56fecf6-dbe3-43e7-b5a4-4fc29d3bba03)
 
 
 ### 6. **Fixing Slack**
@@ -5293,7 +5292,7 @@ For slack fixing, configure the synthesis strategy and other synthesis parameter
 ```tcl
 ./flow.tcl -interactive
 package require openlane 0.9
-prep -design picorv32a -tag 24-03_10-03 -overwrite
+prep -design picorv32a
 set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
 add_lefs -src $lefs
 set ::env(SYNTH_STRATEGY) "DELAY 3"
@@ -5301,16 +5300,29 @@ set ::env(SYNTH_SIZING) 1
 run_synthesis
 ```
 
+![image](https://github.com/user-attachments/assets/9f7afdc0-4c2b-4950-8168-9a85f36d3aa4)
+![image](https://github.com/user-attachments/assets/fd5ca063-b79e-4025-9825-694957d9d944)
+![image](https://github.com/user-attachments/assets/265e613f-4d9a-4fe0-a5e6-81883ec0ebe6)
+
 ### 7. **Floorplanning**
 
 Start the floorplan process. If any issues arise, use individual floorplan commands:
 
 ```tcl
-run_floorplan
-# Alternative commands if facing issues
-init_floorplan
-place_io
-tap_decap_or
+	run_floorplan
+
+```
+
+![image](https://github.com/user-attachments/assets/77bcec33-2497-4842-a906-1497863b4ed5)
+![image](https://github.com/user-attachments/assets/bc918405-a0c1-4fa1-8c0a-25d103a45a1d)
+
+
+Alternative commands if facing issues
+
+```tcl
+	init_floorplan
+	place_io
+	tap_decap_or
 ```
 
 ### 8. **Placement**
@@ -5321,12 +5333,22 @@ Continue with the placement step:
 run_placement
 ```
 
+![Output of placement run terminal](https://github.com/user-attachments/assets/1a0f35bd-5544-43a9-be1d-31ac5e188664)
+![Screen shot generated](https://github.com/user-attachments/assets/a979a6c8-2728-47ed-b9fe-36a134a9e349)
+
+
 To view the placement in `magic`, open a new terminal and run:
 
 ```bash
-cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/24-03_10-03/results/placement/
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/12-11_19-30/results/placement/
 magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
 ```
+
+![Magic output](https://github.com/user-attachments/assets/3a2d7e4f-2b7b-4f48-a7cf-f1639fb520a5)
+![IMage shogin custom inverter cell](https://github.com/user-attachments/assets/7cae5409-d6b9-46d9-b73a-ca46c821cb85)
+
+Select the inverter cell by clicking `s`. Now in the console, type expand. 
+![image](https://github.com/user-attachments/assets/35fd2dbd-3de1-4d57-8fca-c845636b8c75)
 
 ### 9. **Timing Analysis with OpenSTA**
 
