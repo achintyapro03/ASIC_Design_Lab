@@ -1,4 +1,4 @@
-![Screenshot from 2024-11-13 00-51-35](https://github.com/user-attachments/assets/8bf3e4d3-c94a-432d-a00d-5a81d201e418)# ASIC Design Lab
+# ASIC Design Lab
 
 ## Overview
 This project comprises a series of tasks aimed at designing and implementing various components and programs for ASIC design.
@@ -5303,52 +5303,78 @@ run_synthesis
 ![image](https://github.com/user-attachments/assets/9f7afdc0-4c2b-4950-8168-9a85f36d3aa4)
 ![image](https://github.com/user-attachments/assets/fd5ca063-b79e-4025-9825-694957d9d944)
 ![image](https://github.com/user-attachments/assets/265e613f-4d9a-4fe0-a5e6-81883ec0ebe6)
+Here is a reformatted guide for your floorplanning and placement steps, with labeled images:
+
+---
 
 ### 7. **Floorplanning**
 
-Start the floorplan process. If any issues arise, use individual floorplan commands:
+To start the floorplan process, use:
 
 ```tcl
-	run_floorplan
-
+run_floorplan
 ```
 
-![image](https://github.com/user-attachments/assets/77bcec33-2497-4842-a906-1497863b4ed5)
-![image](https://github.com/user-attachments/assets/bc918405-a0c1-4fa1-8c0a-25d103a45a1d)
-
-
-Alternative commands if facing issues
+If you encounter issues, try using the following individual floorplan commands:
 
 ```tcl
-	init_floorplan
-	place_io
-	tap_decap_or
+init_floorplan
+place_io
+tap_decap_or
 ```
+
+**Example Images for Floorplanning Process:**
+
+1. **Floorplan Initialization**  
+   ![Floorplan Initialization](https://github.com/user-attachments/assets/77bcec33-2497-4842-a906-1497863b4ed5)
+
+2. **IO Placement and Decap Cells**  
+   ![IO Placement and Decap Cells](https://github.com/user-attachments/assets/bc918405-a0c1-4fa1-8c0a-25d103a45a1d)
+
+---
 
 ### 8. **Placement**
 
-Continue with the placement step:
+To continue with the placement step, run:
 
 ```tcl
 run_placement
 ```
 
-![Output of placement run terminal](https://github.com/user-attachments/assets/1a0f35bd-5544-43a9-be1d-31ac5e188664)
-![Screen shot generated](https://github.com/user-attachments/assets/a979a6c8-2728-47ed-b9fe-36a134a9e349)
+**Example Images for Placement Process:**
 
+1. **Placement Run Output**  
+   ![Output of Placement Run](https://github.com/user-attachments/assets/1a0f35bd-5544-43a9-be1d-31ac5e188664)
 
-To view the placement in `magic`, open a new terminal and run:
+2. **Placement Screenshot**  
+   ![Placement Screenshot](https://github.com/user-attachments/assets/a979a6c8-2728-47ed-b9fe-36a134a9e349)
+
+---
+
+### Viewing Placement in Magic
+
+To view the placement in **Magic**, use a new terminal and navigate to the following directory:
 
 ```bash
 cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/12-11_19-30/results/placement/
 magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
 ```
 
-![Magic output](https://github.com/user-attachments/assets/3a2d7e4f-2b7b-4f48-a7cf-f1639fb520a5)
-![IMage shogin custom inverter cell](https://github.com/user-attachments/assets/7cae5409-d6b9-46d9-b73a-ca46c821cb85)
+**Magic Output Example:**
 
-Select the inverter cell by clicking `s`. Now in the console, type expand. 
-![image](https://github.com/user-attachments/assets/35fd2dbd-3de1-4d57-8fca-c845636b8c75)
+1. **Magic Placement Output**  
+   ![Magic Placement Output](https://github.com/user-attachments/assets/3a2d7e4f-2b7b-4f48-a7cf-f1639fb520a5)
+
+2. **Custom Inverter Cell Displayed in Magic**  
+   ![Custom Inverter Cell](https://github.com/user-attachments/assets/7cae5409-d6b9-46d9-b73a-ca46c821cb85)
+
+To view the specific inverter cell in Magic:
+- Select the cell by clicking on it.
+- In the console, type `expand`.
+
+**Expanded Inverter Cell:**
+   ![Expanded Inverter Cell](https://github.com/user-attachments/assets/35fd2dbd-3de1-4d57-8fca-c845636b8c75)
+
 
 ### 9. **Timing Analysis with OpenSTA**
 
