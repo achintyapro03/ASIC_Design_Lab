@@ -5136,6 +5136,13 @@ plot y vs time a
 
 ![image](https://github.com/user-attachments/assets/64ea923b-8f9b-4738-ab0f-6bb43ffcafcd)
 
+| Parameter           | Output                                                                                                                                                | Calculation                                       |
+|---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|
+| **Rise Time**       | ![Image](https://github.com/user-attachments/assets/335354fa-6ada-4616-9b34-942fcc2fe772)                                                           | 2.23965 ns - 2.18012 ns = 0.05953 ns              |
+| **Fall Time**       | ![Image](https://github.com/user-attachments/assets/803fd422-cfa6-4de8-9a65-864952b01522)                                                           | 4.09328 ns - 4.05058 ns = 0.04270 ns              |
+| **Cell Rise Delay** | ![Image](https://github.com/user-attachments/assets/b2fa2c94-2b3d-48fe-892a-415a2163d971)                                                           | 2.20721 ns - 2.15001 ns = 0.05720 ns              |
+| **Cell Fall Delay** | ![Image](https://github.com/user-attachments/assets/e6c43943-1bb2-45b4-ab1a-0dbd859118b5)                                                           | 4.07532 ns - 4.05 ns = 0.02532 ns                 |
+
 
 ### 5. DRC Rules in Magic
 
