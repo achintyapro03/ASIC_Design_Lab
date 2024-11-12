@@ -5156,7 +5156,21 @@ Perform DRC checks on the layout using the following commands in Magic:
     cd drc_tests
     gvim .magicrc
     ```
-![image](https://github.com/user-attachments/assets/d4f773c2-36a0-47d1-9f36-bf78c4fc3ce1)
+
+![image](https://github.com/user-attachments/assets/0a396c92-f051-4351-ad84-3df097ed4801)
+
+![image](https://github.com/user-attachments/assets/0bc50206-3564-44d5-b399-9c9fae59a2a9)
+
+Here we can observe that there is a drc error. To fix this add the following commands to the `sky130A.tech` file.
+
+```
+spacing xhrpoly,uhrpoly,xpc allpolynonres 480 touching_illegal \
+	"xhrpoly/uhrpoly resistor spacing to diffusion < %d (poly.9)"
+spacing npres allpolynonres 480 touching_illegal \
+	"poly.resistor spacing to N-tap < %d (poly.9)"
+```
+
+![image](https://github.com/user-attachments/assets/fb9dc0a6-ccc9-4839-9bd8-2d8eb2947e33)
 
 2. **Load and Check**:
     ```tcl
@@ -5164,6 +5178,9 @@ Perform DRC checks on the layout using the following commands in Magic:
     drc check
     drc why
     ```
+
+![image](https://github.com/user-attachments/assets/91be0f96-34d1-4f5a-b347-af48e7e60620)
+
 
 This completes the layout and SPICE simulation of a CMOS inverter, providing insights into layout characteristics, transient response, and delay analysis.
  
