@@ -5678,6 +5678,10 @@ magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs
 
 ![image](https://github.com/user-attachments/assets/004d6f30-7c42-4f6e-b29c-bde00cc69401)
 
+
+The faster route:
+![image](https://github.com/user-attachments/assets/9f5cbf7c-3460-4386-b2f5-d7f7aae73088)
+
 ##### TritonRoute's Routing Features:
 
 1. **Intra-layer Routing**: Within a single metal layer, routing is done in parallel.
@@ -5685,9 +5689,22 @@ magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs
 3. **Route Guides**: Global route guides provide an initial path outline, aiding TritonRoute in detailed routing with minimized conflicts and enhanced connectivity.
 4. **Inter-guide Connectivity**: TritonRoute maintains signal flow across adjacent guides, reducing gaps for improved design continuity.
 
+
+![image](https://github.com/user-attachments/assets/19fcc3e8-3c51-4fb0-a56e-b5e677d0097f)
+
+![image](https://github.com/user-attachments/assets/8e9f3c3d-d1bd-4b00-9292-7b45fa06c42c)
+
+![image](https://github.com/user-attachments/assets/d939afa4-cc41-4f08-a15e-8f7b809b6adc)
+
+![image](https://github.com/user-attachments/assets/a0b77e6a-6cf5-45de-9116-182cbe37a091)
+
+![image](https://github.com/user-attachments/assets/45964f31-b0e5-4539-990f-09370dffe7ec)
+
 ##### Routing Topology Algorithms
 
 Routing topology algorithms define connection paths between pins, optimizing for minimal path cost and connectivity efficiency.
+
+![image](https://github.com/user-attachments/assets/15c75c7f-a8b6-47a0-9dd0-529f5af242c1)
 
 ---
 
@@ -5697,8 +5714,10 @@ For Post-Route parasitic extraction using SPEF, navigate to the `spef_extractor`
 
 ```bash
 cd Desktop/work/tools/openlane_working_dir/openlane/scripts/spef_extractor
-python3 main.py -l /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/25-03_18-52/tmp/merged.lef -d /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/25-03_18-52/results/routing/picorv32a.def
+python3 main.py -l /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/12-11_19-30/tmp/merged.lef -d /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/12-11_19-30/results/routing/picorv32a.def
 ```
+
+![image](https://github.com/user-attachments/assets/8f8ee34d-98a0-45ea-be3c-cb9495aef9c9)
 
 This extracts parasitics to aid in timing analysis.
 
@@ -5710,19 +5729,22 @@ To perform timing analysis on the routed design with extracted parasitics, use t
 
 ```bash
 openroad
-read_lef /openLANE_flow/designs/picorv32a/runs/25-03_18-52/tmp/merged.lef
-read_def /openLANE_flow/designs/picorv32a/runs/25-03_18-52/results/routing/picorv32a.def
+read_lef /openLANE_flow/designs/picorv32a/runs/12-11_19-30/tmp/merged.lef
+read_def /openLANE_flow/designs/picorv32a/runs/12-11_19-30/results/routing/picorv32a.def
 write_db pico_route.db
 read_db pico_route.db
-read_verilog /openLANE_flow/designs/picorv32a/runs/25-03_18-52/results/synthesis/picorv32a.synthesis_preroute.v
+read_verilog /openLANE_flow/designs/picorv32a/runs/12-11_19-30/results/synthesis/picorv32a.synthesis_preroute.v
 read_liberty $::env(LIB_SYNTH_COMPLETE)
 link_design picorv32a
 read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
 set_propagated_clock [all_clocks]
-read_spef /openLANE_flow/designs/picorv32a/runs/25-03_18-52/results/routing/picorv32a.spef
+read_spef /openLANE_flow/designs/picorv32a/runs/12-11_19-30/results/routing/picorv32a.spef
 report_checks -path_delay min_max -fields {slew trans net cap input_pins} -format full_clock_expanded -digits 4
 exit
 ```
+![image](https://github.com/user-attachments/assets/e482c796-8e52-4d5f-be00-8522928ff637)
+![image](https://github.com/user-attachments/assets/f298fa3c-f3a0-4c72-8bd5-1049e76e7c4c)
+![image](https://github.com/user-attachments/assets/bcc7463e-9ab7-4fcd-89e2-de6608351181)
 
 </details>
 </details>
