@@ -5621,6 +5621,9 @@ exit
 
 Routing establishes physical connections between pins on a grid, and algorithms like Maze Routing, especially Lee’s algorithm, are used to create efficient paths. The Lee algorithm assigns incremental labels to neighboring cells starting from the source pin until reaching the target pin. This method typically prioritizes L-shaped routes, using zigzag paths if needed. However, while effective for finding the shortest path, Lee's algorithm is computationally intense and can be slow for large designs, leading to the adoption of faster alternatives for complex routing tasks.
 
+![image](https://github.com/user-attachments/assets/bf897d40-1313-4b0a-b370-ca7c9b5ae5ad)
+![image](https://github.com/user-attachments/assets/da11ccfe-cb68-4777-8805-8b94b998ade8)
+
 ---
 
 #### Generating the Power Distribution Network (PDN)
@@ -5634,9 +5637,13 @@ gen_pdn
 Then, in a new terminal, navigate to the floorplan directory and open Magic:
 
 ```bash
-cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/25-03_18-52/tmp/floorplan/
-magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read 18-pdn.def &
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/12-11_19-30/tmp/floorplan/
+magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read 14-pdn.def &
 ```
+
+![image](https://github.com/user-attachments/assets/d8d42e29-9e1f-4721-b775-cbcf7bb5071a)
+
+![image](https://github.com/user-attachments/assets/cab6b39d-9dfe-4070-8a24-0d039fc321f1)
 
 **PDN Structure and Components**:
 
@@ -5644,6 +5651,9 @@ The PDN consists of:
 - **Power Rings**: Initial distribution of VDD and VSS from pads.
 - **Straps**: Horizontal and vertical connections from power rings.
 - **Rails**: Positioned at standard cell heights, distributed through metal layers 4 and 5 for straps, and metal layer 1 for rails, ensuring consistent power supply via vias across layers.
+
+
+![image](https://github.com/user-attachments/assets/fddaf177-2427-49b8-baeb-35bec2e6e6d0)
 
 ---
 
@@ -5660,9 +5670,13 @@ run_routing
 In another terminal:
 
 ```bash
-cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/25-03_18-52/results/routing/
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/12-11_19-30/results/routing/
 magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.def &
 ```
+
+![image](https://github.com/user-attachments/assets/862c9abc-4d84-4607-9ea6-2c2ab423727a)
+
+![image](https://github.com/user-attachments/assets/004d6f30-7c42-4f6e-b29c-bde00cc69401)
 
 ##### TritonRoute's Routing Features:
 
