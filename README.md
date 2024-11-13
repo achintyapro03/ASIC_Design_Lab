@@ -5742,7 +5742,7 @@ read_spef /openLANE_flow/designs/picorv32a/runs/12-11_19-30/results/routing/pico
 report_checks -path_delay min_max -fields {slew trans net cap input_pins} -format full_clock_expanded -digits 4
 exit
 ```
-![image](https://github.com/user-attachments/assets/e482c796-8e52-4d5f-be00-8522928ff637)
+![Untitled](https://github.com/user-attachments/assets/65ebae68-2ba2-40bb-b249-f2d0c759c8ea)
 ![image](https://github.com/user-attachments/assets/f298fa3c-f3a0-4c72-8bd5-1049e76e7c4c)
 ![image](https://github.com/user-attachments/assets/bcc7463e-9ab7-4fcd-89e2-de6608351181)
 
