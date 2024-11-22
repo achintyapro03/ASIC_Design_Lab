@@ -4527,7 +4527,10 @@ This directory structure ensures compatibility with open-source EDA tools by sep
      prep -design picorv32a
      run_synthesis
      ```
+
 ![image](https://github.com/user-attachments/assets/bebc9c98-bbcc-4939-a2fd-04ae7ad36c60)
+![image](https://github.com/user-attachments/assets/0eee11a1-20b3-45cd-b9cc-896fa1c2a7b3)
+![image](https://github.com/user-attachments/assets/e1c93a50-253c-443d-9759-393bb1ca9a35)
 
 ---
 
@@ -4627,6 +4630,16 @@ gedit 1-yosys_4.stat.rpt
    Chip area for module '\picorv32a': 147712.918400
 
 ```
+
+#### Flop Ratio Calculation
+
+The **flop ratio** is calculated as:
+
+$\text{Flop Ratio} = \frac{\text{Number of DFF}}{\text{Total Number of Cells}}$
+
+Substituting the values:
+
+$\text{Flop Ratio} = \frac{1613}{14876} = 0.108$
 
 ---
  </details>
