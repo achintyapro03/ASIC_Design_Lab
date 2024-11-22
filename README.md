@@ -4763,6 +4763,8 @@ Execute placement after floorplanning:
 ```bash
 run_placement
 ```
+![image](https://github.com/user-attachments/assets/9ebff006-b559-48b3-829a-2ae8a742a85a)
+![image](https://github.com/user-attachments/assets/0b30e3f6-53ca-49d5-9e28-15070308b04e)
 
 ### 3. **View Placement in Magic**
 Once placement is complete, you can view the result using Magic:
@@ -5646,6 +5648,8 @@ To generate the PDN, issue the command:
 ```bash
 gen_pdn
 ```
+![image](https://github.com/user-attachments/assets/42003265-5e77-442e-8398-59a45dfd1f57)
+![image](https://github.com/user-attachments/assets/3540012c-50cf-4e82-b299-23c883291ca3)
 
 Then, in a new terminal, navigate to the floorplan directory and open Magic:
 
@@ -5679,6 +5683,7 @@ echo $::env(CURRENT_DEF)
 echo $::env(ROUTING_STRATEGY)
 run_routing
 ```
+![image](https://github.com/user-attachments/assets/3d6cf319-7754-4f12-ac46-071fcb95a8c9)
 
 In another terminal:
 
