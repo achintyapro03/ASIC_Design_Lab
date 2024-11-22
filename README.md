@@ -5497,7 +5497,8 @@ sta pre_sta.conf
 ```
 
 ![image](https://github.com/user-attachments/assets/274c0cb8-f925-4482-b0e4-aaf4b9c169aa)
-![image](https://github.com/user-attachments/assets/a2ffb1b6-06d4-4c71-9d73-4b583b0bcea8)
+![abd](https://github.com/user-attachments/assets/4bb467a0-beb4-4486-835c-29112f1d75c9)
+
 
 ### Basic Timing ECO (Engineering Change Order)
 
@@ -5507,9 +5508,6 @@ report_net -connections _13111_
 replace_cell _16171_ sky130_fd_sc_hd__nor3_2
 report_checks -fields {net cap slew input_pins} -digits 4
 ```
-
-Results show reduced TNS (Total Negative Slack) and WNS:
-![ECO Result](https://github.com/user-attachments/assets/49667f40-1eb1-42a8-ad22-0a287eb92de0)
 
 ---
 
