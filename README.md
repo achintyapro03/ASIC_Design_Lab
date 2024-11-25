@@ -5770,13 +5770,8 @@ exit
 
 
 <details>
-	<summary>Task 13 : </summary>
+	<summary>Task 13 : OpenRoad Physical Design</summary>
 	
-## Task-13: OpenRoad Physical Design  
-### Advancing Toward Zetta-Scale Computing  
-
----
-
 ### Historical Computing Milestones  
 
 #### **Bombe**  
