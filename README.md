@@ -6200,8 +6200,6 @@ Here’s the restructured and concise version of the provided content:
 - **Thermionic Emission**: Electrons cross the energy barrier as intended, allowing current to flow normally.
 - **Direct Tunneling**: At smaller gate lengths, electrons can tunnel directly from the source to the drain, causing leakage currents.
 
-![Transistor Structure](https://github.com/user-attachments/assets/6b10d0a0-720a-49d6-94c5-a0c61e7a94c3)
-
 #### **Addressing Scaling Challenges**
 
 To mitigate tunneling and capacitance imbalances, new materials like MoS₂ offer significant advantages. These materials provide superior scalability, effective mass, and bandgap characteristics, improving performance at smaller nodes.
