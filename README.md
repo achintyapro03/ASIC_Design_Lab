@@ -6574,7 +6574,43 @@ Synthesis Stats:
 Commands for floorplan:
 ```bash
 make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk floorplan
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_floorplan
 ```
+
+![image](https://github.com/user-attachments/assets/ab848ef1-c4f5-452b-9660-a8910b44cbeb)
+![image](https://github.com/user-attachments/assets/12e52dfd-a346-4779-aef9-0612f6213eea)
+![image](https://github.com/user-attachments/assets/2360cfaa-3037-4e40-981a-b3c7ff413f84)
+
+
+Commands for floorplan:
+```bash
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk place
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_place
+```
+
+![image](https://github.com/user-attachments/assets/4711c4bd-8110-4d9b-a610-fc30438a134c)
+![image](https://github.com/user-attachments/assets/7c33c612-a0b9-49c4-9732-535cdc7b4227)
+![image](https://github.com/user-attachments/assets/39c317b8-01f1-4595-951f-2372f79a7f39)
+
+Placement Density:
+![image](https://github.com/user-attachments/assets/2df952ad-01b4-4499-9cf3-3af0614b2e37)
+![image](https://github.com/user-attachments/assets/abf86b5c-a196-4e03-9a99-761b47f7bc9f)
+
+
+Commands for CTS:
+```bash
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk cts
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_cts
+
+```
+
+![image](https://github.com/user-attachments/assets/df3d1442-cfd8-46f8-b448-0783786142ef)
+![image](https://github.com/user-attachments/assets/03328f5f-3f4e-4193-9a8b-a1076ed0f710)
+![image](https://github.com/user-attachments/assets/68eb652e-e175-48e3-9ab9-b96842df9e10)
+
+![image](https://github.com/user-attachments/assets/0a430b5e-bff5-4446-9c31-812a292f5c0d)
+![image](https://github.com/user-attachments/assets/357d0c2a-208b-4d8f-a1b3-4291fc33d2c3)
+![image](https://github.com/user-attachments/assets/3218a1bf-ff64-4f2f-8a19-019346cb258f)
 
 </details>
 
