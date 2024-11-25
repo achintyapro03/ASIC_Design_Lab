@@ -6540,6 +6540,8 @@ export SKIP_GATE_CLONING = 1
 # export CORE_UTILIZATION=0.1  # Reduce this value to allow more whitespace for routing.
 ```
 
+
+
 ```bash
 cd OpenROAD-flow-scripts
 source env.sh
@@ -6554,7 +6556,25 @@ make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk synth
 ![image](https://github.com/user-attachments/assets/70369e8b-4579-4f32-8ebc-185ecdd10a9e)
 ![image](https://github.com/user-attachments/assets/e786b01d-af97-4717-994f-4781f1e391b8)
 
+Synthesis Netlist:
+![image](https://github.com/user-attachments/assets/653c1dd3-479d-431a-b8c7-9255887ac8d7)
 
+Synthesis Log:
+![image](https://github.com/user-attachments/assets/67b33974-d209-4634-9125-5da42b10d9d4)
+
+Synthesis Report:
+![image](https://github.com/user-attachments/assets/3dbf6b10-8c8c-499f-b914-8d57c1950067)
+
+Synthesis Stats:
+![image](https://github.com/user-attachments/assets/ec005853-0bf6-453d-a717-47a5e813105c)
+![image](https://github.com/user-attachments/assets/6b1de756-d126-4cfb-b080-231c5ff7b808)
+![image](https://github.com/user-attachments/assets/92accb17-f3f9-4d57-958c-2fef44c4a36e)
+
+
+Commands for floorplan:
+```bash
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk floorplan
+```
 
 </details>
 
