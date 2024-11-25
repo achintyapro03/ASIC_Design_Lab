@@ -6601,7 +6601,6 @@ Commands for CTS:
 ```bash
 make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk cts
 make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_cts
-
 ```
 
 ![image](https://github.com/user-attachments/assets/df3d1442-cfd8-46f8-b448-0783786142ef)
@@ -6611,6 +6610,13 @@ make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_cts
 ![image](https://github.com/user-attachments/assets/0a430b5e-bff5-4446-9c31-812a292f5c0d)
 ![image](https://github.com/user-attachments/assets/357d0c2a-208b-4d8f-a1b3-4291fc33d2c3)
 ![image](https://github.com/user-attachments/assets/3218a1bf-ff64-4f2f-8a19-019346cb258f)
+
+
+Commands for Route:
+```bash
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk route
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_cts
+```
 
 </details>
 
