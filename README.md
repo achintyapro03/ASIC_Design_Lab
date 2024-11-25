@@ -6459,5 +6459,102 @@ make gui_final
 7. **`setup_env.sh`**:  
    - Shell script to set up environment variables, OpenROAD rules, and configurations necessary to execute the flow.
 
+---
+
+### **Automated RTL-to-GDSII Flow for VSDBabySoC: Initial Setup**
+
+Follow the steps below to set up the environment for automating the RTL-to-GDSII flow for the VSDBabySoC project:
+
+1. **Create Design Directory**  
+   - Create a directory named `vsdbabysoc` inside the path: `OpenROAD-flow-scripts/flow/designs/sky130hd`.
+
+2. **Include Verilog Files**  
+   - Within `OpenROAD-flow-scripts/flow/designs/src`, create another directory named `vsdbabysoc`.  
+   - Copy all relevant Verilog files for the VSDBabySoC into this directory.
+
+3. **Add Supporting Folders**  
+   - From the VSDBabySoC folder in your system, copy the following directories into `OpenROAD-flow-scripts/flow/designs/sky130hd/vsdbabysoc`:
+     - **`gds`**: This directory should contain the files `avsddac.gds` and `avsdpll.gds`.
+     - **`include`**: This directory should include the files `sandpiper.vh`, `sandpiper_gen.vh`, `sp_default.vh`, and `sp_verilog.vh`.
+     - **`lef`**: This directory should contain the files `avsddac.lef` and `avsdpll.lef`.
+     - **`lib`**: This directory should include the files `avsddac.lib` and `avsdpll.lib`.
+
+4. **Add Constraints and Configuration Files**  
+   - Copy the constraints file (`vsdbabysoc_synthesis.sdc`) from the VSDBabySoC folder in your system into the same directory.
+   - Copy the configuration files (`macro.cfg` and `pin_order.cfg`) from the VSDBabySoC folder into this directory.
+
+5. **Create a Configuration File**  
+   - Create a file named `config.mk` in this directory with the required contents (details of `config.mk` content to be provided separately).
+
+```tcl
+export DESIGN_NICKNAME = vsdbabysoc
+export DESIGN_NAME = vsdbabysoc
+export PLATFORM    = sky130hd
+
+# export VERILOG_FILES_BLACKBOX = $(DESIGN_HOME)/src/$(DESIGN_NICKNAME)/IPs/*.v
+# export VERILOG_FILES = $(sort $(wildcard $(DESIGN_HOME)/src/$(DESIGN_NICKNAME)/*.v))
+# Explicitly list the Verilog files for synthesis
+export VERILOG_FILES = $(DESIGN_HOME)/src/$(DESIGN_NICKNAME)/vsdbabysoc.v \
+                       $(DESIGN_HOME)/src/$(DESIGN_NICKNAME)/rvmyth.v \
+                       $(DESIGN_HOME)/src/$(DESIGN_NICKNAME)/clk_gate.v
+
+export SDC_FILE      = $(DESIGN_HOME)/$(PLATFORM)/$(DESIGN_NICKNAME)/vsdbabysoc_synthesis.sdc
+
+export vsdbabysoc_DIR = $(DESIGN_HOME)/$(PLATFORM)/$(DESIGN_NICKNAME)
+
+export VERILOG_INCLUDE_DIRS = $(wildcard $(vsdbabysoc_DIR)/include/)
+# export SDC_FILE      = $(wildcard $(vsdbabysoc_DIR)/sdc/*.sdc)
+export ADDITIONAL_GDS  = $(wildcard $(vsdbabysoc_DIR)/gds/*.gds.gz)
+export ADDITIONAL_LEFS  = $(wildcard $(vsdbabysoc_DIR)/lef/*.lef)
+export ADDITIONAL_LIBS = $(wildcard $(vsdbabysoc_DIR)/lib/*.lib)
+# export PDN_TCL = $(DESIGN_HOME)/$(PLATFORM)/$(DESIGN_NICKNAME)/pdn.tcl
+
+# Clock Configuration (vsdbabysoc specific)
+# export CLOCK_PERIOD = 20.0
+export CLOCK_PORT = CLK
+export CLOCK_NET = $(CLOCK_PORT)
+
+# Floorplanning Configuration (vsdbabysoc specific)
+export FP_PIN_ORDER_CFG = $(wildcard $(DESIGN_DIR)/pin_order.cfg)
+# export FP_SIZING = absolute
+
+export DIE_AREA   = 0 0 1600 1600
+export CORE_AREA  = 20 20 1590 1590
+
+# Placement Configuration (vsdbabysoc specific)
+# export MACRO_PLACEMENT_CFG = $(wildcard $(DESIGN_DIR)/macro.cfg)
+export PLACE_PINS_ARGS = -exclude left:0-600 -exclude left:1000-1600: -exclude right:* -exclude top:* -exclude bottom:*
+export MACRO_PLACEMENT = $(DESIGN_HOME)/$(PLATFORM)/$(DESIGN_NICKNAME)/macro_placement.cfg
+
+export TNS_END_PERCENT = 100
+export REMOVE_ABC_BUFFERS = 1
+
+# Magic Tool Configuration
+export MAGIC_ZEROIZE_ORIGIN = 0
+export MAGIC_EXT_USE_GDS = 1
+
+# CTS tuning
+export CTS_BUF_DISTANCE = 600
+export SKIP_GATE_CLONING = 1
+
+# export CORE_UTILIZATION=0.1  # Reduce this value to allow more whitespace for routing.
+```
+
+```bash
+cd OpenROAD-flow-scripts
+source env.sh
+cd flow
+```
+
+For synthesis: 
+```bash
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk synth
+```
+
+![image](https://github.com/user-attachments/assets/70369e8b-4579-4f32-8ebc-185ecdd10a9e)
+![image](https://github.com/user-attachments/assets/e786b01d-af97-4717-994f-4781f1e391b8)
+
+
+
 </details>
 
