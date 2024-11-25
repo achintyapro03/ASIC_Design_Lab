@@ -5767,3 +5767,240 @@ exit
 
 </details>
 </details>
+
+
+<details>
+	<summary>Task 13 : </summary>
+	
+## Path to Zetta-Scale Computing  
+
+### **Introduction**  
+
+The journey of computing has been marked by key innovations that laid the groundwork for the digital era. Three pivotal milestones are:  
+
+- **Bombe (1940s):**  
+  The Bombe was an electro-mechanical device engineered during World War II to decrypt messages encrypted using the German Enigma machine. Conceptualized by Alan Turing and Gordon Welchman at Bletchley Park, the Bombe automated the search for rotor settings by leveraging known plaintext patterns. By methodically eliminating invalid settings, the Bombe dramatically reduced the time required for decryption, playing an instrumental role in the Allied victory.  
+
+- **ENIAC (Electronic Numerical Integrator and Computer, 1945):**  
+  Developed by J. Presper Eckert and John Mauchly at the University of Pennsylvania, ENIAC was the first general-purpose, fully electronic digital computer. Built for the U.S. Army to calculate artillery firing tables, ENIAC utilized over 17,000 vacuum tubes. Although powerful for its time, it lacked a stored-program architecture, requiring manual reconfiguration for each task. Nevertheless, ENIAC showcased the potential of electronic computation.  
+
+- **EDVAC (Electronic Discrete Variable Automatic Computer, 1949):**  
+  Designed by the same team with conceptual contributions from John von Neumann, EDVAC introduced the revolutionary concept of storing both instructions and data in memory. This stored-program architecture, combined with binary rather than decimal processing, streamlined programming and established the foundation of modern computing.  
+
+---  
+
+### **50 Years of Microprocessor Trends**  
+
+Microprocessor evolution over the past five decades highlights key metrics that defined progress:  
+
+#### **Key Metrics**  
+- **Transistor Count (Orange Triangles):**  
+  The number of transistors on a chip has increased exponentially, adhering to Moore's Law, with transistor counts reaching billions in the 2020s. This growth has enabled unprecedented computational power.  
+
+- **Single-Thread Performance (Blue Circles):**  
+  Measured using SpecINT benchmarks, single-thread performance grew steadily, driven by advancements in microarchitecture and clock speed. However, growth decelerated post-2005 due to physical constraints such as power dissipation and heat generation.  
+
+- **Frequency (Green Diamonds):**  
+  Clock speeds rose steadily until the early 2000s but stagnated thereafter due to the inefficiency of increasing speeds further. Thermal and power challenges prompted a shift to parallelism through multi-core designs.  
+
+- **Power Consumption (Red Triangles):**  
+  Power requirements increased alongside transistor density and frequency. Managing power dissipation became a critical focus in processor design post-2005.  
+
+- **Logical Cores (Black Dots):**  
+  The transition to multi-core processors addressed the plateau in single-thread performance, enabling greater parallel processing and overall computational capability.  
+
+#### **Key Milestones**  
+1. **iPhone Release (2007):**  
+   Marked the advent of mobile computing, emphasizing power efficiency alongside performance. This triggered innovations in low-power processor architectures.  
+2. **Datacenter-Scale Computing (Post-2010):**  
+   The rise of cloud computing and hyperscale data centers prioritized energy efficiency, scalability, and parallelism, reshaping the demands on processor technology.  
+
+---  
+
+### **Path to Zetta-Scale Computing**  
+
+#### **Performance Evolution**  
+Computing performance, measured in FLOPS (Floating-Point Operations Per Second), has scaled exponentially:  
+
+- **Gigascale (10⁹ FLOPS, 1984):** Early supercomputers achieved gigaflop performance.  
+- **Terascale (10¹² FLOPS, 1997):** Systems like Cray XT5 reached teraflops, consuming 7 MW of power.  
+- **Petascale (10¹⁵ FLOPS, 2008):** Achieved with systems like Titan (Cray XK6), offering 27 petaflops at 9 MW power consumption.  
+- **Exascale (10¹⁸ FLOPS, 2021):** Systems like Frontier (Cray Shasta) delivered over 1.5 exaflops using 29 MW of power, enabling advanced simulations and AI workloads.  
+- **Zettascale (10²¹ FLOPS, Projected ~2035):** Anticipated to handle advanced climate models, AI, and ultra-large-scale simulations with power consumption estimated between 50–100 MW.  
+
+---  
+
+### **CMOS Evolution and Emerging Technologies**  
+
+The relentless scaling of CMOS (Complementary Metal-Oxide-Semiconductor) technology faces challenges at the nanoscale, prompting exploration of next-generation materials, processes, and structures.  
+
+#### **Key Innovations**  
+
+- **Channel Materials:**  
+  - **Current:** Silicon (Si) dominates, with strained SiGe enhancing carrier mobility.  
+  - **Future:** 2D materials like MoS₂ and Germanium (Ge) offer superior electrical properties at smaller scales.  
+
+- **Patterning Techniques:**  
+  - **Current:** Deep Ultraviolet (DUV) lithography with ArF and KrF lasers.  
+  - **Future:** Extreme Ultraviolet (EUV) lithography and High-NA EUV enable finer feature sizes.  
+
+- **Gate Stack Materials:**  
+  - **Current:** High-K Metal Gate (HKMG) reduces leakage and enhances switching.  
+  - **Future:** Technologies like Negative Capacitance FETs (NC-FET) and Tunnel FETs (TFET) aim to reduce power consumption further.  
+
+- **Interconnects:**  
+  - **Current:** Copper (Cu) is the standard.  
+  - **Future:** Ruthenium (Ru) and topological semimetals are being explored for their low resistivity at atomic scales.  
+
+- **Device Structures:**  
+  - **Current:** FinFETs offer better control over short-channel effects.  
+  - **Future:** Gate-All-Around (GAA) and Multi-Bridge Channel FETs (MBC-FET) enhance density and efficiency.  
+
+- **Co-Optimization:**  
+  - **Design-Technology Co-Optimization (DTCO):** Integrates new designs with process technologies like backside interconnects for reduced latency.  
+  - **System-Technology Co-Optimization (STCO):** Focuses on modular designs using chiplets, improving flexibility and performance.  
+
+---  
+
+### **Advanced Transistor Architectures**  
+
+#### **Planar Transistors vs. FinFETs vs. GAA Transistors**  
+
+- **Planar Transistors:**  
+  Limited gate control, leading to leakage and inefficiency at smaller sizes.  
+
+- **FinFETs:**  
+  Introduced in 2011, these 3D transistors feature a fin-like channel surrounded on three sides by the gate, enhancing control and reducing leakage.  
+
+- **GAA Transistors (Projected ~2025):**  
+  With a gate fully enveloping the channel, GAA transistors provide superior electrostatic control, reduced leakage, and better scalability.  
+
+#### **Performance Advantages**  
+
+1. **Reduced Leakage:**  
+   Substantial reduction in leakage currents leads to lower power dissipation.  
+
+2. **Higher Drive Current:**  
+   Improved drive current (\(I_{ON}\)) enhances circuit performance and efficiency.  
+
+3. **Improved Scaling:**  
+   GAA transistors enable better control over short-channel effects, critical for continued miniaturization.  
+
+---
+
+### **Front-End of Line (FEOL) Innovations**
+
+#### **Overview**
+FEOL involves the creation of active components (e.g., transistors) on a silicon wafer. Innovations in FEOL are critical for advancing Moore's Law, ensuring smaller, efficient, and powerful devices.
+
+### **Key CMOS Technology Inflection Points**
+
+1. **Dennard Scaling**: 
+   - Predicted constant power density with transistor scaling.
+   - Voltage scaling trends: Linear decrease disrupted by challenges (e.g., leakage).
+
+2. **Technological Breakthroughs by Node**:
+   - **180nm**: Start of voltage scaling.
+   - **130nm to 45nm**: Introduction of copper interconnects, strained silicon, embedded SiGe, high-k dielectrics, and metal gates.
+   - **22nm**: FinFET introduction.
+   - **14nm to 7nm**: Advanced patterning techniques (SADP, SAQP, EUV).
+   - **Sub-5nm**: GAA FETs, CFETs, and 2D materials.
+
+---
+
+### **Structural Innovations**
+
+#### **Transistor Scaling Techniques**
+1. **Fin Depopulation**: 
+   - Reduction of fins while maintaining height and width.
+   - Node progression: 10nm → 5nm with fewer fins per transistor.
+
+2. **Contact Over Field Gate (COFG) and Active Gate (COAG)**:
+   - Enables denser layouts by optimizing contact placement.
+
+3. **Double & Single Diffusion Breaks (DDB, SDB)**:
+   - Reduction in transistor size via insulating gaps, balancing performance with scalability.
+
+4. **Back-Side Power Delivery Network (BS-PDN)**:
+   - Power routing on the chip’s backside for efficiency and density.
+
+---
+
+### **Parasitic Resistance and Capacitance Challenges**
+
+#### **Parasitic Resistance**
+- Key contributors: BEOL contacts, MOL resistance, epitaxial layers.
+- Mitigations:
+  - Reducing Schottky barrier heights.
+  - Increasing doping concentration.
+
+#### **Parasitic Capacitance**
+- Dominates at smaller nodes.
+- Transition to low-k materials (e.g., SiBCN, SiCO) and air spacers.
+
+---
+
+### **Gate-All-Around (GAA) & Complementary FETs**
+
+#### **GAA FETs**:
+- Full gate wrapping for improved electrostatic control.
+- Higher parasitic resistance but superior scalability.
+
+#### **CFETs**:
+- Vertical NMOS/PMOS stacking for area efficiency, inheriting GAA’s challenges.
+
+---
+
+### **Material Innovations**
+
+#### **2D Materials (e.g., MoS₂)**
+- Advantages:
+  - Atomic-scale thickness for uniform scaling.
+  - High effective mass to suppress direct tunneling.
+
+#### **Tunneling Challenges**:
+- Direct source-drain tunneling at small \(L_G\).
+- Solutions:
+  - Materials with high effective mass and optimized bandgap.
+
+---
+
+### **Future Directions**
+
+#### **Scaling Beyond 2nm**
+- Development of CFETs and 2D materials.
+- Mitigation of parasitics to balance performance and density.
+
+#### **Emerging Technologies**
+- **EUV for Simplified Lithography**: Reducing overlay errors.
+- **Air Gap Spacers**: Drastic parasitic capacitance reductions.
+
+---
+
+### Suggestions for Further Enrichment
+1. **Add Graphical Summaries**: Summarize trends in performance, leakage, and capacitance with visual graphs.
+2. **Expand on Emerging Challenges**: 
+   - Focus on quantum mechanical effects in sub-nm regimes.
+   - Include potential of carbon nanotubes and graphene.
+
+### Installing and setting up ORFS
+
+```bash
+git clone --recursive https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts
+cd OpenROAD-flow-scripts
+sudo ./setup.sh
+```
+
+![Screenshot from 2024-11-25 20-15-39](https://github.com/user-attachments/assets/c671f9cc-fa04-49e4-8507-4f6017b62036)
+![Screenshot from 2024-11-25 20-46-49](https://github.com/user-attachments/assets/bfb0046b-a547-4a0a-ab20-aa49028f5ca7)
+![Screenshot from 2024-11-25 21-40-17](https://github.com/user-attachments/assets/3cfebfbb-b1af-4237-bf37-533e4f59a783)
+![image](https://github.com/user-attachments/assets/e538b45b-cc8c-403f-8327-de954004a190)
+![image](https://github.com/user-attachments/assets/c0d3aee9-f4c9-4af8-832a-8933bd1bc3c4)
+
+![image](https://github.com/user-attachments/assets/68649d3b-d0ff-4fdc-bed4-611b71e01330)
+
+![image](https://github.com/user-attachments/assets/19834572-8cb9-4e9a-94f2-1eeb44bcf29b)
+![image](https://github.com/user-attachments/assets/66e78efb-79ac-4a6a-bcb9-d9c76644fc36)
+
+</details>
+
