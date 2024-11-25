@@ -6040,13 +6040,7 @@ The evolution of semiconductor manufacturing has been defined by key innovations
 
 ---
 
-## Variability and Parasitic Resistance in Advanced Transistor Designs  
-
----
-
 ### **Voltage Threshold (Vt) Variability Across Technologies**  
-
-![Vt Variability Across Nodes](https://github.com/user-attachments/assets/0db8fac8-5b0c-4bc4-b36e-d33b4310d5ad)  
 
 1. **Planar Technology (≥100 nm)**  
    - **High Vt Variability (~130 mV)**  
