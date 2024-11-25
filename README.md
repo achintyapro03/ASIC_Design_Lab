@@ -6541,6 +6541,13 @@ export SKIP_GATE_CLONING = 1
 ```
 
 
+Certainly! Here's a formatted version of your content with all images retained and organized for readability.
+
+---
+
+### Setting Up the Environment
+
+Navigate to the project directory and set up the environment:
 
 ```bash
 cd OpenROAD-flow-scripts
@@ -6548,78 +6555,115 @@ source env.sh
 cd flow
 ```
 
-For synthesis: 
+---
+
+### **Synthesis**  
+
+Run the synthesis step with the following command:
+
 ```bash
 make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk synth
 ```
 
-![image](https://github.com/user-attachments/assets/70369e8b-4579-4f32-8ebc-185ecdd10a9e)
-![image](https://github.com/user-attachments/assets/e786b01d-af97-4717-994f-4781f1e391b8)
+#### **Synthesis Output**:
 
-Synthesis Netlist:
-![image](https://github.com/user-attachments/assets/653c1dd3-479d-431a-b8c7-9255887ac8d7)
+- **Netlist:**
 
-Synthesis Log:
-![image](https://github.com/user-attachments/assets/67b33974-d209-4634-9125-5da42b10d9d4)
+  ![Synthesis Netlist](https://github.com/user-attachments/assets/653c1dd3-479d-431a-b8c7-9255887ac8d7)
 
-Synthesis Report:
-![image](https://github.com/user-attachments/assets/3dbf6b10-8c8c-499f-b914-8d57c1950067)
+- **Log:**
 
-Synthesis Stats:
-![image](https://github.com/user-attachments/assets/ec005853-0bf6-453d-a717-47a5e813105c)
-![image](https://github.com/user-attachments/assets/6b1de756-d126-4cfb-b080-231c5ff7b808)
-![image](https://github.com/user-attachments/assets/92accb17-f3f9-4d57-958c-2fef44c4a36e)
+  ![Synthesis Log](https://github.com/user-attachments/assets/67b33974-d209-4634-9125-5da42b10d9d4)
 
+- **Report:**
 
-Commands for floorplan:
+  ![Synthesis Report](https://github.com/user-attachments/assets/3dbf6b10-8c8c-499f-b914-8d57c1950067)
+
+- **Statistics:**
+
+  ![Synthesis Stats 1](https://github.com/user-attachments/assets/ec005853-0bf6-453d-a717-47a5e813105c)  
+  ![Synthesis Stats 2](https://github.com/user-attachments/assets/6b1de756-d126-4cfb-b080-231c5ff7b808)  
+  ![Synthesis Stats 3](https://github.com/user-attachments/assets/92accb17-f3f9-4d57-958c-2fef44c4a36e)
+
+---
+
+### **Floorplanning**  
+
+Run the floorplan generation commands:
+
 ```bash
 make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk floorplan
 make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_floorplan
 ```
 
-![image](https://github.com/user-attachments/assets/ab848ef1-c4f5-452b-9660-a8910b44cbeb)
-![image](https://github.com/user-attachments/assets/12e52dfd-a346-4779-aef9-0612f6213eea)
-![image](https://github.com/user-attachments/assets/2360cfaa-3037-4e40-981a-b3c7ff413f84)
+#### **Floorplanning Output**:
 
+![Floorplan 1](https://github.com/user-attachments/assets/ab848ef1-c4f5-452b-9660-a8910b44cbeb)  
+![Floorplan 2](https://github.com/user-attachments/assets/12e52dfd-a346-4779-aef9-0612f6213eea)  
+![Floorplan 3](https://github.com/user-attachments/assets/2360cfaa-3037-4e40-981a-b3c7ff413f84)
 
-Commands for floorplan:
+---
+
+### **Placement**  
+
+Run the placement commands:
+
 ```bash
 make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk place
 make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_place
 ```
 
-![image](https://github.com/user-attachments/assets/4711c4bd-8110-4d9b-a610-fc30438a134c)
-![image](https://github.com/user-attachments/assets/7c33c612-a0b9-49c4-9732-535cdc7b4227)
-![image](https://github.com/user-attachments/assets/39c317b8-01f1-4595-951f-2372f79a7f39)
+#### **Placement Output**:
 
-Placement Density:
-![image](https://github.com/user-attachments/assets/2df952ad-01b4-4499-9cf3-3af0614b2e37)
-![image](https://github.com/user-attachments/assets/abf86b5c-a196-4e03-9a99-761b47f7bc9f)
+![Placement 1](https://github.com/user-attachments/assets/4711c4bd-8110-4d9b-a610-fc30438a134c)  
+![Placement 2](https://github.com/user-attachments/assets/7c33c612-a0b9-49c4-9732-535cdc7b4227)  
+![Placement 3](https://github.com/user-attachments/assets/39c317b8-01f1-4595-951f-2372f79a7f39)  
 
+- **Placement Density**:
 
-Commands for CTS:
+  ![Placement Density 1](https://github.com/user-attachments/assets/2df952ad-01b4-4499-9cf3-3af0614b2e37)  
+  ![Placement Density 2](https://github.com/user-attachments/assets/abf86b5c-a196-4e03-9a99-761b47f7bc9f)
+
+---
+
+### **Clock Tree Synthesis (CTS)**  
+
+Run the CTS commands:
+
 ```bash
 make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk cts
 make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_cts
 ```
 
-![image](https://github.com/user-attachments/assets/df3d1442-cfd8-46f8-b448-0783786142ef)
-![image](https://github.com/user-attachments/assets/03328f5f-3f4e-4193-9a8b-a1076ed0f710)
-![image](https://github.com/user-attachments/assets/68eb652e-e175-48e3-9ab9-b96842df9e10)
+#### **CTS Output**:
 
-![image](https://github.com/user-attachments/assets/0a430b5e-bff5-4446-9c31-812a292f5c0d)
-![image](https://github.com/user-attachments/assets/357d0c2a-208b-4d8f-a1b3-4291fc33d2c3)
-![image](https://github.com/user-attachments/assets/3218a1bf-ff64-4f2f-8a19-019346cb258f)
+![CTS 1](https://github.com/user-attachments/assets/df3d1442-cfd8-46f8-b448-0783786142ef)  
+![CTS 2](https://github.com/user-attachments/assets/03328f5f-3f4e-4193-9a8b-a1076ed0f710)  
+![CTS 3](https://github.com/user-attachments/assets/68eb652e-e175-48e3-9ab9-b96842df9e10)  
 
+Additional Outputs:  
+![CTS Additional 1](https://github.com/user-attachments/assets/0a430b5e-bff5-4446-9c31-812a292f5c0d)  
+![CTS Additional 2](https://github.com/user-attachments/assets/357d0c2a-208b-4d8f-a1b3-4291fc33d2c3)  
+![CTS Additional 3](https://github.com/user-attachments/assets/3218a1bf-ff64-4f2f-8a19-019346cb258f)
 
-Commands for Route:
+---
+
+### **Routing**  
+
+Run the routing commands:
+
 ```bash
 make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk route
 make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_cts
 ```
 
-![image](https://github.com/user-attachments/assets/b7bb9f8b-f589-490f-bb87-802055454d36)
+#### **Routing Output**:
 
+![Routing](https://github.com/user-attachments/assets/b7bb9f8b-f589-490f-bb87-802055454d36)
+
+---
+
+This formatted version maintains the sequence of commands, corresponding outputs, and images for clarity. Let me know if you need additional modifications!
 ```
 
 ==========================================================================
