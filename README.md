@@ -5983,6 +5983,8 @@ FEOL involves the creation of active components (e.g., transistors) on a silicon
    - Focus on quantum mechanical effects in sub-nm regimes.
    - Include potential of carbon nanotubes and graphene.
 
+
+
 ### Installing and setting up ORFS
 
 ```bash
@@ -5993,14 +5995,65 @@ sudo ./setup.sh
 
 ![Screenshot from 2024-11-25 20-15-39](https://github.com/user-attachments/assets/c671f9cc-fa04-49e4-8507-4f6017b62036)
 ![Screenshot from 2024-11-25 20-46-49](https://github.com/user-attachments/assets/bfb0046b-a547-4a0a-ab20-aa49028f5ca7)
+
+```bash
+./build_openroad.sh --local
+```
+
 ![Screenshot from 2024-11-25 21-40-17](https://github.com/user-attachments/assets/3cfebfbb-b1af-4237-bf37-533e4f59a783)
+
+### Verify Installation
+
+```bash
+source ./env.sh
+yosys -help
+openroad -help
+cd flow
+make
+```
+
 ![image](https://github.com/user-attachments/assets/e538b45b-cc8c-403f-8327-de954004a190)
 ![image](https://github.com/user-attachments/assets/c0d3aee9-f4c9-4af8-832a-8933bd1bc3c4)
 
 ![image](https://github.com/user-attachments/assets/68649d3b-d0ff-4fdc-bed4-611b71e01330)
 
+```bash
+make gui_final
+```
+
 ![image](https://github.com/user-attachments/assets/19834572-8cb9-4e9a-94f2-1eeb44bcf29b)
 ![image](https://github.com/user-attachments/assets/66e78efb-79ac-4a6a-bcb9-d9c76644fc36)
+
+### **OpenROAD-flow-scripts Directory Breakdown**
+
+![Screenshot from 2024-11-25 22-19-57](https://github.com/user-attachments/assets/7cc8ef7e-8303-4170-bb42-4863b55dafe4)
+
+1. **`docker`**:  
+   - Contains Docker setup scripts for containerizing the OpenROAD environment, making it easier to run on various systems by using pre-configured containers.
+
+2. **`docs`**:  
+   - Documentation providing detailed information about OpenROAD, including usage guides, flow explanations, setup instructions, and troubleshooting tips.
+
+3. **`flow`**:  
+   - Central directory for RTL-to-GDSII flow files, with built-in design examples, automation scripts, and platform-specific data. Key components include:
+     - **`design`**: Example designs that walk through the entire RTL-to-GDS flow across different technology nodes.
+     - **`makefile`**: Automates the flow process by setting up build targets for synthesis, place-and-route, and GDSII generation.
+     - **`platform`**: Contains libraries, LEF, GDS, and other technology-specific files for different nodes.
+     - **`tutorials`**: Step-by-step guides for users to learn and implement OpenROAD's flow.
+     - **`util`**: Utility scripts to assist with configuration and flow management.
+     - **`scripts`**: Task-specific scripts that automate individual stages of the flow, such as synthesis, routing, and layout generation.
+
+4. **`jenkins`**:  
+   - Contains automated regression tests designed to verify each build update and ensure the flow remains functional.
+
+5. **`tools`**:  
+   - Stores the tools required to run the RTL-to-GDSII flow, such as synthesis, place-and-route, and layout generation tools.
+
+6. **`etc`**:  
+   - Includes dependency installer scripts and other setup configurations for the flow environment.
+
+7. **`setup_env.sh`**:  
+   - Shell script to set up environment variables, OpenROAD rules, and configurations necessary to execute the flow.
 
 </details>
 
