@@ -5786,7 +5786,7 @@ exit
 
 ### 50 Years of Microprocessor Evolution:
 
-![image](https://github.com/user-attachments/assets/04124b15-8ba2-4cd9-add6-fd003838fe6c)
+![image](https://github.com/user-attachments/assets/b47f3513-a6af-4062-b391-5d3043ff2d95)
 
 Key Metrics:
 
@@ -5808,7 +5808,7 @@ Key Metrics:
 
 ### Path to Zetta-Scale Computing:
 
-![image](https://github.com/user-attachments/assets/7f0a1590-b0ca-4d90-8804-381b30bee78a)
+![image](https://github.com/user-attachments/assets/c0b6491d-7010-4de5-aad4-726d35ad5c37)
 
 The evolution of computing performance (measured in FLOPS) from the gigascale era in 1984 to the projected zettascale by 2035 is outlined below.
 
@@ -5826,7 +5826,7 @@ The evolution of computing performance (measured in FLOPS) from the gigascale er
 
 ### CMOS Evolution and Next-Gen Candidates:
 
-![image](https://github.com/user-attachments/assets/b621caad-384e-4c67-bb01-4504d153230a)
+![image](https://github.com/user-attachments/assets/92a809d7-9998-4011-a576-2b66538ad94f)
 
 The progression of CMOS technology and the exploration of emerging materials, structures, and processes for next-generation semiconductor devices are crucial for continuing to scale beyond the 1nm node.
 
@@ -5856,6 +5856,8 @@ The progression of CMOS technology and the exploration of emerging materials, st
 
 ### Evolution of Transistor Technology: From Planar to FinFET and Gate-All-Around (GAA)
 
+![image](https://github.com/user-attachments/assets/eeec74cb-3d29-4ab6-8641-5fb6f47cd453)
+
 The evolution of transistor technology has been driven by the need for improved performance, reduced power consumption, and enhanced miniaturization. This progression is evident in the transition from traditional planar transistors to more advanced architectures such as FinFET and Gate-All-Around (GAA) transistors.
 
 #### 1. **Planar Transistor (Traditional)**:
@@ -5869,6 +5871,8 @@ The evolution of transistor technology has been driven by the need for improved 
 #### 3. **Gate-All-Around (GAA) Transistor (Projected 2025 and beyond)**:
    - The GAA architecture takes this concept a step further by fully surrounding the channel with the gate, typically implemented with stacked nanosheets or nanowires.
    - This provides superior electrostatic control, drastically improving short-channel effects and enabling better scaling efficiency at smaller dimensions. The GAA transistor offers substantial reductions in sub-threshold slope, leading to enhanced performance and power efficiency.
+
+![image](https://github.com/user-attachments/assets/5ada54da-73be-472f-b03d-990459a8f099)
 
 ---
 
@@ -5918,6 +5922,8 @@ The **Front-End-of-Line (FEOL)** stage in semiconductor manufacturing refers to 
 
 The evolution of CMOS technology has been marked by several key innovations that have enabled continued scaling and enhanced transistor performance:
 
+![image](https://github.com/user-attachments/assets/0925ebce-2467-47ce-9a0e-6e96174b1451)
+
 #### **1. Dennard Scaling**:
    - Initially, Dennard scaling asserted that power density remains constant as transistors shrink, allowing for voltage scaling with smaller gate lengths. This principle is crucial for sustaining device performance while reducing power consumption. However, as transistor sizes have continued to shrink, challenges such as leakage currents and power density increases have become more prominent, causing deviations from the ideal scaling behavior.
 
@@ -5937,6 +5943,9 @@ The evolution of CMOS technology has been marked by several key innovations that
 - **Left Image**: Displays a cross-sectional view of a transistor structure featuring high-k dielectrics and embedded SiGe. The use of high-k dielectric and metal gates enhances performance, while the SiGe regions apply strain to the silicon channel, boosting PMOS performance.
   
 - **Right Image**: Highlights the raised source/drain (S/D) regions and gate channel in PMOS transistors at smaller process nodes, contributing to enhanced electrical characteristics.
+
+![image](https://github.com/user-attachments/assets/53472d43-32df-4b39-8dd2-ac659f76b6e4)
+
 
 #### **Drive Voltage Scaling** (Graph Analysis):
    - The graph compares the relationship between gate length and drive voltage. While ideal scaling suggests a linear decrease in voltage with shrinking gate length, practical trends (depicted in red and green) show deviations caused by challenges like leakage currents and increased power density, especially in low-power and high-performance devices.
@@ -5958,6 +5967,8 @@ The evolution of CMOS technology has been marked by several key innovations that
 - **3 nm / 2 nm / 1.4 nm**: Transition to **Gate-All-Around (GAA)** nanosheet transistors, which provide improved electrostatic control and current drive by stacking nanosheets or nanowires horizontally.
 
 - **Sub-1 nm**: Development of **CFET (Complementary FET)** technology, which vertically stacks NMOS and PMOS transistors, saving area and increasing density. The use of **2D materials** like **MoS₂** for atomic-scale channel thickness is also explored in **2D FETs**.
+
+![image](https://github.com/user-attachments/assets/b5b34bc5-444e-41a2-be00-78682c21860b)
 
 ---
 
@@ -5990,6 +6001,8 @@ This approach helps optimize performance and transistor density while maintainin
 
 ### **Variability and Control in Transistor Design**
 
+![image](https://github.com/user-attachments/assets/0db8fac8-5b0c-4bc4-b36e-d33b4310d5ad)
+
 - **Planar Technology (100 nm and above)**: Voltage threshold (Vt) variability is high (~130 mV) due to process variations, temperature fluctuations, and line-edge roughness.
   
 - **FinFET Technology (22 nm)**: Vt variability is reduced significantly (~14 mV) thanks to better control over channel dimensions in FinFETs.
@@ -5999,6 +6012,8 @@ This approach helps optimize performance and transistor density while maintainin
 ---
 
 ### **Transistor Architectures and Parasitic Resistance**
+
+![image](https://github.com/user-attachments/assets/bfc62be0-5769-495c-a61e-865949900756)
 
 **Planar MOSFETs**
 Planar MOSFETs, the conventional transistor design, feature a simple structure where the gate electrode sits above the channel. In this configuration, the contact width (\(W_C\)) and gate width (\(W_G\)) are nearly equal, yielding a ratio of \(W_C / W_G \approx 1\). This results in minimal parasitic resistance, with the external resistance (\(R_{EXT}\)) being much smaller than the channel resistance (\(R_{ch}\)), i.e., \(R_{EXT} / R_{ch} < 1\). Consequently, planar MOSFETs exhibit low performance degradation due to parasitic resistance.
@@ -6014,7 +6029,7 @@ Complementary FETs (CFETs) stack NMOS and PMOS transistors vertically, maximizin
 
 ### **Parasitic Resistance Breakdown**
 
-![Parasitic Resistance Breakdown](https://github.com/user-attachments/assets/6ab0011f-36de-4821-ab59-74fa2ce2beda)
+![image](https://github.com/user-attachments/assets/2e62888a-f816-425f-b021-43322ab6428a)
 
 The diagram illustrates the breakdown of parasitic resistance (\(R_{EXT}\)) and highlights the strategies to reduce it. The following is a detailed explanation:
 
@@ -6052,7 +6067,7 @@ The right section outlines methods to enhance the metal-semiconductor interface:
    - **Metal-Semiconductor Energy Diagram**:
      The energy diagram shows how a reduction in \(\phi_b\) (Schottky barrier height) makes it easier for carriers to inject from the metal into the semiconductor.
 
-![Improved Contact Resistivity](https://github.com/user-attachments/assets/ed9743a8-c9f0-43d5-9ccd-4b239f8718ac)
+![image](https://github.com/user-attachments/assets/267e8baf-8e93-4389-87b5-88321fac95b7)
 
 ### **Capacitance Evolution and Spacer Materials in Advanced Technology Nodes**
 
@@ -6066,6 +6081,8 @@ The bar chart on the left illustrates the evolution of the effective capacitance
 
 #### **Spacer Materials and Capacitance Reduction**
 
+![image](https://github.com/user-attachments/assets/0c8418b1-2a36-4a4e-9465-da84be9a7965)
+
 - **SiBCN vs. SiN Spacers:** The first scatter plot demonstrates a reduction in normalized delay for a ring oscillator when SiBCN spacers are used instead of SiN spacers, indicating improved performance due to reduced capacitance.
 - **Capacitance Reduction with SiBCN:** The second scatter plot shows an 8% reduction in \(C_{eff}\) with SiBCN spacers, corresponding to the delay improvement observed in the first plot.
 - **Spacer Material Transition:** The rightmost figure highlights the transition from SiOCN to SiCO spacer materials. This shift aims to reduce gate-contact capacitance significantly, which is crucial for technology nodes at 14nm and beyond. Low-\(k\) spacers help to mitigate parasitic effects and maintain manageable capacitance levels, thereby improving performance.
@@ -6074,6 +6091,8 @@ The bar chart on the left illustrates the evolution of the effective capacitance
 ---
 
 ### **Key Properties of 2D Layered Materials in Comparison to Silicon**
+
+![image](https://github.com/user-attachments/assets/c90a1146-9ad3-42f9-94c1-a52f8d3f1a21)
 
 2D materials, such as MoS₂, offer several advantages over traditional silicon, particularly as transistor nodes shrink:
 
@@ -6100,9 +6119,14 @@ The bar chart on the left illustrates the evolution of the effective capacitance
      - **Direct Tunneling:** At very small gate lengths, electrons can tunnel directly from the source to the drain, causing leakage.
 
 4. **Key Takeaway:**
+
+![image](https://github.com/user-attachments/assets/6b10d0a0-720a-49d6-94c5-a0c61e7a94c3)
+
    - To address scaling challenges and maintain high performance, new materials such as 2D layered materials are essential. These materials offer advantages in terms of scalability, effective mass, and bandgap, helping to mitigate issues such as tunneling and capacitance imbalance.
   
 ### **Direct Source-to-Drain Tunneling and the Role of MoS₂ in Minimizing Leakage**
+
+![image](https://github.com/user-attachments/assets/e82a86ca-4082-467f-8c14-32d0b5d5672e)
 
 As gate lengths (\(L_G\)) in MOSFETs decrease, direct tunneling of electrons from the source to the drain becomes more pronounced, significantly increasing leakage currents. This phenomenon is influenced by material properties, such as the effective mass (\(m^*\)) and bandgap (\(E_G\)) of the material. 
 
@@ -6113,6 +6137,8 @@ This reduced leakage current in MoS₂ transistors results in significant energy
 ---
 
 ### **MoS₂ Transistor with 1 nm Gate Length**
+
+![image](https://github.com/user-attachments/assets/9010473c-1d7f-4cfe-8f1d-99a77c0767df)
 
 The MoS₂ transistor with a 1 nm gate length represents a breakthrough in miniaturization. Key features of this design include:
 
@@ -6151,6 +6177,8 @@ The All-2D MOSFET exhibits exceptional electrical performance:
 - **Output Characteristics (I\(_D\) vs V\(_{DS}\))**: The device shows smooth current modulation with increasing gate voltage (V\(_G\)) and drain-source voltage (V\(_{DS}\)), indicating stable output performance.
 - **Mobility**: The field-effect mobility remains consistent with increasing gate electric field, indicating minimal scattering and high-quality interfaces within the 2D materials stack.
 
+![image](https://github.com/user-attachments/assets/21327e70-e9fa-406c-9c4e-1378b10e4260)
+
 This demonstrates the potential of all-2D MOSFETs to push the limits of transistor technology, providing high performance and scalability for next-generation electronic devices.
 
 ### **Potential of 2D Materials in High-Performance Transistor Applications**
@@ -6174,6 +6202,8 @@ The primary challenge in non-planar transistor design lies in the difficulty of 
 
 ### **CMOS Design Evolution: Single-Layer vs. Monolithic 3D CMOS**
 
+![image](https://github.com/user-attachments/assets/e45335af-3d07-4683-ac8c-42646dd761f7)
+
 - **Single-Layer CMOS (a)**: This is the conventional CMOS design, where NMOS and PMOS transistors are fabricated on a single silicon layer. All devices are positioned within the same planar layer, with lateral connections.
   
 - **Monolithic 3D CMOS (b)**: In this advanced design, NMOS and PMOS transistors are stacked in two separate layers, one on top of the other, separated by an oxide layer. This 3D integration reduces the device footprint, enables higher transistor density, and enhances performance by reducing interconnect lengths.
@@ -6181,6 +6211,8 @@ The primary challenge in non-planar transistor design lies in the difficulty of 
 - **Single-Layer CMOS Logic (c)**: Traditional logic gates such as inverters, 2-input NAND, and 2-input NOR gates are built using single-layer CMOS. These gates require more space for interconnections due to their horizontal layout.
   
 - **Monolithic 3D CMOS Logic (d)**: Logic gates in this design are constructed using two transistor layers, leading to reduced area for interconnections. The vertical integration improves performance by minimizing delay and shortening signal paths.
+
+![image](https://github.com/user-attachments/assets/1047d576-b3cd-4e16-8619-e45375781643)
 
 ---
 
@@ -6213,6 +6245,8 @@ This collection of innovations showcases how cutting-edge materials and fabricat
 ---
 
 ### **Back-Side Power Delivery Network (BS-PDN)**
+
+![image](https://github.com/user-attachments/assets/7aa82986-4826-454a-8436-51d9b9181764)
 
 In advanced semiconductor manufacturing, the efficiency of power delivery plays a critical role in the performance, reliability, and overall functionality of integrated circuits (ICs). Traditional **Front-Side Power Delivery Networks (FS-PDNs)** often face challenges such as high IR-drop, which can hinder device performance and long-term reliability. To address these issues, **Back-Side Power Delivery Networks (BS-PDNs)** have emerged as an effective solution.
 
